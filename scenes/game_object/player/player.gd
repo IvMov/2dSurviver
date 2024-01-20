@@ -1,11 +1,11 @@
 extends CharacterBody2D
 
-const MAX_SPEED = 125
+const MAX_SPEED = 150
 const ACCELERATION_SMOOTHING = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$Area2D.area_entered.connect(handle_pick_up_items)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,3 +22,6 @@ func get_movement_vector():
 	var y_movement = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	
 	return Vector2(x_movement, y_movement)
+
+func handle_pick_up_items(area):
+	pass

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EnemyCounter="*res://scenes/counters/enemy_counter.gd"
 PlayerCounters="*res://scenes/counters/PlayerCounters.gd"
+GameEvents="*res://scenes/events/game_events.tscn"
 
 [debug]
 
@@ -65,7 +66,8 @@ move_down={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="EnemyCollision"
+2d_physics/layer_5="PlayerPickUp"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3

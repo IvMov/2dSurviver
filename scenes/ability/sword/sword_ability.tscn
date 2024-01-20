@@ -133,7 +133,7 @@ size = Vector2(8.99968, 18.2494)
 [node name="SwordAbility" type="Node2D"]
 rotation = -0.00840279
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="SwordAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4tni1")
 }
@@ -149,8 +149,7 @@ shape = SubResource("RectangleShape2D_ycpjc")
 disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 3.09068
-scale = Vector2(1.33333, 1.33333)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("1_fuh6m")
 offset = Vector2(0, -5)
 flip_h = true

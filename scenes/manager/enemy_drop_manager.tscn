@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6cppckanm15j"]
+
+[ext_resource type="Script" path="res://scenes/manager/enemy_drop_manager.gd" id="1_tvol3"]
+[ext_resource type="PackedScene" uid="uid://b6dkcyga0c8tq" path="res://scenes/game_object/curency/coin.tscn" id="2_wqax3"]
+[ext_resource type="PackedScene" uid="uid://5umsd617f01x" path="res://scenes/game_object/expirience/exp_vial.tscn" id="3_2a4mk"]
+
+[node name="EnemyDropManager" type="Node"]
+script = ExtResource("1_tvol3")
+coin = ExtResource("2_wqax3")
+exp_vial = ExtResource("3_2a4mk")
