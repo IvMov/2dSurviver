@@ -22,7 +22,9 @@ func get_direction_to_player():
 
 func on_area_2d_area_entered(area):
 	queue_free()
-	EnemyCounter.remove_enemy();
+	EnemyCounter.minus_enemy()
+	PlayerCounters.add_money()
+	PlayerCounters.add_exp()
 
 func get_randog_factor():
 	var rng = RandomNumberGenerator.new()

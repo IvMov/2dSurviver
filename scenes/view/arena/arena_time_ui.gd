@@ -1,17 +1,21 @@
 extends CanvasLayer
 
 @export var arena_time_manager: Node
-@onready var timeLabel = %TimeLabel
-@onready var enemiesLabel = %EnemiesLabel
+@onready var time_label = %TimeLabel
+@onready var enemies_label = %EnemiesLabel
+@onready var stats_label = %StatsLabel
+
 
 func _process(delta):
 	
 	if !arena_time_manager: 
 		return
 	var time_elapsed = arena_time_manager.get_time_elapsed();
-	timeLabel.text = "time: " + format_seconds_to_sring(time_elapsed)
-	enemiesLabel.text = "enemies: " + str(EnemyCounter.enemies);
-
+	time_label.text = "time: " + format_seconds_to_sring(time_elapsed)
+	enemies_label.text = "enemies: " + str(EnemyCounter.enemies)
+	var stats_text = "Coins: %s \n Exp: %s"
+	stats_label.text = stats_text % [PlayerCounters.money, PlayerCounters.exp]
+	
 
 func format_seconds_to_sring(seconds: float):
 	if !seconds:

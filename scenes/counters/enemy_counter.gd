@@ -6,5 +6,5 @@ func add_enemy():
 	enemies = enemies + 1;
 	
 	
-func remove_enemy():
+func minus_enemy():
 	enemies = enemies - 1;
