@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 const MAX_SPEED = 40
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area2D.area_entered.connect(on_area_2d_area_entered)
@@ -10,7 +9,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var direction = get_direction_to_player()
-	velocity = direction * MAX_SPEED
+	velocity = direction * (MAX_SPEED * get_randog_factor())
 	move_and_slide()
 
 
@@ -23,3 +22,8 @@ func get_direction_to_player():
 
 func on_area_2d_area_entered(area):
 	queue_free()
+	EnemyCounter.remove_enemy();
+
+func get_randog_factor():
+	var rng = RandomNumberGenerator.new()
+	return rng.randf_range(0.2, 2)

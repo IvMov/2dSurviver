@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_RENGE = 150
+const MAX_RENGE = 50
 
 @export var sword_ability: PackedScene
 

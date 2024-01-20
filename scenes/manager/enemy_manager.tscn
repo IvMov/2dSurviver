@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/manager/enemy_manager.gd" id="1_nggqr"]
 [ext_resource type="PackedScene" uid="uid://doyadpvd7uonj" path="res://scenes/basic_enemy/basic_enemy.tscn" id="2_qymyb"]
 
-[node name="EnemyManager" type="Node"]
+[node name="EnemyManager" type="Node" groups=["enemy_manager"]]
 script = ExtResource("1_nggqr")
 basic_enemy_scene = ExtResource("2_qymyb")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 autostart = true

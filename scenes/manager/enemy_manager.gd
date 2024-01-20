@@ -20,6 +20,7 @@ func on_timeout():
 	
 	enemy.global_position = enemy_spawn_position
 	get_parent().add_child(enemy)
+	EnemyCounter.add_enemy()
 	
 	
 func get_random_direction():
