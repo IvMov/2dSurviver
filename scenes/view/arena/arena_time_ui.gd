@@ -14,7 +14,7 @@ func _process(delta):
 	time_label.text = "time: " + format_seconds_to_sring(time_elapsed)
 	enemies_label.text = "enemies: " + str(EnemyCounter.enemies)
 	var stats_text = "Coins: %s \n Exp: %s"
-	stats_label.text = stats_text % [PlayerCounters.money, PlayerCounters.exp]
+	stats_label.text = stats_text % [PlayerCounters.money, PlayerCounters.expirience]
 	
 
 func format_seconds_to_sring(seconds: float):
@@ -24,4 +24,4 @@ func format_seconds_to_sring(seconds: float):
 	var minutes = floor(seconds/60)
 	var remaining_seconds = floor(seconds) if minutes == 0 else int(seconds) % 60
 	
-	return ("%02d" % minutes) + ":" + ("%02d" % remaining_seconds)
+	return ("%02d" % minutes) + ":" + ("%02d" % remaining_seconds) if minutes != 10 else "GAME END"

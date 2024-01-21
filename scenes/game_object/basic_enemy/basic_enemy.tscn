@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://doyadpvd7uonj"]
+[gd_scene load_steps=6 format=3 uid="uid://doyadpvd7uonj"]
 
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_exaa7"]
 [ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_jc82f"]
+[ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="3_yjuqa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d6fl3"]
 
@@ -29,5 +30,7 @@ offset = Vector2(0, -6)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_0hv68")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_yjuqa")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

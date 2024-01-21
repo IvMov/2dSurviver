@@ -1,7 +1,7 @@
 extends Node
 
 var money: int = 0;
-var exp: int = 0;
+var expirience: int = 0;
 
 func _ready():
 	GameEvents.coin_collected.connect(handle_coin_collected)
@@ -12,6 +12,6 @@ func handle_coin_collected(value, pos):
 	
 	
 func handle_exp_collected(value, pos):
-	exp+=value
+	expirience+=value
 	
 	

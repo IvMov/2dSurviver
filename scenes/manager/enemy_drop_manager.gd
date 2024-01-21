@@ -16,13 +16,12 @@ func _process(delta):
 	pass
 	
 	
-func on_exp_drop(exp, position):
+func on_exp_drop(value, position):
 	var exp_inst = exp_vial.instantiate() as Node2D
-	exp_inst.global_position = position;
 	exp_inst.global_position = position + (get_random_direction() * SPAWN_RADIUS)
 	exp_inst.rotate(randf_range(0, TAU))
-	exp_inst.VALUE = exp
-	get_parent().add_child(exp_inst)
+	exp_inst.VALUE = value
+	Callable(instantiate_child).bind(exp_inst).call_deferred()
 	
 	
 func on_coin_drop(value, position):
@@ -30,7 +29,10 @@ func on_coin_drop(value, position):
 	coin_inst.global_position = position + (get_random_direction() * SPAWN_RADIUS)
 	coin_inst.rotate(randf_range(0, TAU))
 	coin_inst.VALUE = value
-	get_parent().add_child(coin_inst)
+	Callable(instantiate_child).bind(coin_inst).call_deferred()
+	
+func instantiate_child(inst: Node2D):
+	get_parent().add_child(inst)
 	
 	
 func get_random_direction():
