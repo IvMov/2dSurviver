@@ -26,9 +26,7 @@ health_component = NodePath("../HealthComponent")
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_gr8wg")
 
-[node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ly4q8")]
-coin_drop_chance = 0.2
-health_component = NodePath("../HealthComponent")
+[node name="EnemyDropComponent" parent="." instance=ExtResource("3_ly4q8")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jc82f")
