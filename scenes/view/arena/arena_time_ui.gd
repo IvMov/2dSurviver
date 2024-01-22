@@ -13,8 +13,8 @@ func _process(delta):
 	var time_elapsed = arena_time_manager.get_time_elapsed();
 	time_label.text = "time: " + format_seconds_to_sring(time_elapsed)
 	enemies_label.text = "enemies: " + str(EnemyCounter.enemies)
-	var stats_text = "Coins: %s \n Exp: %s"
-	stats_label.text = stats_text % [PlayerCounters.money, PlayerCounters.expirience]
+	var stats_text = "Level: %s \nCoins: %s \nExp: %s \nNExtLvlExp: %s"
+	stats_label.text = stats_text % [PlayerCounters.current_level, PlayerCounters.money, PlayerCounters.expirience, PlayerCounters.target_expirience]
 	
 
 func format_seconds_to_sring(seconds: float):
