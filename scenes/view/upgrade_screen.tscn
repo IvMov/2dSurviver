@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://25li74ojtlv7"]
+
+[ext_resource type="PackedScene" uid="uid://2p8y050pj32x" path="res://scenes/view/ability_upgrade_card.tscn" id="1_3c5qq"]
+[ext_resource type="Script" path="res://scenes/view/upgrade_screen.gd" id="1_qmq2m"]
+
+[node name="UpgradeScreen" type="CanvasLayer"]
+script = ExtResource("1_qmq2m")
+upgrade_card_scene = ExtResource("1_3c5qq")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardContainer" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
