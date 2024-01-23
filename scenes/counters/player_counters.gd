@@ -1,7 +1,5 @@
 extends Node
 
-signal target_changed
-
 var money: int = 0
 var expirience: int = 0
 var current_level: int = 0
@@ -27,4 +25,4 @@ func on_level_up(value):
 	current_level+=1
 	start_expirience = target_expirience
 	target_expirience += (base_exp_level * (current_level))
-	target_changed.emit()
+	GameEvents.emit_call_abillity_upgrade()
