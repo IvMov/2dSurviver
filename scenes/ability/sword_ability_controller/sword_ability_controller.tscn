@@ -8,5 +8,4 @@ script = ExtResource("1_mqf6n")
 sword_ability = ExtResource("2_ddcgs")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
 autostart = true

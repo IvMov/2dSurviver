@@ -39,7 +39,7 @@ func on_dead_drop():
 	
 	
 func instantiate_child(inst: Node2D):
-	get_tree().root.add_child(inst)
+	get_tree().get_first_node_in_group("entities_layer").add_child(inst)
 	
 	
 func get_random_direction():

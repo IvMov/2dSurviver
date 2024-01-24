@@ -29,7 +29,7 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 		}
 	else:
 		current_upgrades[upgrade.id]["lvl"] += 1 
-	print(current_upgrades)
+	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 func handle_abiliti_selected(upgrade: AbilityUpgrade):
 	apply_upgrade(upgrade)
