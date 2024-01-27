@@ -1,8 +1,16 @@
 extends CharacterBody2D
 
+@onready var health_component = $HealthComponent
+@onready var health_bar = $HealthBar
 
 const MAX_SPEED = 50
 
+func _ready():
+	health_component.max_health = 10 + (randf() * 2)
+	health_component.current_health = health_component.max_health
+	health_component.health_changed.connect(on_health_changed)
+	
+	update_health_bar()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -16,3 +24,11 @@ func get_direction_to_player():
 	if player_node != null:
 		return (player_node.global_position - global_position).normalized()
 	return Vector2.ZERO	
+	
+	
+func update_health_bar():
+	health_bar.value = health_component.get_health_precent()	
+
+	
+func on_health_changed():
+	update_health_bar()

@@ -44,7 +44,7 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 	if upgrade.id != "sword_rate":
 		return
 	
-	var percent_improve = current_upgrades["sword_rate"]["lvl"] * .1
-	$Timer.wait_time = base_wait_tile * (1 - percent_improve)
+	var percent_improve = current_upgrades["sword_rate"]["lvl"] * .03
+	$Timer.wait_time = max(base_wait_tile * (1 - percent_improve), 0.01)
 	$Timer.start()
 	
