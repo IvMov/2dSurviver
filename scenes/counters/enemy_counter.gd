@@ -8,3 +8,7 @@ func add_enemy():
 	
 func minus_enemy():
 	enemies = enemies - 1;
+
+
+func reset_counters():
+	enemies = 0

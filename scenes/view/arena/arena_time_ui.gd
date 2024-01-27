@@ -11,9 +11,9 @@ func _process(delta):
 	if !arena_time_manager: 
 		return
 	var time_elapsed = arena_time_manager.get_time_elapsed();
-	time_label.text = "time: " + format_seconds_to_sring(time_elapsed)
+	time_label.text = "time: " + format_seconds_to_sring(time_elapsed) + "\n Try to stay alive till 05:00" 
 	enemies_label.text = "enemies: " + str(EnemyCounter.enemies)
-	var stats_text = "Level: %s \nCoins: %s \nExp: %s \nNExtLvlExp: %s"
+	var stats_text = "Level: %s \nCoins: %s \nExp: %s \nNextLvlExp: %s"
 	stats_label.text = stats_text % [PlayerCounters.current_level, PlayerCounters.money, PlayerCounters.expirience, PlayerCounters.target_expirience]
 	
 

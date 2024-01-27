@@ -41,10 +41,11 @@ func action_on_timer_timeout():
 	sword_instance.rotation = enemy_direction.angle()
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if upgrade.id != "sword_rate":
-		return
-	
-	var percent_improve = current_upgrades["sword_rate"]["lvl"] * .03
-	$Timer.wait_time = max(base_wait_tile * (1 - percent_improve), 0.01)
-	$Timer.start()
-	
+	if upgrade.id == "sword_rate":
+		var percent_improve = current_upgrades["sword_rate"]["lvl"] * .05
+		$Timer.wait_time = max(base_wait_tile * (1 - percent_improve), 0.01)
+		$Timer.start()
+	if upgrade.id == "sword_damage":
+		var percent_improve = current_upgrades["sword_damage"]["lvl"] * .05
+		damage += damage * percent_improve
+		$Timer.start()

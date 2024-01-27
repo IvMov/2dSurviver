@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvcaah6i62mh6"]
+[gd_scene load_steps=12 format=3 uid="uid://bvcaah6i62mh6"]
 
 [ext_resource type="TileSet" uid="uid://bsqi4jkcy2v6k" path="res://resources/tile_set.tres" id="1_7bddb"]
-[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_58quo"]
 [ext_resource type="PackedScene" uid="uid://bb2dcdhx1qbyv" path="res://scenes/game_object/player/player.tscn" id="1_pliyt"]
+[ext_resource type="PackedScene" uid="uid://t8do2orv81f2" path="res://scenes/view/game_end_screen.tscn" id="1_xlhfr"]
 [ext_resource type="PackedScene" uid="uid://ce2c7e20vc4qx" path="res://scenes/manager/enemy_manager.tscn" id="2_6rckp"]
 [ext_resource type="PackedScene" uid="uid://imcjrickfoj8" path="res://scenes/view/fps/fps_counter.tscn" id="2_octhe"]
 [ext_resource type="PackedScene" uid="uid://r344fqr7d4e8" path="res://scenes/manager/arena_time_manager.tscn" id="3_1ks0g"]
@@ -11,8 +11,27 @@
 [ext_resource type="PackedScene" uid="uid://ddcflv0a3q2uf" path="res://scenes/manager/upgrade_manager.tscn" id="6_11mfn"]
 [ext_resource type="PackedScene" uid="uid://dc2h8mgtc7ply" path="res://scenes/view/expirience_bar.tscn" id="8_ooybt"]
 
+[sub_resource type="GDScript" id="GDScript_w8484"]
+script/source = "extends Node
+
+@onready var player = $Entities/Player
+
+@export var gameend_screen_scene: PackedScene
+
+
+
+func _ready():
+	player.tree_exiting.connect(on_player_tree_exited)
+
+
+func on_player_tree_exited():
+	var instance = gameend_screen_scene.instantiate()
+	add_child(instance)
+"
+
 [node name="Main" type="Node"]
-script = ExtResource("1_58quo")
+script = SubResource("GDScript_w8484")
+gameend_screen_scene = ExtResource("1_xlhfr")
 
 [node name="GameCamera" parent="." instance=ExtResource("3_5iyvs")]
 
@@ -44,36 +63,3 @@ scale = Vector2(0.996743, 0.977495)
 collision_layer = 0
 
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]
-
-[node name="GameEndScreen" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="MarginContainer" type="MarginContainer" parent="GameEndScreen"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = -1.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="GameEndScreen/MarginContainer"]
-layout_mode = 2
-color = Color(0, 0.266667, 0.266667, 1)
-
-[node name="Label" type="Label" parent="GameEndScreen/MarginContainer/ColorRect"]
-layout_mode = 2
-offset_top = 121.0
-offset_right = 640.0
-offset_bottom = 238.0
-theme_override_colors/font_color = Color(0.254902, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 41
-text = "GAME END
-PLEASE CLOSE THE GAME"
-horizontal_alignment = 1

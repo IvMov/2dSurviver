@@ -13,7 +13,7 @@ func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timeout_timeout)
-	health_component.max_health = 10
+	health_component.max_health = 15
 	health_component.current_health = health_component.max_health
 	health_component.health_changed.connect(on_health_changed)
 	update_health_bar()

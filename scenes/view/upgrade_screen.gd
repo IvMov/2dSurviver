@@ -17,3 +17,4 @@ func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
 
 func on_selected_do(upgrade: AbilityUpgrade):
 	ability_upgrade_selected.emit(upgrade)
+	queue_free()

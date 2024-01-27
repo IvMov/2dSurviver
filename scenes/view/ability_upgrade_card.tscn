@@ -4,6 +4,8 @@
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 160)
+offset_right = 160.0
+offset_bottom = 200.0
 script = ExtResource("1_cbii4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -12,11 +14,22 @@ layout_mode = 2
 [node name="Header" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Test1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0.52, 4)
+layout_mode = 2
+color = Color(0.917647, 0, 0.262745, 1)
 
 [node name="Description" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 100)
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 text = "asdas asdasd asdasda asdasd asda"
+horizontal_alignment = 1
 autowrap_mode = 2
