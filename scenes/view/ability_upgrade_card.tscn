@@ -1,11 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://2p8y050pj32x"]
+[gd_scene load_steps=4 format=3 uid="uid://2p8y050pj32x"]
 
 [ext_resource type="Script" path="res://scenes/view/ability_upgrade_card.gd" id="1_cbii4"]
+
+[sub_resource type="Theme" id="Theme_4kdgv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihg0y"]
+bg_color = Color(0.0196078, 0.0980392, 0.141176, 0.866667)
+border_color = Color(0.113725, 0.145098, 0.192157, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
 custom_minimum_size = Vector2(120, 160)
 offset_right = 160.0
 offset_bottom = 200.0
+theme = SubResource("Theme_4kdgv")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ihg0y")
 script = ExtResource("1_cbii4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -13,23 +25,29 @@ layout_mode = 2
 
 [node name="Header" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Test1"
+theme_override_colors/font_color = Color(0.380392, 0.670588, 0.678431, 1)
+theme_override_font_sizes/font_size = 16
+text = "Test1
+"
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0.52, 4)
 layout_mode = 2
-color = Color(0.917647, 0, 0.262745, 1)
+color = Color(0.784314, 0.917647, 0.886275, 1)
 
 [node name="Description" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.380392, 0.670588, 0.678431, 1)
+theme_override_font_sizes/font_size = 14
 text = "asdas asdasd asdasda asdasd asda"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
