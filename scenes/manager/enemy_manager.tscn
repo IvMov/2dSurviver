@@ -8,8 +8,7 @@ script = ExtResource("1_nggqr")
 basic_enemy_scene = ExtResource("2_qymyb")
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.5
-autostart = true
+one_shot = true
 
 [node name="HordeTimer" type="Timer" parent="."]
 wait_time = 55.0

@@ -35,6 +35,7 @@ radius = 11.0454
 radius = 10.0499
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 9
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_w3avd")

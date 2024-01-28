@@ -1,12 +1,13 @@
 extends CharacterBody2D
 class_name Player
 
-const MAX_SPEED = 150
+const SPEED: float = 130
 const ACCELERATION_SMOOTHING = 10
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent
 @onready var health_bar = $HealthBar
 
+var current_speed: float = SPEED
 var number_colliding_bodies: int = 0
 
 func _ready():
@@ -16,15 +17,15 @@ func _ready():
 	health_component.max_health = 15
 	health_component.current_health = health_component.max_health
 	health_component.health_changed.connect(on_health_changed)
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
 	update_health_bar()
 
 
 func _process(delta):
 	var movement_vector = get_movement_vector()
 	var direction = movement_vector.normalized()
-	var target_velocity = direction * MAX_SPEED
+	var target_velocity = direction * current_speed
 	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
-	#velocity = target_velocity
 	move_and_slide()
 
 func get_movement_vector():
@@ -39,7 +40,6 @@ func check_deal_damage():
 		return
 	health_component.damage(1)
 	damage_interval_timer.start()
-	print(health_component.current_health)
 
 
 func update_health_bar():
@@ -62,3 +62,6 @@ func on_damage_interval_timeout_timeout():
 func on_health_changed():
 	update_health_bar()
 	
+func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
+	if upgrade.id == "movement_speed":
+		current_speed = SPEED + (current_upgrades["movement_speed"]["lvl"] * (SPEED*3 /100))

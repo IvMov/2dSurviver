@@ -6,4 +6,4 @@
 script = ExtResource("1_3h41x")
 id = "sword_rate"
 name = "Sword Attack Rate"
-description = "Increate sword attack rate by 5%"
+description = "Increate sword attack rate by 3%"

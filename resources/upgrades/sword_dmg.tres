@@ -6,4 +6,4 @@
 script = ExtResource("1_bfosr")
 id = "sword_damage"
 name = "Sword damage"
-description = "Increase sword damage by 5%"
+description = "Increase sword damage by 3%"
