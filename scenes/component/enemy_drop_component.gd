@@ -31,8 +31,6 @@ func on_coin_drop(value, position):
 	Callable(instantiate_child).bind(coin_inst).call_deferred()
 
 func on_dead_drop():
-	EnemyCounter.minus_enemy()
-	
 	on_exp_drop(EXP, get_parent().global_position)
 	if randf() > 1 - coin_drop_chance: 
 		on_coin_drop(COINS, get_parent().global_position)

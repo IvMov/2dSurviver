@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvcaah6i62mh6"]
 
 [ext_resource type="TileSet" uid="uid://bsqi4jkcy2v6k" path="res://resources/tile_set.tres" id="1_7bddb"]
+[ext_resource type="PackedScene" uid="uid://b16qpcnwwmyb7" path="res://scenes/view/end_screen.tscn" id="1_g5wat"]
 [ext_resource type="PackedScene" uid="uid://bb2dcdhx1qbyv" path="res://scenes/game_object/player/player.tscn" id="1_pliyt"]
-[ext_resource type="PackedScene" uid="uid://t8do2orv81f2" path="res://scenes/view/game_end_screen.tscn" id="1_xlhfr"]
 [ext_resource type="PackedScene" uid="uid://ce2c7e20vc4qx" path="res://scenes/manager/enemy_manager.tscn" id="2_6rckp"]
 [ext_resource type="PackedScene" uid="uid://imcjrickfoj8" path="res://scenes/view/fps/fps_counter.tscn" id="2_octhe"]
 [ext_resource type="PackedScene" uid="uid://r344fqr7d4e8" path="res://scenes/manager/arena_time_manager.tscn" id="3_1ks0g"]
@@ -16,7 +16,7 @@ script/source = "extends Node
 
 @onready var player = $Entities/Player
 
-@export var gameend_screen_scene: PackedScene
+@export var end_screeen: PackedScene
 
 
 
@@ -25,13 +25,14 @@ func _ready():
 
 
 func on_player_tree_exited():
-	var instance = gameend_screen_scene.instantiate()
+	var instance = end_screeen.instantiate()
+	instance.set_defeat()
 	add_child(instance)
 "
 
 [node name="Main" type="Node"]
 script = SubResource("GDScript_w8484")
-gameend_screen_scene = ExtResource("1_xlhfr")
+end_screeen = ExtResource("1_g5wat")
 
 [node name="GameCamera" parent="." instance=ExtResource("3_5iyvs")]
 

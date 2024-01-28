@@ -16,6 +16,7 @@ func damage(amount: float):
 func check_death():
 	if current_health == 0:
 		died.emit()
+		EnemyCounter.minus_enemy()
 		owner.queue_free()
 	
 		

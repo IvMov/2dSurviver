@@ -1,6 +1,6 @@
 extends Node
 
-@export var victory_screen_scene: PackedScene
+@export var end_screen: PackedScene
 @onready var timer = $Timer
 
 
@@ -13,5 +13,7 @@ func get_time_elapsed():
 
 
 func on_timer_timeout():
-	var victory_scene_instance = victory_screen_scene.instantiate()
-	get_parent().add_child(victory_scene_instance)
+	var end_screen_instance = end_screen.instantiate()
+	get_parent().add_child(end_screen_instance)
+
+	
