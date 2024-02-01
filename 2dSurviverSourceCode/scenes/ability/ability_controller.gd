@@ -8,5 +8,8 @@ func _ready():
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade is Ability:
-		get_parent().add_child(upgrade.ability_controller.instantiate())
+		var instance = upgrade.ability_controller.instantiate();
+		get_parent().add_child(instance)
+		var upgrade_manger = get_tree().get_first_node_in_group("upgrade_manager") as UpgradeManager
+		upgrade_manger.upgrade_pool.append_array(instance.upgrades)
 

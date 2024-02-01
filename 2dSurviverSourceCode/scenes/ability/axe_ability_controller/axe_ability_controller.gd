@@ -1,13 +1,16 @@
 extends Node
 
 @export var axe_ability_scene: PackedScene
+@export var upgrades: Array[AbilityUpgrade]
 
-var damage = 10
+var damage = 7
+var base_wait_tile: float
 
 func _ready():
 	$Timer.timeout.connect(on_timer_timeout)
-	$Timer.wait_time = 1
+	$Timer.wait_time = 2
 	$Timer.start()
+	base_wait_tile = $Timer.wait_time
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
 	
 
@@ -26,4 +29,13 @@ func on_timer_timeout():
 	axe_instance.hitbox_component.damage = damage
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	pass
+	print(base_wait_tile)
+	if upgrade.id == "axe_rate":
+		var percent_improve = current_upgrades["axe_rate"]["lvl"] * .05
+		$Timer.wait_time = max(base_wait_tile * (1 - percent_improve), 0.01)
+		$Timer.start()
+		print($Timer.wait_time)
+	if upgrade.id == "axe_dmg":
+		var percent_improve = current_upgrades["axe_dmg"]["lvl"] * .05
+		damage += damage * percent_improve
+		print(damage)

@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwrt73q6racwh"]
+[gd_scene load_steps=5 format=3 uid="uid://bwrt73q6racwh"]
 
 [ext_resource type="Script" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.gd" id="1_pih62"]
 [ext_resource type="PackedScene" uid="uid://c0nygmiqnaabn" path="res://scenes/ability/axe/axe_ability.tscn" id="2_7r6d7"]
+[ext_resource type="Resource" uid="uid://drudsgytdmmhs" path="res://resources/upgrades/axe_dmg.tres" id="3_17lbg"]
+[ext_resource type="Resource" uid="uid://dyvg0xlhosxfa" path="res://resources/upgrades/axe_rate.tres" id="4_xsjk1"]
 
 [node name="AxeAbilityController" type="Node" groups=["axe_ability_controller"]]
 script = ExtResource("1_pih62")
 axe_ability_scene = ExtResource("2_7r6d7")
+upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("3_17lbg"), ExtResource("4_xsjk1")])
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5

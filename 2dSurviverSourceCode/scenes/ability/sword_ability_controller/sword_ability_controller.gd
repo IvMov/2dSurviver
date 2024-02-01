@@ -4,12 +4,12 @@ const MAX_RENGE = 100
 
 @export var sword_ability: PackedScene
 var damage = 5
-var base_wait_tile
+var base_wait_time
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	base_wait_tile = $Timer.wait_time
+	base_wait_time = $Timer.wait_time
 	$Timer.timeout.connect(action_on_timer_timeout)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
 
@@ -42,10 +42,9 @@ func action_on_timer_timeout():
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "sword_rate":
-		var percent_improve = current_upgrades["sword_rate"]["lvl"] * .03
-		$Timer.wait_time = max(base_wait_tile * (1 - percent_improve), 0.01)
+		var percent_improve = current_upgrades["sword_rate"]["lvl"] * .05
+		$Timer.wait_time = max(base_wait_time * (1 - percent_improve), 0.01)
 		$Timer.start()
 	if upgrade.id == "sword_damage":
-		var percent_improve = current_upgrades["sword_damage"]["lvl"] * .03
+		var percent_improve = current_upgrades["sword_damage"]["lvl"] * .05
 		damage += damage * percent_improve
-		$Timer.start()

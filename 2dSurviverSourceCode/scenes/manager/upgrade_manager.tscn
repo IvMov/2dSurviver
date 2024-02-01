@@ -16,7 +16,7 @@ name = "Axe"
 description = "Achive an axe ability. Periodicaly throw spiral moving axe"
 skill = true
 
-[node name="UpgradeManager" type="Node"]
+[node name="UpgradeManager" type="Node" groups=["upgrade_manager"]]
 process_mode = 3
 script = ExtResource("1_5bny6")
 upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_c3l1f"), ExtResource("3_ghtcd"), ExtResource("4_mojp6"), SubResource("Resource_goapu")])
