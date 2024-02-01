@@ -1,6 +1,6 @@
 extends Node
 
-const SPAWN_RADIUS = 400
+const SPAWN_RADIUS: = 400
 const SWAPN_INTERVAL = 1
 
 @onready var spawn_timer: Timer = $SpawnTimer
@@ -33,7 +33,8 @@ func get_spawn_position(player_possition: Vector2, spawn_radius: int):
 		attempts+=1
 		if attempts >= 4:
 			attempts = 0
-			return get_spawn_position(player_possition, max(spawn_radius / 2, 2))
+			spawn_radius /= 2
+			return get_spawn_position(player_possition, max(spawn_radius, 2))
 		enemy_spawn_position = enemy_spawn_position.rotated(PI)
 		query_parameters.set_to(enemy_spawn_position)
 		result = direct_space_state.intersect_ray(query_parameters)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=9 format=3 uid="uid://ddcflv0a3q2uf"]
+
+[ext_resource type="Script" path="res://scenes/manager/upgrade_manager.gd" id="1_5bny6"]
+[ext_resource type="Resource" uid="uid://do8il50yk5hqh" path="res://resources/upgrades/sword_rate.tres" id="2_c3l1f"]
+[ext_resource type="Resource" uid="uid://3v3vbst24u3a" path="res://resources/upgrades/sword_dmg.tres" id="3_ghtcd"]
+[ext_resource type="PackedScene" uid="uid://25li74ojtlv7" path="res://scenes/view/upgrade_screen.tscn" id="3_v8dhv"]
+[ext_resource type="Resource" uid="uid://c7gwqtrf1by5e" path="res://resources/upgrades/movement_speed.tres" id="4_mojp6"]
+[ext_resource type="PackedScene" uid="uid://bwrt73q6racwh" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="5_ilofx"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="5_r341m"]
+
+[sub_resource type="Resource" id="Resource_goapu"]
+script = ExtResource("5_r341m")
+ability_controller = ExtResource("5_ilofx")
+id = "axe"
+name = "Axe"
+description = "Achive an axe ability. Periodicaly throw spiral moving axe"
+skill = true
+
+[node name="UpgradeManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_5bny6")
+upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_c3l1f"), ExtResource("3_ghtcd"), ExtResource("4_mojp6"), SubResource("Resource_goapu")])
+upgrade_sreene_scene = ExtResource("3_v8dhv")
