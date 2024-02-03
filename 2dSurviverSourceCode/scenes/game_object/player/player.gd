@@ -6,6 +6,8 @@ const ACCELERATION_SMOOTHING = 10
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent
 @onready var health_bar = $HealthBar
+@onready var animation = $AnimationPlayer
+@onready var sprites = $Sprites
 
 var current_speed: float = SPEED
 var number_colliding_bodies: int = 0
@@ -26,6 +28,7 @@ func _process(delta):
 	var direction = movement_vector.normalized()
 	var target_velocity = direction * current_speed
 	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
+	animate_player(movement_vector)
 	move_and_slide()
 
 func get_movement_vector():
@@ -44,6 +47,13 @@ func check_deal_damage():
 
 func update_health_bar():
 	health_bar.value = health_component.get_health_precent()	
+
+
+func animate_player(movement_vector: Vector2):
+	var animation_name = "calm" if movement_vector.is_zero_approx() else "walk"
+	animation.play(animation_name)
+	var playerdirection: Vector2 = Vector2(-1, 1) if sign(movement_vector.x) < 0 else Vector2.ONE
+	sprites.set_scale(playerdirection)
 	
 	
 func on_body_entered(body: Node2D):
