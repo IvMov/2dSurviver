@@ -15,4 +15,4 @@ From game logic to graphics and animations, every element will be meticulously i
 I'm a former radiation safety engineer with a passion for Java software development. Currently, I'm delving into the exciting realm of game development, and I'm thoroughly enjoying the learning process.
 
 ## Download 
-Latest build for Windows [Download](https://github.com/IvMov/2dSurviver/tree/main/2dSurviverWindowsExport)
+Latest build for Windows (https://drive.google.com/drive/folders/1Afdu0kA_L3DT0-r9Vx2OrVINJtOPxqaC?usp=drive_link)
