@@ -27,6 +27,10 @@ func get_direction_to_player():
 	
 	
 func update_health_bar():
+	if health_component.max_health == health_component.current_health:
+		health_bar.visible = false
+	elif (!health_bar.visible):
+		health_bar.visible = true
 	health_bar.value = health_component.get_health_precent()	
 
 	

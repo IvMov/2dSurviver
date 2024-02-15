@@ -50,7 +50,7 @@ func update_health_bar():
 
 
 func animate_player(movement_vector: Vector2):
-	var animation_name = "calm" if movement_vector.is_zero_approx() else "walk"
+	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
 	animation.play(animation_name)
 	var playerdirection: Vector2 = Vector2(-1, 1) if sign(movement_vector.x) < 0 else Vector2.ONE
 	sprites.set_scale(playerdirection)
