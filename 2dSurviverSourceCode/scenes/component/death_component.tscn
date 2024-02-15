@@ -39,7 +39,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -54,8 +54,9 @@ _data = {
 }
 
 [sub_resource type="Curve" id="Curve_w8hw2"]
-min_value = 0.5
-_data = [Vector2(0, 1), 0.0, 0.436568, 0, 0, Vector2(0.410774, 0.779512), 0.0, 0.0, 0, 0, Vector2(0.993266, 0.479647), -0.462248, 0.0, 0, 0]
+min_value = 0.7
+max_value = 1.2
+_data = [Vector2(0, 1.2), 0.0, 0.436568, 0, 0, Vector2(0.521886, 1.05889), 1.25276, 1.25276, 0, 0, Vector2(0.976431, 0.701696), -0.462248, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_5ma1o"]
@@ -68,7 +69,7 @@ initial_velocity_min = -20.0
 initial_velocity_max = 20.0
 angular_velocity_min = -400.0
 angular_velocity_max = 400.0
-gravity = Vector3(0, -100, 0)
+gravity = Vector3(0, -400, 0)
 scale_min = 0.8
 scale_max = 1.2
 scale_curve = SubResource("CurveTexture_5ma1o")
@@ -87,3 +88,4 @@ amount = 1
 process_material = SubResource("ParticleProcessMaterial_g0mdp")
 texture = ExtResource("1_kfhgl")
 one_shot = true
+trail_lifetime = 1.0
