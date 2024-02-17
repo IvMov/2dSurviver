@@ -5,19 +5,23 @@ const SWAPN_INTERVAL = 1
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var horde_timer: Timer = $HordeTimer
+@onready var boss_spawn_timer: Timer = $BossSpawnTimer
+
 @export var basic_enemy_scene: PackedScene
-@export var arena_time_manager: Node
+@export var boss_scene: PackedScene
+
 
 func _ready():
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	spawn_timer.wait_time = SWAPN_INTERVAL;
 	spawn_timer.start()
 	horde_timer.timeout.connect(on_horde_timer_timeout)
-	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
+	boss_spawn_timer.timeout.connect(on_boss_spawn_timer_timeout)
+	get_tree().get_first_node_in_group("arena_time_manager").arena_difficulty_increased.connect(on_arena_difficulty_increased)
 
 	
-func instaintiate_enemy(player: Player):
-	var enemy = basic_enemy_scene.instantiate() as Node2D
+func instaintiate_enemy(enemy_scene: PackedScene, player: Player):
+	var enemy = enemy_scene.instantiate() as Node2D
 	enemy.global_position = get_spawn_position(player.global_position, SPAWN_RADIUS)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
 	EnemyCounter.add_enemy()
@@ -44,13 +48,13 @@ func get_spawn_position(player_possition: Vector2, spawn_radius: int):
 func get_random_direction():
 	return Vector2.RIGHT.rotated(randf_range(0, TAU))
 
-	
+
 func on_spawn_timer_timeout():
 	spawn_timer.start()
 	var player = get_tree().get_first_node_in_group("player") as Player	
 	if !player:
 		return
-	instaintiate_enemy(player)	
+	instaintiate_enemy(basic_enemy_scene, player)	
 	
 
 func on_horde_timer_timeout():
@@ -58,8 +62,15 @@ func on_horde_timer_timeout():
 	if !player:
 		return
 	for n in range(PlayerCounters.current_level * 10):
-		instaintiate_enemy(player)	
+		instaintiate_enemy(basic_enemy_scene, player)	
 	
 
 func on_arena_difficulty_increased(difficulty: int):
 	spawn_timer.wait_time = SWAPN_INTERVAL - (0.03 * difficulty)
+
+
+func on_boss_spawn_timer_timeout():
+	var player = get_tree().get_first_node_in_group("player") as Player	
+	if !player:
+		return
+	instaintiate_enemy(boss_scene, player)	

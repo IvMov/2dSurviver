@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://7s64xspy1f1a"]
+
+[ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_7gofe"]
+[ext_resource type="Texture2D" uid="uid://cuqq4gow20f67" path="res://scenes/game_object/wizard_enemy/tile_0111.png" id="1_ahhk7"]
+[ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_umxny"]
+[ext_resource type="PackedScene" uid="uid://br48xjfhelu00" path="res://scenes/component/velocity_component.tscn" id="3_cj18y"]
+[ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="3_gc6tf"]
+[ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="4_s4x1e"]
+[ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="7_hrra8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k66uf"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftpge"]
+bg_color = Color(1, 0.439216, 0.427451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q6oh7"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8e0ke"]
+
+[node name="WizardEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_7gofe")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(32, 6)
+offset_left = -16.0
+offset_top = -19.0
+offset_right = 16.0
+offset_bottom = -13.0
+pivot_offset = Vector2(16, 3)
+theme_override_styles/background = SubResource("StyleBoxFlat_k66uf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ftpge")
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_umxny")]
+health_bar = NodePath("../HealthBar")
+max_health = 30.0
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("3_gc6tf")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Sprites/Sprite2D")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_cj18y")]
+max_speed = 100
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+position = Vector2(0, -8)
+texture = ExtResource("1_ahhk7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_q6oh7")
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_s4x1e")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_8e0ke")
+
+[node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_hrra8")]
+coin_drop_chance = 0.292
+health_component = NodePath("../HealthComponent")

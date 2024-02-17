@@ -136,18 +136,6 @@ libraries = {
 "": SubResource("AnimationLibrary_x2c4q")
 }
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_45ek8")]
-
-[node name="AbilityManager" type="Node" parent="."]
-
-[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_s8ts1")]
-
-[node name="AbilityController" parent="AbilityManager" instance=ExtResource("4_nf0ln")]
-
-[node name="DamageIntervalTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
 [node name="HealthBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(32, 6)
 offset_left = -16.0
@@ -160,6 +148,20 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ug7g1")
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
+health_bar = NodePath("../HealthBar")
+max_health = 20.0
+
+[node name="AbilityManager" type="Node" parent="."]
+
+[node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_s8ts1")]
+
+[node name="AbilityController" parent="AbilityManager" instance=ExtResource("4_nf0ln")]
+
+[node name="DamageIntervalTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [node name="PickupArea" type="Area2D" parent="."]
 visible = false

@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://doyadpvd7uonj"]
+[gd_scene load_steps=16 format=3 uid="uid://doyadpvd7uonj"]
 
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_exaa7"]
 [ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_jc82f"]
 [ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="2_fpcap"]
+[ext_resource type="PackedScene" uid="uid://br48xjfhelu00" path="res://scenes/component/velocity_component.tscn" id="2_pc0ff"]
 [ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="3_ly4q8"]
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="3_yjuqa"]
 [ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="4_q2w8o"]
@@ -68,7 +69,7 @@ _data = {
 "walk": SubResource("Animation_ww8x8")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ju5u"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_555yc"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 1)
 border_color = Color(0.247059, 0.14902, 0.192157, 1)
 corner_radius_top_left = 2
@@ -76,7 +77,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ckkh"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijgms"]
 bg_color = Color(1, 0.439216, 0.427451, 1)
 border_width_left = 2
 border_width_top = 2
@@ -108,8 +109,6 @@ libraries = {
 }
 autoplay = "walk"
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_yjuqa")]
-
 [node name="HealthBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(32, 6)
 offset_left = -16.0
@@ -117,11 +116,18 @@ offset_top = -19.0
 offset_right = 16.0
 offset_bottom = -13.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = SubResource("StyleBoxFlat_2ju5u")
-theme_override_styles/fill = SubResource("StyleBoxFlat_3ckkh")
+theme_override_styles/background = SubResource("StyleBoxFlat_555yc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ijgms")
 max_value = 1.0
 value = 0.5
 show_percentage = false
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_yjuqa")]
+health_bar = NodePath("../HealthBar")
+max_health = 10.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_pc0ff")]
+acceleration = 10.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_fpcap")]
 health_component = NodePath("../HealthComponent")
