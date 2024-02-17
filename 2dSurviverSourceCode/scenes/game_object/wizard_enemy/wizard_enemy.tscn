@@ -80,5 +80,6 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_8e0ke")
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_hrra8")]
-coin_drop_chance = 0.292
+coin_drop_chance = 1.0
 health_component = NodePath("../HealthComponent")
+basic_exp_drop = 20

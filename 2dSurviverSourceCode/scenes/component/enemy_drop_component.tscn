@@ -6,6 +6,5 @@
 
 [node name="EnemyDropComponent" type="Node"]
 script = ExtResource("1_4lmhl")
-coin_drop_chance = null
 coin = ExtResource("2_rtliw")
 exp_vial = ExtResource("3_ligwl")

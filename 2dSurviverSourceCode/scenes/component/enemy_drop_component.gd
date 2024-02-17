@@ -6,12 +6,15 @@ const SPAWN_RADIUS = 10
 @export var coin: PackedScene
 @export var exp_vial: PackedScene
 @export var health_component: Node
+@export var basic_exp_drop: int
 
-var EXP = 10 * ceil(randf()*10)
-var COINS = ceil(randf()*10)
+var EXP: int
+var COINS: int
 
 
 func _ready():
+	EXP = basic_exp_drop * ceil(randf()*10)
+	COINS = ceil(randf()*10)
 	(health_component as HealthComponent).died.connect(on_dead_drop)
 	
 	
@@ -31,6 +34,7 @@ func on_coin_drop(value, position):
 	Callable(instantiate_child).bind(coin_inst).call_deferred()
 
 func on_dead_drop():
+	print(EXP)
 	on_exp_drop(EXP, get_parent().global_position)
 	if randf() > 1 - coin_drop_chance: 
 		on_coin_drop(COINS, get_parent().global_position)

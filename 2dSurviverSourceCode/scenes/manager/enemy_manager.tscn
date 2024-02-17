@@ -17,4 +17,5 @@ wait_time = 55.0
 autostart = true
 
 [node name="BossSpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true

@@ -127,6 +127,7 @@ health_bar = NodePath("../HealthBar")
 max_health = 10.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_pc0ff")]
+max_speed = 60
 acceleration = 10.0
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_fpcap")]
@@ -148,8 +149,8 @@ texture = ExtResource("1_jc82f")
 offset = Vector2(0, -6)
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ly4q8")]
-coin_drop_chance = 0.2
 health_component = NodePath("../HealthComponent")
+basic_exp_drop = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
