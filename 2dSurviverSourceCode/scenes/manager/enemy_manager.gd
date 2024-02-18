@@ -5,19 +5,20 @@ const SWAPN_INTERVAL = 1
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var horde_timer: Timer = $HordeTimer
-@onready var boss_spawn_timer: Timer = $BossSpawnTimer
 
 @export var basic_enemy_scene: PackedScene
-@export var boss_scene: PackedScene
+@export var wizard_scene: PackedScene
 
+var enemy_table = WeightedTable.new()
 
 func _ready():
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
 	spawn_timer.wait_time = SWAPN_INTERVAL;
 	spawn_timer.start()
 	horde_timer.timeout.connect(on_horde_timer_timeout)
-	boss_spawn_timer.timeout.connect(on_boss_spawn_timer_timeout)
+	enemy_table.add_item("basic_enemy", basic_enemy_scene, 10)
 	get_tree().get_first_node_in_group("arena_time_manager").arena_difficulty_increased.connect(on_arena_difficulty_increased)
+	
 
 	
 func instaintiate_enemy(enemy_scene: PackedScene, player: Player):
@@ -54,7 +55,8 @@ func on_spawn_timer_timeout():
 	var player = get_tree().get_first_node_in_group("player") as Player	
 	if !player:
 		return
-	instaintiate_enemy(basic_enemy_scene, player)	
+	var enemy_scene = enemy_table.pick_item()
+	instaintiate_enemy(enemy_scene, player)	
 	
 
 func on_horde_timer_timeout():
@@ -62,15 +64,19 @@ func on_horde_timer_timeout():
 	if !player:
 		return
 	for n in range(PlayerCounters.current_level * 10):
-		instaintiate_enemy(basic_enemy_scene, player)	
+		var enemy_scene = enemy_table.pick_item()
+		instaintiate_enemy(enemy_scene, player)	
 	
 
 func on_arena_difficulty_increased(difficulty: int):
 	spawn_timer.wait_time = SWAPN_INTERVAL - (0.03 * difficulty)
-
-
-func on_boss_spawn_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Player	
-	if !player:
-		return
-	instaintiate_enemy(boss_scene, player)	
+	if difficulty == 5:
+		enemy_table.add_item("wizard_enemy", wizard_scene, 1)
+	elif difficulty == 10:
+		enemy_table.change_item_weight("wizard_enemy", 5)
+	elif difficulty == 15:
+		enemy_table.change_item_weight("basic_enemy", 5)
+		enemy_table.change_item_weight("wizard_enemy", 15)
+	elif difficulty == 20:
+		enemy_table.change_item_weight("basic_enemy", 1)
+		enemy_table.change_item_weight("wizard_enemy", 10)

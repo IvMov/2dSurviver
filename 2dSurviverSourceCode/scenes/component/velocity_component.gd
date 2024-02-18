@@ -17,7 +17,6 @@ func accelerate_to_player():
 	var direction = (player.global_position - owner_node.global_position).normalized()
 	accelerate_in_dirrection(direction)
 
-
 func accelerate_in_dirrection(direction: Vector2):
 	var desired_velocity = direction * max_speed
 	velocity = velocity.lerp(desired_velocity, 1 - exp(-acceleration * get_process_delta_time())) 

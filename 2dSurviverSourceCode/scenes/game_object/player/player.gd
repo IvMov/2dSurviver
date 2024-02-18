@@ -5,7 +5,6 @@ const SPEED: float = 120
 const ACCELERATION_SMOOTHING = 10
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent
-@onready var health_bar = $HealthBar
 @onready var animation = $AnimationPlayer
 @onready var sprites = $Sprites
 
@@ -16,11 +15,7 @@ func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timeout_timeout)
-	health_component.max_health = 15
-	health_component.current_health = health_component.max_health
-	health_component.health_changed.connect(on_health_changed)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
-	update_health_bar()
 
 
 func _process(delta):
@@ -46,9 +41,6 @@ func check_deal_damage():
 	damage_interval_timer.start()
 
 
-func update_health_bar():
-	health_bar.value = health_component.get_health_precent()	
-
 
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
@@ -69,9 +61,6 @@ func on_body_exited(body: Node2D):
 func on_damage_interval_timeout_timeout():
 	check_deal_damage()
 	
-	
-func on_health_changed():
-	update_health_bar()
 	
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "movement_speed":

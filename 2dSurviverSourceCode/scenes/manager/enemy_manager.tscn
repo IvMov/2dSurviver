@@ -7,15 +7,11 @@
 [node name="EnemyManager" type="Node" groups=["enemy_manager"]]
 script = ExtResource("1_nggqr")
 basic_enemy_scene = ExtResource("2_qymyb")
-boss_scene = ExtResource("3_hc1f6")
+wizard_scene = ExtResource("3_hc1f6")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="HordeTimer" type="Timer" parent="."]
 wait_time = 55.0
-autostart = true
-
-[node name="BossSpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
