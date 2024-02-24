@@ -1,13 +1,55 @@
-[gd_scene load_steps=4 format=3 uid="uid://5umsd617f01x"]
+[gd_scene load_steps=7 format=3 uid="uid://5umsd617f01x"]
 
 [ext_resource type="Texture2D" uid="uid://gxlmkbfgb1ll" path="res://scenes/game_object/expirience/exp_vial_tier1.png" id="1_c15vg"]
 [ext_resource type="Script" path="res://scenes/game_object/expirience/exp_vial.gd" id="1_rth3s"]
 
+[sub_resource type="Animation" id="Animation_j5xhh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D/CollisionShape2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ll6ky"]
+resource_name = "moving"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8),
+"transitions": PackedFloat32Array(1, 0.48297, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yx0yt"]
+_data = {
+"RESET": SubResource("Animation_j5xhh"),
+"moving": SubResource("Animation_ll6ky")
+}
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0qcdi"]
-radius = 12.0
+radius = 32.0
 
 [node name="ExpVial" type="Node2D" groups=["exp"]]
 script = ExtResource("1_rth3s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yx0yt")
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -17,5 +59,4 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_0qcdi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.3125, 1.25)
 texture = ExtResource("1_c15vg")

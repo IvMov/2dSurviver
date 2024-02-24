@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvcaah6i62mh6"]
+[gd_scene load_steps=13 format=3 uid="uid://bvcaah6i62mh6"]
 
 [ext_resource type="TileSet" uid="uid://bsqi4jkcy2v6k" path="res://resources/tile_set.tres" id="1_7bddb"]
 [ext_resource type="PackedScene" uid="uid://b16qpcnwwmyb7" path="res://scenes/view/end_screen.tscn" id="1_g5wat"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dyhdu470c6jdt" path="res://scenes/view/arena/arena_time_ui.tscn" id="3_p6qb8"]
 [ext_resource type="PackedScene" uid="uid://ddcflv0a3q2uf" path="res://scenes/manager/upgrade_manager.tscn" id="6_11mfn"]
 [ext_resource type="PackedScene" uid="uid://dc2h8mgtc7ply" path="res://scenes/view/expirience_bar.tscn" id="8_ooybt"]
+[ext_resource type="PackedScene" uid="uid://5umsd617f01x" path="res://scenes/game_object/expirience/exp_vial.tscn" id="10_nnglc"]
 
 [sub_resource type="GDScript" id="GDScript_w8484"]
 script/source = "extends Node
@@ -58,6 +59,9 @@ layer_0/tile_data = PackedInt32Array(65536, 0, 4, 65537, 0, 4, 65538, 0, 4, 6553
 
 [node name="Entities" type="Node2D" parent="." groups=["entities_layer"]]
 y_sort_enabled = true
+
+[node name="ExpVial" parent="Entities" instance=ExtResource("10_nnglc")]
+position = Vector2(97, 19)
 
 [node name="Player" parent="Entities" instance=ExtResource("1_pliyt")]
 texture_filter = 3
