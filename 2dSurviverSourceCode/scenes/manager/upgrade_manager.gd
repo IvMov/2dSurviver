@@ -44,7 +44,6 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 	else:
 		current_upgrades[upgrade.id]["lvl"] += 1
 		check_is_max_lvl(upgrade) 
-	print(current_upgrades)
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 

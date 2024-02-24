@@ -26,7 +26,7 @@ func disable_collision():
 	collision_shape_2d.disabled = true
 	
 func on_area_entered(other_area: Area2D):
-	$AnimationPlayer.play("moving")
+	animation_player.play("moving")
 	Callable(disable_collision).call_deferred()
 	
 	var tween = create_tween()

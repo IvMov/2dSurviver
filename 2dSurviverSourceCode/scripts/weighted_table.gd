@@ -9,7 +9,6 @@ func add_item(name: String, item, weight: int):
 
 
 func pick_item():
-	print(items)
 	var chosen_weight = randi_range(1, weight_sum)
 	var iteration_sum = 0
 	for item in items: 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7s64xspy1f1a"]
+[gd_scene load_steps=16 format=3 uid="uid://7s64xspy1f1a"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_7gofe"]
 [ext_resource type="Texture2D" uid="uid://cuqq4gow20f67" path="res://scenes/game_object/wizard_enemy/tile_0111.png" id="1_ahhk7"]
@@ -7,6 +7,45 @@
 [ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="3_gc6tf"]
 [ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="4_s4x1e"]
 [ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="7_hrra8"]
+
+[sub_resource type="Animation" id="Animation_7yvij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_qkhaq"]
 resource_name = "move"
@@ -55,36 +94,26 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_7yvij"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_l3bw0"]
+resource_name = "damaged"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Sprite2D:rotation")
-tracks/0/interp = 1
+tracks/0/path = NodePath("Sprites/Sprite2D:modulate")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprites/Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 0.211765, 0.0980392, 0.407843), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fnlbc"]
 _data = {
 "RESET": SubResource("Animation_7yvij"),
+"damaged": SubResource("Animation_l3bw0"),
 "move": SubResource("Animation_qkhaq")
 }
 

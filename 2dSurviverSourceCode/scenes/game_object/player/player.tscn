@@ -151,7 +151,7 @@ show_percentage = false
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 100.0
+max_health = 50.0
 
 [node name="AbilityManager" type="Node" parent="."]
 
