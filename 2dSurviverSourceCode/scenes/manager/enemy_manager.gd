@@ -1,6 +1,6 @@
 extends Node
 
-const SPAWN_RADIUS: = 400
+const SPAWN_RADIUS: = 350
 const SWAPN_INTERVAL = 1
 
 @onready var spawn_timer: Timer = $SpawnTimer
@@ -32,18 +32,22 @@ func get_spawn_position(player_possition: Vector2, spawn_radius: int):
 	var enemy_spawn_position = player_possition + (get_random_direction() * spawn_radius)
 	var query_parameters = PhysicsRayQueryParameters2D.create(player_possition, enemy_spawn_position, 1) #1 - bit value of first terrain (the terrain wich we interested in to check)
 	var direct_space_state = get_tree().root.world_2d.direct_space_state
+	
 	var result = direct_space_state.intersect_ray(query_parameters)
 	var attempts = 0
 	while !result.is_empty():
 		attempts+=1
-		if attempts >= 4:
+		if attempts >= 8:
 			attempts = 0
 			spawn_radius /= 2
+			if spawn_radius <= 10:
+				return enemy_spawn_position
 			return get_spawn_position(player_possition, max(spawn_radius, 2))
-		enemy_spawn_position = enemy_spawn_position.rotated(PI)
+		enemy_spawn_position = enemy_spawn_position.rotated(PI/4)
 		query_parameters.set_to(enemy_spawn_position)
 		result = direct_space_state.intersect_ray(query_parameters)
-	return enemy_spawn_position.limit_length(spawn_radius - 1)
+	print(result.is_empty())	
+	return enemy_spawn_position
 	
 	
 func get_random_direction():
@@ -70,7 +74,7 @@ func on_horde_timer_timeout():
 
 func on_arena_difficulty_increased(difficulty: int):
 	spawn_timer.wait_time = SWAPN_INTERVAL - (0.03 * difficulty)
-	if difficulty == 5:
+	if difficulty == 2:
 		enemy_table.add_item("wizard_enemy", wizard_scene, 1)
 	elif difficulty == 10:
 		enemy_table.change_item_weight("wizard_enemy", 5)

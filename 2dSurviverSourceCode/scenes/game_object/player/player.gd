@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 const SPEED: float = 120
-const ACCELERATION_SMOOTHING = 10
+const ACCELERATION_SMOOTHING = 15
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent
 @onready var animation = $AnimationPlayer
@@ -25,6 +25,11 @@ func _process(delta):
 	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
 	animate_player(movement_vector)
 	move_and_slide()
+	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider();
+		if collider.is_in_group("enemy"):
+			collision.get_collider().move_and_collide(velocity.normalized()*2)
 
 
 func get_movement_vector():
@@ -42,11 +47,13 @@ func check_deal_damage():
 
 
 
+
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
 	animation.play(animation_name)
 	var playerdirection: Vector2 = Vector2(-1, 1) if sign(movement_vector.x) < 0 else Vector2.ONE
 	sprites.set_scale(playerdirection)
+	
 	
 	
 func on_body_entered(body: Node2D):

@@ -17,3 +17,4 @@ func on_area_entered(other_area: Area2D):
 	if !animation_player:
 		return
 	animation_player.play("damaged")
+	

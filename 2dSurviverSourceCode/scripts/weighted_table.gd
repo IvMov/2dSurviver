@@ -15,10 +15,13 @@ func pick_item():
 		iteration_sum += item.weight
 		if chosen_weight <= iteration_sum:
 			return item.item
+	print(items)
 
 
 func change_item_weight(name: String, new_weight: int):
+	
 	for item in items: 
 		if item.name == name:
+			weight_sum-=item.weight
 			item.weight = new_weight
-	
+			weight_sum+=new_weight

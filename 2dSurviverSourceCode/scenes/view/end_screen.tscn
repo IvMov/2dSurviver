@@ -40,7 +40,12 @@ vertical_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Congratulation you won!"
+text = "Thanks for the testers:
+Merzzul
+Jovaras
+cTux
+Narthul"
+horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
