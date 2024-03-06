@@ -15,7 +15,6 @@ func pick_item():
 		iteration_sum += item.weight
 		if chosen_weight <= iteration_sum:
 			return item.item
-	print(items)
 
 
 func change_item_weight(name: String, new_weight: int):

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://cdtop7hjs8ru"]
+
+[ext_resource type="PackedScene" uid="uid://by6ltfuwgw1r3" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="1_00hq8"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="1_ql3as"]
+
+[resource]
+script = ExtResource("1_ql3as")
+ability_controller = ExtResource("1_00hq8")
+id = "sword"
+name = "Sword"
+main_color = Color(1, 0, 0, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Swings with sword!
+"
+skill = true

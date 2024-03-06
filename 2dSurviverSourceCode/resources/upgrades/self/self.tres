@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://ci3ejw665d11"]
+
+[ext_resource type="PackedScene" uid="uid://b8sbsw7m85j6h" path="res://scenes/ability/self_ability_controller.tscn" id="1_86ydt"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="1_frqik"]
+
+[resource]
+script = ExtResource("1_frqik")
+ability_controller = ExtResource("1_86ydt")
+id = "self"
+name = "Character"
+amount = 0
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Unlock self improvements!
+"
+skill = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b16qpcnwwmyb7"]
 
-[ext_resource type="Script" path="res://scenes/view/end_screen.gd" id="1_0kme1"]
+[ext_resource type="Script" path="res://scenes/view/screens/end_screen.gd" id="1_0kme1"]
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3

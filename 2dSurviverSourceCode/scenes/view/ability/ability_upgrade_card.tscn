@@ -1,24 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://2p8y050pj32x"]
+[gd_scene load_steps=7 format=3 uid="uid://2p8y050pj32x"]
 
-[ext_resource type="Script" path="res://scenes/view/ability_upgrade_card.gd" id="1_cbii4"]
+[ext_resource type="Script" path="res://scenes/view/ability/ability_upgrade_card.gd" id="1_nmcd4"]
+[ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_wsyad"]
 
 [sub_resource type="Theme" id="Theme_4kdgv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihg0y"]
-bg_color = Color(0.0196078, 0.0980392, 0.141176, 0.866667)
-border_color = Color(0.113725, 0.145098, 0.192157, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+bg_color = Color(0.00392157, 0.0156863, 0.0313726, 0.937255)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_hw3j5"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_ks5yj"]
+line_spacing = 0.0
+font = ExtResource("2_wsyad")
+font_size = 32
+font_color = Color(0.796078, 0.796078, 0.796078, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_offset = Vector2(0, 0)
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
-custom_minimum_size = Vector2(120, 160)
-offset_right = 160.0
-offset_bottom = 200.0
+custom_minimum_size = Vector2(200, 300)
+offset_right = 140.0
+offset_bottom = 162.0
 theme = SubResource("Theme_4kdgv")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ihg0y")
-script = ExtResource("1_cbii4")
+script = ExtResource("1_nmcd4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -31,10 +44,13 @@ theme_override_colors/font_color = Color(0.380392, 0.670588, 0.678431, 1)
 theme_override_font_sizes/font_size = 16
 text = "Test1
 "
+label_settings = SubResource("LabelSettings_hw3j5")
 horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0.52, 4)
 layout_mode = 2
 color = Color(0.784314, 0.917647, 0.886275, 1)
@@ -43,9 +59,10 @@ color = Color(0.784314, 0.917647, 0.886275, 1)
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 100)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.380392, 0.670588, 0.678431, 1)
+size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
-text = "asdas asdasd asdasda asdasd asda"
+text = "Some skill upgrade with 5%"
+label_settings = SubResource("LabelSettings_ks5yj")
 horizontal_alignment = 1
 autowrap_mode = 2
 

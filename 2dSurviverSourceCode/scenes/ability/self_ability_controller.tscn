@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8sbsw7m85j6h"]
+
+[ext_resource type="Script" path="res://scenes/ability/self_ability_controller.gd" id="1_qxwt0"]
+[ext_resource type="Resource" uid="uid://ctg36mfl8f2vl" path="res://resources/upgrades/self/self_hp_heal.tres" id="2_mdaid"]
+[ext_resource type="Resource" uid="uid://dbx604xbn717y" path="res://resources/upgrades/self/self_hp_up.tres" id="3_nk2tx"]
+[ext_resource type="Resource" uid="uid://c7gwqtrf1by5e" path="res://resources/upgrades/self/self_movement_speed.tres" id="4_b55sx"]
+
+[node name="SelfAbilityController" type="Node"]
+script = ExtResource("1_qxwt0")
+upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_mdaid"), ExtResource("3_nk2tx"), ExtResource("4_b55sx")])

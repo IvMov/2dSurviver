@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dyvg0xlhosxfa"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_yh1r2"]
+
+[resource]
+script = ExtResource("1_yh1r2")
+id = "axe_rate"
+name = "Axe"
+main_color = Color(0.717647, 0.247059, 0, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Attack rate + 5%
+"
+skill = false

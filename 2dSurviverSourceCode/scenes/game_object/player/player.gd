@@ -1,21 +1,20 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED: float = 120
+@export var BASIC_SPEED: float = 100
 const ACCELERATION_SMOOTHING = 15
 @onready var damage_interval_timer = $DamageIntervalTimer
-@onready var health_component = $HealthComponent
+@onready var health_component = $HealthComponent as HealthComponent
 @onready var animation = $AnimationPlayer
 @onready var sprites = $Sprites
 
-var current_speed: float = SPEED
+var current_speed: float = BASIC_SPEED
 var number_colliding_bodies: int = 0
 
 func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timeout_timeout)
-	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
 
 
 func _process(delta):
@@ -46,14 +45,11 @@ func check_deal_damage():
 	damage_interval_timer.start()
 
 
-
-
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
 	animation.play(animation_name)
 	var playerdirection: Vector2 = Vector2(-1, 1) if sign(movement_vector.x) < 0 else Vector2.ONE
 	sprites.set_scale(playerdirection)
-	
 	
 	
 func on_body_entered(body: Node2D):
@@ -69,6 +65,3 @@ func on_damage_interval_timeout_timeout():
 	check_deal_damage()
 	
 	
-func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if upgrade.id == "movement_speed":
-		current_speed = SPEED + (current_upgrades["movement_speed"]["lvl"] * (SPEED*3 /100))

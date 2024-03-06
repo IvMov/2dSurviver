@@ -46,7 +46,6 @@ func get_spawn_position(player_possition: Vector2, spawn_radius: int):
 		enemy_spawn_position = enemy_spawn_position.rotated(PI/4)
 		query_parameters.set_to(enemy_spawn_position)
 		result = direct_space_state.intersect_ray(query_parameters)
-	print(result.is_empty())	
 	return enemy_spawn_position
 	
 	

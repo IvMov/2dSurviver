@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dbx604xbn717y"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_4jlvb"]
+
+[resource]
+script = ExtResource("1_4jlvb")
+id = "self_hp_up"
+name = "Character"
+amount = 5
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Max HP +5"
+skill = false

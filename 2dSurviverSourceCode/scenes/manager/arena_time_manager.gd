@@ -5,7 +5,7 @@ signal arena_difficulty_increased(arena_difficulty: int)
 const DIFFICULTY_INTERVAL = 10
 
 @export var end_screen: PackedScene
-@onready var timer = $Timer
+@onready var timer = %Timer
 
 var arena_dificulty = 0
 

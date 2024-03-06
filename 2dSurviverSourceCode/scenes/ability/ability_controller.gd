@@ -4,9 +4,10 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
-
+	
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
+	print(upgrade.name)
 	if upgrade is Ability:
 		var instance = upgrade.ability_controller.instantiate();
 		get_parent().add_child(instance)

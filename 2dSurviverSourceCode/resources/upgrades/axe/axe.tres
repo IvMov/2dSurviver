@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://dvtubru12xlpc"]
+
+[ext_resource type="PackedScene" uid="uid://bwrt73q6racwh" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="1_oj1iy"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="1_p12ah"]
+
+[resource]
+script = ExtResource("1_p12ah")
+ability_controller = ExtResource("1_oj1iy")
+id = "axe"
+name = "Axe"
+main_color = Color(0.717647, 0.247059, 0, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Throw spiral moving axe!"
+skill = true

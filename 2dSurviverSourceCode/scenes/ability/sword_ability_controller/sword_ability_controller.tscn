@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://by6ltfuwgw1r3"]
+[gd_scene load_steps=5 format=3 uid="uid://by6ltfuwgw1r3"]
 
 [ext_resource type="Script" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.gd" id="1_mqf6n"]
 [ext_resource type="PackedScene" uid="uid://fkcjgmhbihhs" path="res://scenes/ability/sword/sword_ability.tscn" id="2_ddcgs"]
+[ext_resource type="Resource" uid="uid://3v3vbst24u3a" path="res://resources/upgrades/sword/sword_dmg.tres" id="3_yywge"]
+[ext_resource type="Resource" uid="uid://do8il50yk5hqh" path="res://resources/upgrades/sword/sword_rate.tres" id="4_vvk8c"]
 
-[node name="SwordAbilityController" type="Node"]
+[node name="SwordAbilityController" type="Node" groups=["ability_controller"]]
 script = ExtResource("1_mqf6n")
 sword_ability = ExtResource("2_ddcgs")
+upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("3_yywge"), ExtResource("4_vvk8c")])
 
-[node name="Timer" type="Timer" parent="."]
+[node name="AbilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 wait_time = 0.5
 autostart = true

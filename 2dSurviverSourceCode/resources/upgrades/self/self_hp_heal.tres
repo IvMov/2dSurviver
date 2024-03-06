@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ctg36mfl8f2vl"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_hrq10"]
+
+[resource]
+script = ExtResource("1_hrq10")
+id = "self_hp_heal"
+name = "Character"
+amount = 5
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Heal your self 5 HP"
+skill = false

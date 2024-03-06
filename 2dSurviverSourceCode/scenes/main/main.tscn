@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://bvcaah6i62mh6"]
 
 [ext_resource type="TileSet" uid="uid://bsqi4jkcy2v6k" path="res://resources/tile_set.tres" id="1_7bddb"]
-[ext_resource type="PackedScene" uid="uid://b16qpcnwwmyb7" path="res://scenes/view/end_screen.tscn" id="1_g5wat"]
+[ext_resource type="PackedScene" uid="uid://b16qpcnwwmyb7" path="res://scenes/view/screens/end_screen.tscn" id="1_g5wat"]
 [ext_resource type="PackedScene" uid="uid://bb2dcdhx1qbyv" path="res://scenes/game_object/player/player.tscn" id="1_pliyt"]
 [ext_resource type="PackedScene" uid="uid://ce2c7e20vc4qx" path="res://scenes/manager/enemy_manager.tscn" id="2_6rckp"]
 [ext_resource type="PackedScene" uid="uid://imcjrickfoj8" path="res://scenes/view/fps/fps_counter.tscn" id="2_octhe"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bpv2pvx2e6nfm" path="res://scenes/game_object/game_camera/game_camera.tscn" id="3_5iyvs"]
 [ext_resource type="PackedScene" uid="uid://dyhdu470c6jdt" path="res://scenes/view/arena/arena_time_ui.tscn" id="3_p6qb8"]
 [ext_resource type="PackedScene" uid="uid://ddcflv0a3q2uf" path="res://scenes/manager/upgrade_manager.tscn" id="6_11mfn"]
-[ext_resource type="PackedScene" uid="uid://dc2h8mgtc7ply" path="res://scenes/view/expirience_bar.tscn" id="8_ooybt"]
+[ext_resource type="PackedScene" uid="uid://dc2h8mgtc7ply" path="res://scenes/view/bars/expirience_bar.tscn" id="8_ooybt"]
 
 [sub_resource type="GDScript" id="GDScript_w8484"]
 script/source = "extends Node
@@ -34,12 +34,13 @@ end_screeen = ExtResource("1_g5wat")
 
 [node name="GameCamera" parent="." instance=ExtResource("3_5iyvs")]
 
-[node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("3_p6qb8")]
-arena_time_manager = NodePath("../ArenaTimeManager")
-
 [node name="ExpirienceBar" parent="." instance=ExtResource("8_ooybt")]
 
 [node name="ArenaTimeManager" parent="." instance=ExtResource("3_1ks0g")]
+
+[node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager", "player") instance=ExtResource("3_p6qb8")]
+arena_time_manager = NodePath("../ArenaTimeManager")
+player = NodePath("../Entities/Player")
 
 [node name="EnemyManager" parent="." instance=ExtResource("2_6rckp")]
 

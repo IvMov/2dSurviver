@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://c7gwqtrf1by5e"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_ltpwa"]
+
+[resource]
+script = ExtResource("1_ltpwa")
+id = "self_movement_speed"
+name = "Character"
+amount = 0
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Movement speed  + 5%
+"
+skill = false

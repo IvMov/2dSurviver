@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://3v3vbst24u3a"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_v8fjv"]
+
+[resource]
+script = ExtResource("1_v8fjv")
+id = "sword_damage"
+name = "Sword"
+amount = 0
+main_color = Color(1, 0, 0, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Damage + 5%"
+skill = false

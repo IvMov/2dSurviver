@@ -136,10 +136,10 @@ corner_radius_bottom_left = 2
 [sub_resource type="CircleShape2D" id="CircleShape2D_gr8wg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hv68"]
-radius = 2.0
+radius = 3.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_g36io"]
-radius = 10.0499
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1plf"]
+radius = 8.0
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
@@ -182,7 +182,6 @@ navigation = NodePath("../NavigationAgent2D")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
-visible = false
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_gr8wg")
 
@@ -201,21 +200,16 @@ coin_drop_chance = 0.25
 health_component = NodePath("../HealthComponent")
 basic_exp_drop = 10
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 9
-visibility_layer = 8
-position = Vector2(0, -4)
+[node name="CollisionShapeTerrain" type="CollisionShape2D" parent="."]
+visibility_layer = 0
+position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_0hv68")
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 256
-collision_mask = 256
-mass = 40.0
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_g36io")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+
+[node name="CollisionShapeEnemies" type="CollisionShape2D" parent="."]
+light_mask = 8
+visibility_layer = 8
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_q1plf")

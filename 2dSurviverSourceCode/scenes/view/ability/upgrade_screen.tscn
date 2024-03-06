@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://25li74ojtlv7"]
 
-[ext_resource type="PackedScene" uid="uid://2p8y050pj32x" path="res://scenes/view/ability_upgrade_card.tscn" id="1_3c5qq"]
-[ext_resource type="Script" path="res://scenes/view/upgrade_screen.gd" id="1_qmq2m"]
+[ext_resource type="PackedScene" uid="uid://2p8y050pj32x" path="res://scenes/view/ability/ability_upgrade_card.tscn" id="1_3c5qq"]
+[ext_resource type="Script" path="res://scenes/view/ability/upgrade_screen.gd" id="1_qmq2m"]
 
 [node name="UpgradeScreen" type="CanvasLayer"]
 script = ExtResource("1_qmq2m")
