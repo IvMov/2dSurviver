@@ -7,7 +7,7 @@
 font = ExtResource("2_h62sk")
 font_size = 28
 outline_size = 8
-outline_color = Color(0, 0, 0, 1)
+outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 
 [node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_tnnl2")
@@ -45,7 +45,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
@@ -56,7 +56,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 theme_override_constants/outline_size = 8
 
 [node name="AbilityLabel" type="Label" parent="MarginContainer"]
@@ -75,9 +75,34 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 label_settings = SubResource("LabelSettings_3l0vb")
 horizontal_alignment = 3
 
+[node name="Skill" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.505882, 0.505882, 0.505882, 0.823529)
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
+theme_override_font_sizes/font_size = 32
+text = "Press SPACE to dodge (you will need it!)"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ButtonClose" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Quit game"
+
 [node name="TimerUI" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 autostart = true
 
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonClose" to="." method="_on_button_close_pressed"]
 [connection signal="timeout" from="TimerUI" to="." method="_on_timer_ui_timeout"]

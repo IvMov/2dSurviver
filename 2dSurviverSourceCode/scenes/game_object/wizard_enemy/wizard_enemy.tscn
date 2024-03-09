@@ -152,7 +152,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6oh7"]
-radius = 3.0
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8e0ke"]
 
@@ -192,9 +192,8 @@ max_health = 40.0
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 
-[node name="VelocityComponent" parent="." node_paths=PackedStringArray("navigation") instance=ExtResource("3_cj18y")]
+[node name="VelocityComponent" parent="." instance=ExtResource("3_cj18y")]
 max_speed = 90
-navigation = NodePath("../NavigationAgent2D")
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -202,7 +201,8 @@ navigation = NodePath("../NavigationAgent2D")
 position = Vector2(0, -8)
 texture = ExtResource("1_ahhk7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShapeTerrain" type="CollisionShape2D" parent="."]
+visibility_layer = 0
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_q6oh7")
 
@@ -218,5 +218,8 @@ coin_drop_chance = 0.5
 health_component = NodePath("../HealthComponent")
 basic_exp_drop = 15
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_postprocessing = 1
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

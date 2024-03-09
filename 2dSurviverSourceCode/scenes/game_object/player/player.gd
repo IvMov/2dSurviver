@@ -2,48 +2,77 @@ extends CharacterBody2D
 class_name Player
 
 @export var BASIC_SPEED: float = 100
+@export var floating_text: PackedScene
 const ACCELERATION_SMOOTHING = 15
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent as HealthComponent
 @onready var animation = $AnimationPlayer
 @onready var sprites = $Sprites
+@onready var skill_timer = %SkillTimer
+@onready var skill_bar = %SkillBar
 
 var current_speed: float = BASIC_SPEED
 var number_colliding_bodies: int = 0
+var hurt:int = 1
 
 func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
+	GameEvents.new_level.connect(on_new_lvl)
 	damage_interval_timer.timeout.connect(on_damage_interval_timeout_timeout)
+	skill_bar.max_value = skill_timer.wait_time
 
+func _input(event):
+		
+	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
+		if velocity.length() < 10:
+			return
+		var movement_vector = get_movement_vector()
+		var direction = movement_vector.normalized()
+		var target_velocity = direction * 10000
+		velocity  = velocity.lerp(target_velocity, 1 - exp(-.3))
+		move_and_slide()
+		skill_timer.start()
 
 func _process(delta):
 	var movement_vector = get_movement_vector()
+	
 	var direction = movement_vector.normalized()
 	var target_velocity = direction * current_speed
 	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
 	animate_player(movement_vector)
 	move_and_slide()
+	skill_bar.value = skill_timer.time_left
 	var collision = get_last_slide_collision()
 	if collision:
 		var collider = collision.get_collider();
 		if collider.is_in_group("enemy"):
-			collision.get_collider().move_and_collide(velocity.normalized()*2)
+			if(velocity.length() > 300):
+				collider.velocity = (velocity/2).rotated(randf_range(-1, 1))
+			else:	
+				collider.velocity = velocity.rotated(randf_range(-1, 1))*1.5;
+			collider.move_and_slide()
 
 
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var y_movement = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	var vector = Vector2(x_movement, y_movement)
 	
-	return Vector2(x_movement, y_movement)
+	return vector
 
 
 func check_deal_damage():
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
-	health_component.damage(1)
+	var floating_text_inst = floating_text.instantiate() as Node2D
+	health_component.damage(hurt)
 	damage_interval_timer.start()
-
+	floating_text.instantiate()
+	get_parent().add_child(floating_text_inst)
+	floating_text_inst.label.set_modulate(Color.RED)
+	floating_text_inst.global_position = global_position;
+	floating_text_inst.start(str(hurt))
 
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
@@ -54,6 +83,10 @@ func animate_player(movement_vector: Vector2):
 	
 func on_body_entered(body: Node2D):
 	number_colliding_bodies += 1
+	if PlayerCounters.current_level < 40:
+		hurt = 10 if body.is_boss else 1
+	else:
+		hurt = 20 if body.is_boss else 3
 	check_deal_damage()
 
 
@@ -63,5 +96,9 @@ func on_body_exited(body: Node2D):
 
 func on_damage_interval_timeout_timeout():
 	check_deal_damage()
+	
+func on_new_lvl(lvl: int):
+	health_component.max_health += 2
+	health_component.current_health = min(health_component.max_health, health_component.current_health+3)
 	
 	

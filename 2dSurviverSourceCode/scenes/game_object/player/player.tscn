@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=17 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
+[ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_45ek8"]
 [ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://scenes/game_object/player/player.png" id="2_vq2dk"]
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
@@ -156,12 +157,16 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ca1rr"]
 radius = 5.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egee0"]
+bg_color = Color(0, 0.976471, 0.333333, 0)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 9
 motion_mode = 1
 wall_min_slide_angle = 0.0872665
 safe_margin = 0.2
 script = ExtResource("1_w3avd")
+floating_text = ExtResource("2_5cehh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -184,7 +189,7 @@ show_percentage = false
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 10.0
+max_health = 5.0
 
 [node name="AbilityManager" type="Node" parent="."]
 
@@ -217,3 +222,20 @@ texture = ExtResource("2_vq2dk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ca1rr")
+
+[node name="SkillTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[node name="SkillBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.0980392, 1, 1, 1)
+offset_left = -16.0
+offset_top = 8.0
+offset_right = 16.0
+offset_bottom = 12.0
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_egee0")
+value = 20.0
+show_percentage = false

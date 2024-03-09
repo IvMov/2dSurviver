@@ -6,8 +6,8 @@
 script = ExtResource("1_v8fjv")
 id = "sword_damage"
 name = "Sword"
-amount = 0
+amount = 0.1
 main_color = Color(1, 0, 0, 1)
 second_color = Color(0, 0, 0, 1)
-description = "Damage + 5%"
+description = "Damage + 10%"
 skill = false

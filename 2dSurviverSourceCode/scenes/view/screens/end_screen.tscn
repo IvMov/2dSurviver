@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://b16qpcnwwmyb7"]
+[gd_scene load_steps=4 format=3 uid="uid://b16qpcnwwmyb7"]
 
 [ext_resource type="Script" path="res://scenes/view/screens/end_screen.gd" id="1_0kme1"]
+[ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_lvxr6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nupd1"]
+font = ExtResource("2_lvxr6")
+font_size = 32
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
@@ -32,7 +37,7 @@ layout_mode = 2
 [node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 48
 text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -44,13 +49,20 @@ text = "Thanks for the testers:
 Merzzul
 Jovaras
 cTux
-Narthul"
+Narthul
+Vitaha"
+label_settings = SubResource("LabelSettings_nupd1")
 horizontal_alignment = 1
 
 [node name="RestartButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true

@@ -33,10 +33,9 @@ func on_timer_timeout():
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "axe_rate":
-		var percent_improve = current_upgrades["axe_rate"]["lvl"] * .05
+		var percent_improve = current_upgrades["axe_rate"]["lvl"] * upgrade.amount
 		ability_timer.wait_time = max(base_wait_time * (1 - percent_improve), 0.01)
 		ability_timer.start()
 	if upgrade.id == "axe_dmg":
-		var percent_improve = current_upgrades["axe_dmg"]["lvl"] * .05
-		damage += damage * percent_improve
+		damage *= 1 + upgrade.amount
 

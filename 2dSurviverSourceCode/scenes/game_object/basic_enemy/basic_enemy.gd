@@ -1,19 +1,29 @@
 extends CharacterBody2D
 
-@onready var navigation_agent_2d = $NavigationAgent2D as NavigationAgent2D
 @onready var velocity_component = $VelocityComponent
 @onready var animation_player = $AnimationPlayer
+@onready var timer = $Timer
+@onready var health_component = $HealthComponent
+@onready var enemy_drop_component = $EnemyDropComponent
 
-func _ready():
-	velocity_component.set_player_position()
-	
+var is_boss: bool = false
+
 func _process(delta):
-	var next_path_pos = navigation_agent_2d.get_next_path_position()
-	var dir = global_position.direction_to(next_path_pos)
-	var desired_velocity = dir * velocity_component.max_speed
-	velocity = velocity.lerp(desired_velocity, 1 - exp(-velocity_component.acceleration * delta))
-
-	move_and_slide()
+	velocity_component.move(self)
+	if is_boss:
+		calc_collides()
 
 func walk():
 	animation_player.play("walk")
+
+
+func _on_timer_timeout():
+	velocity_component.accelerate_to_player(self)
+
+func calc_collides():
+	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider();
+		if collider.is_in_group("enemy"):
+			collider.velocity = (velocity).rotated(randf_range(-1, 1))*1.5;
+			collider.move_and_slide()

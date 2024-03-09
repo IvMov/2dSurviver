@@ -10,7 +10,6 @@ func _ready():
 	gui_input.connect(on_gui_input)
 
 func set_ability_upgrade(upgrade: AbilityUpgrade):
-	print(upgrade)
 	header_label.set_self_modulate(upgrade.main_color)
 	header_label.text = upgrade.name
 	description_label.text = upgrade.description

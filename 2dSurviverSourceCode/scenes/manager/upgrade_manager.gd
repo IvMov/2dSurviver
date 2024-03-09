@@ -17,11 +17,12 @@ func _ready():
 	
 
 
-func pick_upgrades(core_upgrades: Array[AbilityUpgrade]) :
-	print(upgrade_pool)
+func pick_upgrades(core_upgrades: Array[AbilityUpgrade], count: int) :
+	if core_upgrades.is_empty():
+		return []
 	var upgrades = core_upgrades.duplicate()
 	var chosen_upgrades: Array[AbilityUpgrade] = []
-	for i in 2:
+	for i in count:
 		var chosen_upgrade = upgrades.pick_random() as AbilityUpgrade
 		chosen_upgrades.append(chosen_upgrade)
 		upgrades.erase(chosen_upgrade)
@@ -34,7 +35,7 @@ func pick_abilities() :
 	for upgrade in upgrades:
 		if (upgrade.skill):
 			chosen_upgrades.append(upgrade)
-	return pick_upgrades(chosen_upgrades);	
+	return pick_upgrades(chosen_upgrades, 2);	
 	
 	
 func handle_skill_selected(upgrade: AbilityUpgrade):
@@ -66,7 +67,7 @@ func handle_abiliti_selected(upgrade: AbilityUpgrade):
 
 
 func call_ability_upgrade_action():
-	var picked_upgrades = pick_upgrades(upgrade_pool)
+	var picked_upgrades = pick_upgrades(upgrade_pool, 3)
 	if picked_upgrades.size() > 0:
 		var upgrade_screen_instance = upgrade_sreene_scene.instantiate()
 		add_child(upgrade_screen_instance)

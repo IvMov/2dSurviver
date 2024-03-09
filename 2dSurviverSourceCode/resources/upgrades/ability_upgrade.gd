@@ -4,7 +4,7 @@ class_name AbilityUpgrade
 
 @export var id: String
 @export var name: String
-@export var amount: int
+@export var amount: float
 
 @export var main_color: Color
 @export var second_color: Color

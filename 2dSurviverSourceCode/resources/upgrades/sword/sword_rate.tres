@@ -6,6 +6,7 @@
 script = ExtResource("1_2opii")
 id = "sword_rate"
 name = "Sword"
+amount = 0.05
 main_color = Color(1, 0, 0, 1)
 second_color = Color(0, 0, 0, 1)
 description = "Attack rate + 5%"

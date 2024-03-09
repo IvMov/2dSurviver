@@ -12,3 +12,7 @@ unique_name_in_owner = true
 wait_time = 301.0
 one_shot = true
 autostart = true
+
+[node name="EndlessTimer" type="Timer" parent="."]
+wait_time = 6000.0
+autostart = true

@@ -6,6 +6,7 @@
 script = ExtResource("1_yh1r2")
 id = "axe_rate"
 name = "Axe"
+amount = 0.05
 main_color = Color(0.717647, 0.247059, 0, 1)
 second_color = Color(0, 0, 0, 1)
 description = "Attack rate + 5%

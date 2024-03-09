@@ -6,7 +6,7 @@
 script = ExtResource("1_4jlvb")
 id = "self_hp_up"
 name = "Character"
-amount = 5
+amount = 5.0
 main_color = Color(0, 0.905882, 0.376471, 1)
 second_color = Color(0, 0, 0, 1)
 description = "Max HP +5"

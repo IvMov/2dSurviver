@@ -6,6 +6,7 @@ const DIFFICULTY_INTERVAL = 10
 
 @export var end_screen: PackedScene
 @onready var timer = %Timer
+@onready var endless_timer = $EndlessTimer
 
 var arena_dificulty = 0
 
@@ -14,13 +15,13 @@ func _ready():
 
 
 func _process(delta):
-	var next_time_target = timer.wait_time - ((arena_dificulty+1) * DIFFICULTY_INTERVAL)
-	if timer.time_left <= next_time_target:
+	var next_time_target = endless_timer.wait_time - ((arena_dificulty+1) * DIFFICULTY_INTERVAL)
+	if endless_timer.time_left <= next_time_target:
 		arena_dificulty += 1
 		arena_difficulty_increased.emit(arena_dificulty)
 
 func get_time_elapsed():
-	return timer.wait_time - timer.time_left
+	return endless_timer.wait_time - endless_timer.time_left
 
 
 func on_timer_timeout():

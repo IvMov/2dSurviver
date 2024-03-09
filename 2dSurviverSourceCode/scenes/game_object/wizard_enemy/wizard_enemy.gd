@@ -2,26 +2,18 @@ extends CharacterBody2D
 
 @onready var velocity_component = $VelocityComponent
 @onready var sprites = $Sprites
-@onready var navigation_agent_2d = $NavigationAgent2D
 @onready var animation_player = $AnimationPlayer
-
+@onready var health_component = $HealthComponent
+@onready var enemy_drop_component = $EnemyDropComponent
 
 var is_moving: bool = true
-
-func _ready():
-	velocity_component.set_player_position()
-	
+var is_boss: bool = false
 
 func _process(delta):
+	velocity_component.move(self)
+	if is_boss:
+		calc_collides()
 	
-	var next_path_pos = navigation_agent_2d.get_next_path_position()
-	var dir = global_position.direction_to(next_path_pos)
-	var desired_velocity = dir * velocity_component.max_speed
-	if is_moving:
-		velocity = velocity.lerp(desired_velocity, 1 - exp(-velocity_component.acceleration * delta))
-	else: 
-		velocity = velocity.lerp(Vector2.ZERO, 1 - exp(-velocity_component.acceleration * delta)) # stops for a while 
-	move_and_slide()
 	#used in animation
 	var direction_look: Vector2 = Vector2(-1, 1) if sign(velocity.x) < 0 else Vector2.ONE
 	sprites.set_scale(direction_look)
@@ -34,3 +26,16 @@ func set_is_moving(moving: bool):
 func move():
 	animation_player.play("move")
 
+
+
+func _on_timer_timeout():
+	velocity_component.accelerate_to_player(self)
+
+
+func calc_collides():
+	var collision = get_last_slide_collision()
+	if collision:
+		var collider = collision.get_collider();
+		if collider.is_in_group("enemy"):
+			collider.velocity = (velocity).rotated(randf_range(-1, 1))*1.5;
+			collider.move_and_slide()

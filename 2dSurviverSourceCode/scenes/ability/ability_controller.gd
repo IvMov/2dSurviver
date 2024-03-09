@@ -7,7 +7,6 @@ func _ready():
 	
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	print(upgrade.name)
 	if upgrade is Ability:
 		var instance = upgrade.ability_controller.instantiate();
 		get_parent().add_child(instance)
