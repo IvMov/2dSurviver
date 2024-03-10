@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckctqydsjhtgq"]
+
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="1_q0gib"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_q0gib")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 0)

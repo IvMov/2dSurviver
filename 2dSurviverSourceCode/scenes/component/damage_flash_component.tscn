@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://4eygpv6ar4kx"]
+
+[ext_resource type="Script" path="res://scenes/component/damage_flash_component.gd" id="1_diwfx"]
+[ext_resource type="Material" uid="uid://ckctqydsjhtgq" path="res://scenes/component/damage_flash_component_material.tres" id="2_3al3q"]
+
+[node name="DamageFlashComponent" type="Node"]
+script = ExtResource("1_diwfx")
+material = ExtResource("2_3al3q")

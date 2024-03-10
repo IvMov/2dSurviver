@@ -12,6 +12,7 @@ var time: String
 var is_pause: bool = false
 
 func _process(delta):
+	var format = "%0.01f";
 	if !arena_time_manager: 
 		return
 	var time_elapsed = arena_time_manager.get_time_elapsed();
@@ -25,7 +26,9 @@ func _process(delta):
 	if player.is_inside_tree():
 		var nodes = player.get_tree().get_nodes_in_group("ability_controller")
 		for node in nodes:
-			ability_text += ability_blueprint % [node.controller_name, str(node.damage).left(5), str(node.ability_timer.wait_time).left(5)]
+			var damage = format % node.damage
+			var wait_time = format % node.ability_timer.wait_time
+			ability_text += ability_blueprint % [node.controller_name, damage, wait_time]
 			ability_text += "___\n"
 		ability_label.text = ability_text
 	

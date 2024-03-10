@@ -23,10 +23,6 @@ func _process(delta):
 func set_is_moving(moving: bool): 
 	is_moving = moving
 
-func move():
-	animation_player.play("move")
-
-
 
 func _on_timer_timeout():
 	velocity_component.accelerate_to_player(self)

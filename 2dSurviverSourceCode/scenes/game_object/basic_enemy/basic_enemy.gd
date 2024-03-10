@@ -13,8 +13,6 @@ func _process(delta):
 	if is_boss:
 		calc_collides()
 
-func walk():
-	animation_player.play("walk")
 
 
 func _on_timer_timeout():

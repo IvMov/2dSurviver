@@ -8,8 +8,8 @@ func _ready():
 	pass
 
 
-func start(text: String):
-	text = text.left(4)
+func start(text_number: float):
+	var text = "%0.1f" % text_number
 	label.text = text
 	var tween = create_tween()
 	

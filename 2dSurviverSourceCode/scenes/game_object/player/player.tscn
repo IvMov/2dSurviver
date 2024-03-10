@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=18 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_45ek8"]
 [ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://scenes/game_object/player/player.png" id="2_vq2dk"]
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_rgm4t"]
+[ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="6_6n63d"]
 
 [sub_resource type="Animation" id="Animation_c8tx1"]
 length = 0.001
@@ -57,28 +59,6 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_cf562"]
-resource_name = "calm"
-length = 0.4
-
-[sub_resource type="Animation" id="Animation_i2te3"]
-resource_name = "damaged"
-length = 0.3
-loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.745098, 0.172549, 0.215686, 0.627451), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_cy7l3"]
 resource_name = "walk"
 length = 0.5
@@ -123,8 +103,6 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2c4q"]
 _data = {
 "RESET": SubResource("Animation_c8tx1"),
-"calm": SubResource("Animation_cf562"),
-"damaged": SubResource("Animation_i2te3"),
 "walk": SubResource("Animation_cy7l3")
 }
 
@@ -147,6 +125,12 @@ corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w85bb"]
+resource_local_to_scene = true
+shader = ExtResource("5_rgm4t")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtp82"]
 radius = 19.105
@@ -190,6 +174,11 @@ show_percentage = false
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
 max_health = 5.0
+
+[node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6n63d")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Sprites/Sprite2D")
+material = SubResource("ShaderMaterial_w85bb")
 
 [node name="AbilityManager" type="Node" parent="."]
 
