@@ -29,6 +29,7 @@ shadow_offset = Vector2(0, 0)
 custom_minimum_size = Vector2(200, 300)
 offset_right = 140.0
 offset_bottom = 162.0
+pivot_offset = Vector2(100, 150)
 theme = SubResource("Theme_4kdgv")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ihg0y")
 script = ExtResource("1_nmcd4")
