@@ -5,8 +5,8 @@ signal card_selected()
 @onready var header_label: Label = %Header
 @onready var description_label: Label = %Description
 @onready var color_rect: ColorRect = %ColorRect
+@onready var animation_player = $AnimationPlayer
 
-var disable_inputs: bool = false
 var tween: Tween
 
 func _ready():
@@ -39,7 +39,6 @@ func play_selected():
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.1)
 
 
-
 func play_unselected():
 	if tween:
 		tween.kill()
@@ -47,19 +46,22 @@ func play_unselected():
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.1)
 	
 	
+func select_card():
+	get_tree().get_first_node_in_group("upgrade_screen").disable_inputs = true
+	play_selected()
+	await tween.finished
+	card_selected.emit()
+	queue_free()
+	
 func on_gui_input(event: InputEvent):
-	if disable_inputs:
+	if get_tree().get_first_node_in_group("upgrade_screen").disable_inputs:
 		return
 	if event.is_action_pressed("left_click"):
-		disable_inputs = true
-		play_selected()
-		await tween.finished
-		card_selected.emit()
-		queue_free()
+		select_card()
 
 
 func on_mouse_entered():
-	if disable_inputs:
+	if get_tree().get_first_node_in_group("upgrade_screen").disable_inputs:
 		return
 	play_hover()
 	await tween.finished

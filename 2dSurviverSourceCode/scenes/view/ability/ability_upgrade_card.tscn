@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2p8y050pj32x"]
+[gd_scene load_steps=10 format=3 uid="uid://2p8y050pj32x"]
 
 [ext_resource type="Script" path="res://scenes/view/ability/ability_upgrade_card.gd" id="1_nmcd4"]
 [ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_wsyad"]
@@ -12,6 +12,67 @@ border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_blend = true
+
+[sub_resource type="Animation" id="Animation_q3oy4"]
+resource_name = "in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 6.72717),
+"update": 0,
+"values": [-6.28319, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xpd7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luwh5"]
+_data = {
+"RESET": SubResource("Animation_xpd7x"),
+"in": SubResource("Animation_q3oy4")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_hw3j5"]
 font_size = 40
@@ -27,12 +88,18 @@ shadow_offset = Vector2(0, 0)
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 300)
-offset_right = 140.0
-offset_bottom = 162.0
+offset_right = 200.0
+offset_bottom = 300.0
 pivot_offset = Vector2(100, 150)
 theme = SubResource("Theme_4kdgv")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ihg0y")
 script = ExtResource("1_nmcd4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_luwh5")
+}
+autoplay = "in"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

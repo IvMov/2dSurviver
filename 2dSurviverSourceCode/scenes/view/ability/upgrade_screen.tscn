@@ -1,11 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://25li74ojtlv7"]
+[gd_scene load_steps=7 format=3 uid="uid://25li74ojtlv7"]
 
 [ext_resource type="PackedScene" uid="uid://2p8y050pj32x" path="res://scenes/view/ability/ability_upgrade_card.tscn" id="1_3c5qq"]
 [ext_resource type="Script" path="res://scenes/view/ability/upgrade_screen.gd" id="1_qmq2m"]
 
-[node name="UpgradeScreen" type="CanvasLayer"]
+[sub_resource type="Animation" id="Animation_uyllg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oya3c"]
+resource_name = "new_animation"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5gya3"]
+resource_name = "out"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkiw1"]
+_data = {
+"RESET": SubResource("Animation_uyllg"),
+"in": SubResource("Animation_oya3c"),
+"out": SubResource("Animation_5gya3")
+}
+
+[node name="UpgradeScreen" type="CanvasLayer" groups=["upgrade_screen"]]
 script = ExtResource("1_qmq2m")
 upgrade_card_scene = ExtResource("1_3c5qq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_mkiw1")
+}
+autoplay = "in"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.666667, 0.623529, 0.376471, 0.776471)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
