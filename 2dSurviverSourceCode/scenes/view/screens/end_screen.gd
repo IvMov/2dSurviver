@@ -1,8 +1,14 @@
 extends CanvasLayer
 
+@onready var panel_container = $MarginContainer/PanelContainer
 
 func _ready():
 	get_tree().paused = true
+	var tween = create_tween()
+	panel_container.pivot_offset = panel_container.size / 2
+	tween.tween_property(panel_container, "scale", Vector2.ZERO, 0.0)
+	tween.tween_property(panel_container, "scale", Vector2.ONE*1.2, .2)
+	tween.tween_property(panel_container, "scale", Vector2.ONE, .2)
 	%RestartButton.pressed.connect(on_restart_button_pressed)
 	%QuitButton.pressed.connect(on_quit_button_pressed)
 	%ContinueButton.pressed.connect(on_continue_button_pressed)

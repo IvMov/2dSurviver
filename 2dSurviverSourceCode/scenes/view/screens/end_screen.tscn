@@ -45,12 +45,7 @@ vertical_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Thanks for the testers:
-Merzzul
-Jovaras
-cTux
-Narthul
-Vitaha"
+text = "Thanks for playing my game"
 label_settings = SubResource("LabelSettings_nupd1")
 horizontal_alignment = 1
 
