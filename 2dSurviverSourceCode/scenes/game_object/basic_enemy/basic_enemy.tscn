@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="3_yjuqa"]
 [ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="4_q2w8o"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="4_wbb8o"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_bo8gy"]
 
 [sub_resource type="Animation" id="Animation_42b8n"]
 length = 0.001
@@ -70,25 +71,11 @@ _data = {
 "walk": SubResource("Animation_ww8x8")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_555yc"]
-bg_color = Color(0.247059, 0.14902, 0.192157, 1)
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijgms"]
-bg_color = Color(1, 0.439216, 0.427451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdc6s"]
+resource_local_to_scene = true
+shader = ExtResource("5_bo8gy")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gr8wg"]
 
@@ -117,8 +104,6 @@ offset_top = -19.0
 offset_right = 16.0
 offset_bottom = -13.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = SubResource("StyleBoxFlat_555yc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ijgms")
 max_value = 1.0
 value = 0.5
 show_percentage = false
@@ -134,6 +119,7 @@ acceleration = 10.0
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_wbb8o")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
+material = SubResource("ShaderMaterial_qdc6s")
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ly4q8")]
 coin_drop_chance = 0.25

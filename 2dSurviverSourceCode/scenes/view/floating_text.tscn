@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/view/floating_text.gd" id="1_pucb6"]
 
 [node name="FloatingText" type="Node2D"]
+top_level = true
 script = ExtResource("1_pucb6")
 
 [node name="Label" type="Label" parent="."]

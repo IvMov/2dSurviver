@@ -1,6 +1,7 @@
 extends Node
 
-const SPAWN_RADIUS: = 600
+const SPAWN_RADIUS: = 300
+
 const SWAPN_INTERVAL = 1.5
 
 
@@ -30,6 +31,7 @@ func instaintiate_enemy(enemy_scene: PackedScene, player: Player):
 	var enemy = enemy_scene.instantiate() as Node2D
 	enemy.global_position = get_spawn_position(player.global_position, SPAWN_RADIUS)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
+	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
 	EnemyCounter.add_enemy()
 	
 
@@ -44,6 +46,7 @@ func instaintiate_boss(enemy_scene: PackedScene, player: Player):
 	enemy.health_component.current_health = enemy.health_component.max_health
 	enemy.health_component.update_health_bar()
 	enemy.enemy_drop_component.basic_exp_drop = 20
+	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
 	enemy.is_boss = true
 	EnemyCounter.add_enemy()
 

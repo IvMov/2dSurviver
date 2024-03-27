@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="3_gc6tf"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="4_cnbws"]
 [ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="4_s4x1e"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_qa71s"]
 [ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="7_hrra8"]
 
 [sub_resource type="Animation" id="Animation_7yvij"]
@@ -132,25 +133,11 @@ _data = {
 "move": SubResource("Animation_qkhaq")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k66uf"]
-bg_color = Color(0.247059, 0.14902, 0.192157, 1)
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ftpge"]
-bg_color = Color(1, 0.439216, 0.427451, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqwfc"]
+resource_local_to_scene = true
+shader = ExtResource("5_qa71s")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6oh7"]
 radius = 6.0
@@ -179,8 +166,6 @@ offset_top = -23.0
 offset_right = 16.0
 offset_bottom = -17.0
 pivot_offset = Vector2(16, 3)
-theme_override_styles/background = SubResource("StyleBoxFlat_k66uf")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ftpge")
 max_value = 1.0
 value = 0.5
 show_percentage = false
@@ -195,6 +180,7 @@ max_speed = 90
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_cnbws")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
+material = SubResource("ShaderMaterial_vqwfc")
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_hrra8")]
 coin_drop_chance = 0.5

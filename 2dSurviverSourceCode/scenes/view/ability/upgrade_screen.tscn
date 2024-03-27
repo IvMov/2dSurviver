@@ -60,6 +60,7 @@ _data = {
 }
 
 [node name="UpgradeScreen" type="CanvasLayer" groups=["upgrade_screen"]]
+layer = 2
 script = ExtResource("1_qmq2m")
 upgrade_card_scene = ExtResource("1_3c5qq")
 

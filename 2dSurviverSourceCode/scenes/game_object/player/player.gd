@@ -72,6 +72,7 @@ func check_deal_damage():
 	get_parent().add_child(floating_text_inst)
 	floating_text_inst.label.set_modulate(Color.RED)
 	floating_text_inst.global_position = global_position;
+	floating_text_inst.z_index = 1;
 	floating_text_inst.start(hurt)
 
 func animate_player(movement_vector: Vector2):

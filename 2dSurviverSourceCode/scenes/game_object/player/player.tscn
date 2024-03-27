@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=17 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
@@ -106,26 +106,6 @@ _data = {
 "walk": SubResource("Animation_cy7l3")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84kvc"]
-bg_color = Color(0.247059, 0.14902, 0.192157, 1)
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug7g1"]
-bg_color = Color(0.262745, 0.882353, 0.701961, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w85bb"]
 resource_local_to_scene = true
 shader = ExtResource("5_rgm4t")
@@ -143,6 +123,9 @@ radius = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egee0"]
 bg_color = Color(0, 0.976471, 0.333333, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbs2p"]
+bg_color = Color(0.556863, 0.866667, 0.0313726, 0.603922)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 9
@@ -165,15 +148,12 @@ offset_right = 16.0
 offset_bottom = -18.0
 pivot_offset = Vector2(16, 3)
 tooltip_text = "asd"
-theme_override_styles/background = SubResource("StyleBoxFlat_84kvc")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ug7g1")
 max_value = 1.0
-value = 0.5
 show_percentage = false
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 5.0
+max_health = 1000.0
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6n63d")]
 health_component = NodePath("../HealthComponent")
@@ -219,12 +199,12 @@ one_shot = true
 
 [node name="SkillBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.0980392, 1, 1, 1)
 offset_left = -16.0
 offset_top = 8.0
 offset_right = 16.0
 offset_bottom = 12.0
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_egee0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dbs2p")
 value = 20.0
 show_percentage = false
