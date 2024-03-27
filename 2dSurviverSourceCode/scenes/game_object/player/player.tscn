@@ -125,7 +125,7 @@ radius = 5.0
 bg_color = Color(0, 0.976471, 0.333333, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbs2p"]
-bg_color = Color(0.556863, 0.866667, 0.0313726, 0.603922)
+bg_color = Color(0.247059, 0.14902, 0.192157, 0.443137)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 9
