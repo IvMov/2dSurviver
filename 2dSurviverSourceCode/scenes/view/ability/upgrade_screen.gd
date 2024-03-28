@@ -7,9 +7,27 @@ signal ability_upgrade_selected(upgrade: AbilityUpgrade)
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 var disable_inputs: bool = false
+var skill_inputs: Array = [1, 2, 3]
 
 func _ready():
 	get_tree().paused = true
+
+
+func _input(event):
+	if disable_inputs:
+		return
+	var event_value : String = event.as_text();
+	if event_value.length() > 1:
+		return
+		
+	if event_value.is_valid_int():
+		var card_num = int(event_value) - 1 
+		var cards = card_container.get_children()
+		if cards.is_empty() || cards.size() <= card_num:
+			return
+		var card = cards[card_num]
+		card.select_card()
+		
 
 
 func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
@@ -39,3 +57,4 @@ func on_selected_do(upgrade: AbilityUpgrade):
 	await  animation_player.animation_finished
 	get_tree().paused = false
 	queue_free()
+

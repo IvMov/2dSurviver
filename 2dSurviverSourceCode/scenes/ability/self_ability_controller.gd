@@ -14,7 +14,7 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 		return
 	
 	if upgrade.id == "self_movement_speed":
-		player.current_speed = player.BASIC_SPEED * (1 + (current_upgrades["self_movement_speed"]["lvl"] * upgrade.amount))
+		player.velocity_component.max_speed = player.velocity_component.max_speed * (1 + (current_upgrades["self_movement_speed"]["lvl"] * upgrade.amount))
 	if upgrade.id == "self_hp_up":
 		player.health_component.max_health += upgrade.amount
 		player.health_component.update_health_bar()

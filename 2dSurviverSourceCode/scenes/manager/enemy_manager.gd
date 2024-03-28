@@ -41,7 +41,7 @@ func instaintiate_boss(enemy_scene: PackedScene, player: Player):
 	
 	enemy.global_position = get_spawn_position(player.global_position, SPAWN_RADIUS)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
-	enemy.velocity_component.max_speed = 150 + (int(PlayerCounters.current_level/2))
+	enemy.velocity_component.max_speed = 120 + PlayerCounters.current_level
 	enemy.health_component.max_health = 100 + (arena_difficulty * 5) + (PlayerCounters.current_level * 5)
 	enemy.health_component.current_health = enemy.health_component.max_health
 	enemy.health_component.update_health_bar()

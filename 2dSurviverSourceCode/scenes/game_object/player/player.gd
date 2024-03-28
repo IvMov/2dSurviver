@@ -1,17 +1,15 @@
 extends CharacterBody2D
 class_name Player
 
-@export var BASIC_SPEED: float = 100
 @export var floating_text: PackedScene
-const ACCELERATION_SMOOTHING = 15
 @onready var damage_interval_timer = $DamageIntervalTimer
 @onready var health_component = $HealthComponent as HealthComponent
 @onready var animation = $AnimationPlayer
 @onready var sprites = $Sprites
 @onready var skill_timer = %SkillTimer
 @onready var skill_bar = %SkillBar
+@onready var velocity_component = $VelocityComponent
 
-var current_speed: float = BASIC_SPEED
 var number_colliding_bodies: int = 0
 var hurt:int = 1
 
@@ -23,25 +21,24 @@ func _ready():
 	skill_bar.max_value = skill_timer.wait_time
 
 func _input(event):
-		
 	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
-		if velocity.length() < 10:
-			return
 		var movement_vector = get_movement_vector()
 		var direction = movement_vector.normalized()
-		var target_velocity = direction * 10000
+		var target_velocity = direction * 30000
 		velocity  = velocity.lerp(target_velocity, 1 - exp(-.3))
-		move_and_slide()
+		velocity_component.move(self)
 		skill_timer.start()
+
 
 func _process(delta):
 	var movement_vector = get_movement_vector()
 	
 	var direction = movement_vector.normalized()
-	var target_velocity = direction * current_speed
-	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
+	var target_velocity = direction * velocity_component.max_speed
+	velocity_component.accelerate_in_dirrection(self, direction)
+	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * velocity_component.acceleration))
 	animate_player(movement_vector)
-	move_and_slide()
+	velocity_component.move(self)
 	skill_bar.value = skill_timer.time_left
 	var collision = get_last_slide_collision()
 	if collision:

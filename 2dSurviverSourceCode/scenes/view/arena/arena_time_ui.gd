@@ -20,7 +20,7 @@ func _process(delta):
 	time_label.text = "time: " + time
 	enemies_label.text = "enemies: " + str(EnemyCounter.enemies)
 	var stats_text = "MaxHP: %s\nCurrentHP: %s\nCurrentSpeed: %s\nLevel: %s\nExp: %s\nNextLvlExp: %s\nMore stats soon"
-	stats_label.text = stats_text % [int(player.health_component.max_health), int(player.health_component.current_health), int(player.current_speed), PlayerCounters.current_level, PlayerCounters.expirience, PlayerCounters.target_expirience]
+	stats_label.text = stats_text % [int(player.health_component.max_health), int(player.health_component.current_health), int(player.velocity_component.max_speed), PlayerCounters.current_level, PlayerCounters.expirience, PlayerCounters.target_expirience]
 	var ability_text = "Abilities\n\n"
 	var ability_blueprint = "%s\n Damage: %s\n Rate: %s\n"
 	if player.is_inside_tree():
