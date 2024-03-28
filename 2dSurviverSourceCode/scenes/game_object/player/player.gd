@@ -62,10 +62,12 @@ func get_movement_vector():
 func check_deal_damage():
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		return
+	GameEvents.emit_player_damaged(hurt)
 	var floating_text_inst = floating_text.instantiate() as Node2D
 	health_component.damage(hurt)
 	damage_interval_timer.start()
 	floating_text.instantiate()
+	
 	get_parent().add_child(floating_text_inst)
 	floating_text_inst.label.set_modulate(Color.RED)
 	floating_text_inst.global_position = global_position;
