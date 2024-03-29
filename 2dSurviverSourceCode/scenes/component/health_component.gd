@@ -10,10 +10,11 @@ var current_health: float
 
 
 func _ready():
-	max_health = max_health + (randf() * 5) + PlayerCounters.current_level
+	if !(get_parent() is Player):
+		max_health = max_health + (randf() * 5) + PlayerCounters.current_level
 	current_health = max_health
 	health_changed.connect(on_health_changed)
-	update_health_bar()
+	health_changed.emit()
 	
 	
 func damage(amount: float):

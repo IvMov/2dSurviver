@@ -80,7 +80,7 @@ shader_parameter/rgb = Vector3(1, 1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gr8wg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hv68"]
-radius = 6.0
+radius = 8.0
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
@@ -110,7 +110,7 @@ show_percentage = false
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("3_yjuqa")]
 health_bar = NodePath("../HealthBar")
-max_health = 20.0
+max_health = 10.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_pc0ff")]
 max_speed = 60

@@ -8,6 +8,7 @@ extends CharacterBody2D
 
 var is_moving: bool = true
 var is_boss: bool = false
+var hurt: int = 2
 
 func _process(delta):
 	velocity_component.move(self)

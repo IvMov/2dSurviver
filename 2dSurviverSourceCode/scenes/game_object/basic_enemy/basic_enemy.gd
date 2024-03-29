@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var enemy_drop_component = $EnemyDropComponent
 
 var is_boss: bool = false
+var hurt: int = 1
 
 func _process(delta):
 	velocity_component.move(self)

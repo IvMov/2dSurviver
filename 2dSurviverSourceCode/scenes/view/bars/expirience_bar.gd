@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var progress_bar: ProgressBar = $MarginContainer/ProgressBar
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	progress_bar.min_value = PlayerCounters.start_expirience
 	progress_bar.max_value = PlayerCounters.target_expirience

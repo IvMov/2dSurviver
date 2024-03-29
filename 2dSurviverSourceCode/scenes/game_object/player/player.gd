@@ -24,8 +24,7 @@ func _input(event):
 	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
 		var movement_vector = get_movement_vector()
 		var direction = movement_vector.normalized()
-		var target_velocity = direction * 30000
-		velocity  = velocity.lerp(target_velocity, 1 - exp(-.3))
+		velocity = direction * 10000
 		velocity_component.move(self)
 		skill_timer.start()
 
@@ -84,9 +83,9 @@ func animate_player(movement_vector: Vector2):
 func on_body_entered(body: Node2D):
 	number_colliding_bodies += 1
 	if PlayerCounters.current_level < 40:
-		hurt = 10 if body.is_boss else 1
+		hurt = 10 if body.is_boss else body.hurt
 	else:
-		hurt = 20 if body.is_boss else 3
+		hurt = 15 if body.is_boss else (body.hurt * 2)
 	check_deal_damage()
 
 
