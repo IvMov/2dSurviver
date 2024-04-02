@@ -58,3 +58,9 @@ v-0.1.0:
 - damage from simple enemies 1/2, wizard(2/4), bosses(10/15) -> depends on player lvl (till 40 lvl/after 40 lvl)
 - add hp bar in bottom of screen, rework xp bar
 
+v-0.1.1:
+- bugfix
+- rebalance of skill upgrades
+- enemies respawn if too far from player
+- enemies faster if not die too long
+- spawn system rebalance
