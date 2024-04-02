@@ -12,6 +12,11 @@ class_name Player
 
 var number_colliding_bodies: int = 0
 var hurt:int = 1
+var last_direction: Vector2
+var dodge_speed = 800
+var current_dodge_speed = dodge_speed
+var last_collider
+
 
 func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
@@ -23,32 +28,50 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
 		var movement_vector = get_movement_vector()
-		var direction = movement_vector.normalized()
-		velocity = direction * 10000
+		last_direction = movement_vector.normalized()
+		current_dodge_speed = dodge_speed
+		var target_velocity = last_direction * current_dodge_speed
+		velocity  = target_velocity.lerp(target_velocity, exp(-get_process_delta_time()*velocity_component.acceleration))
 		velocity_component.move(self)
 		skill_timer.start()
 
 
 func _process(delta):
+	skill_bar.value = skill_timer.time_left
+	handle_collision(delta)
+	if skill_timer.time_left > 0 && (1.5 - skill_timer.time_left <= 0.3):
+		velocity_component.move(self)
+	else:
+		move_player(delta)
+
+
+func move_player(delta):
 	var movement_vector = get_movement_vector()
-	
 	var direction = movement_vector.normalized()
 	var target_velocity = direction * velocity_component.max_speed
 	velocity_component.accelerate_in_dirrection(self, direction)
-	velocity  = velocity.lerp(target_velocity, 1 - exp(-delta * velocity_component.acceleration))
-	animate_player(movement_vector)
+	velocity  = velocity.lerp(target_velocity, (1-exp(-delta * velocity_component.acceleration)))
 	velocity_component.move(self)
-	skill_bar.value = skill_timer.time_left
+	animate_player(movement_vector)
+	
+
+func handle_collision(delta):
 	var collision = get_last_slide_collision()
 	if collision:
 		var collider = collision.get_collider();
-		if collider.is_in_group("enemy"):
-			if(velocity.length() > 300):
-				collider.velocity = (velocity/2).rotated(randf_range(-1, 1))
+		if last_collider == collider:
+			return
+		last_collider = collider
+		if collider && collider.is_in_group("enemy"):
+			if !skill_timer.is_stopped() && (1.5 - skill_timer.time_left <= 0.3):
+				collider.velocity = (velocity/2).rotated(randf_range(-1.5, 1.5))
+				collider.hurtbox_component.get_damaged(5)
+				current_dodge_speed-=50
+				velocity = velocity.lerp(last_direction * current_dodge_speed, exp(-delta*velocity_component.acceleration))
 			else:	
-				collider.velocity = velocity.rotated(randf_range(-1, 1))*1.5;
-			collider.move_and_slide()
-
+				collider.velocity = velocity.rotated(randf_range(-1.5, 1.5))*1.5;
+			collider.velocity_component.move(collider)	
+	
 
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -68,10 +91,10 @@ func check_deal_damage():
 	floating_text.instantiate()
 	
 	get_parent().add_child(floating_text_inst)
-	floating_text_inst.label.set_modulate(Color.RED)
 	floating_text_inst.global_position = global_position;
 	floating_text_inst.z_index = 1;
 	floating_text_inst.start(hurt)
+	floating_text_inst.label.set_modulate(Color.RED)
 
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
@@ -97,7 +120,9 @@ func on_damage_interval_timeout_timeout():
 	check_deal_damage()
 	
 func on_new_lvl(lvl: int):
-	health_component.max_health += 2
-	health_component.current_health = min(health_component.max_health, health_component.current_health+3)
+	var odd = PlayerCounters.current_level%2
+	health_component.max_health+=(odd * 5)
+	velocity_component.max_speed = min(velocity_component.max_speed + odd, 250)
+	health_component.current_health = min(health_component.max_health, health_component.current_health+5)
 	
 	

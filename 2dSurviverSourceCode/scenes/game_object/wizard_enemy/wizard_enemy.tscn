@@ -139,10 +139,10 @@ shader = ExtResource("5_qa71s")
 shader_parameter/lerp_precent = 1.0
 shader_parameter/rgb = Vector3(1, 1, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8e0ke"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_q6oh7"]
 radius = 8.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8e0ke"]
 
 [node name="WizardEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
@@ -175,7 +175,7 @@ health_bar = NodePath("../HealthBar")
 max_health = 20.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("3_cj18y")]
-max_speed = 90
+max_speed = 80
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_cnbws")]
 health_component = NodePath("../HealthComponent")
@@ -191,6 +191,13 @@ basic_exp_drop = 15
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_s4x1e")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_8e0ke")
+
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
@@ -202,15 +209,13 @@ visibility_layer = 0
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_q6oh7")
 
-[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_s4x1e")]
-health_component = NodePath("../HealthComponent")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
-position = Vector2(0, -7)
-shape = SubResource("CircleShape2D_8e0ke")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
+autostart = true
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+wait_time = 999.0
+one_shot = true
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

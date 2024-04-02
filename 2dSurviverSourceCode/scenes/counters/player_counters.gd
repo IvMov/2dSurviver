@@ -11,6 +11,7 @@ func _ready():
 	GameEvents.coin_collected.connect(handle_coin_collected)
 	GameEvents.exp_collected.connect(handle_exp_collected)
 	GameEvents.new_level.connect(on_level_up)
+	GameEvents.ability_upgrade_applied.connect(on_ablility_upgrade_applied)
 	
 func handle_coin_collected(value, pos):
 	money+=value
@@ -20,6 +21,7 @@ func handle_exp_collected(value, pos):
 	expirience+=value
 	if expirience >= target_expirience:
 		GameEvents.emit_new_level(expirience)
+		
 	
 func on_level_up(value):
 	current_level+=1
@@ -34,3 +36,9 @@ func reset_counters():
 	start_expirience = 0
 	target_expirience = 100
 	base_exp_level = 100
+
+func on_ablility_upgrade_applied():
+	if expirience >= target_expirience:
+		GameEvents.emit_new_level(expirience)
+	else:
+		get_tree().paused = false

@@ -10,7 +10,7 @@ var base_wait_time: float
 
 func _ready():
 	ability_timer.timeout.connect(on_timer_timeout)
-	ability_timer.wait_time = 2
+	ability_timer.wait_time = 1.6
 	ability_timer.start()
 	base_wait_time = ability_timer.wait_time
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
@@ -34,8 +34,10 @@ func on_timer_timeout():
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "axe_rate":
 		var percent_improve = current_upgrades["axe_rate"]["lvl"] * upgrade.amount
-		ability_timer.wait_time = max(base_wait_time * (1 - percent_improve), 0.01)
+		ability_timer.wait_time = max(base_wait_time - percent_improve, 0.2)
 		ability_timer.start()
-	if upgrade.id == "axe_dmg":
+		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "axe_dmg":
 		damage *= 1 + upgrade.amount
+		GameEvents.emit_ability_upgrade_applied()
 

@@ -1,8 +1,9 @@
 extends Node
 
-const SPAWN_RADIUS: = 300
+const SPAWN_RADIUS: = 340
+const HORDE_SPAWN_RADIUS: = 300
 
-const SWAPN_INTERVAL = 1.5
+const SWAPN_INTERVAL = 1.2
 
 
 @onready var spawn_timer: Timer = $SpawnTimer
@@ -14,6 +15,7 @@ const SWAPN_INTERVAL = 1.5
 
 var enemy_table = WeightedTable.new()
 var arena_difficulty: int
+var enemies_per_spaun: int = 1
 
 
 func _ready():
@@ -27,11 +29,13 @@ func _ready():
 	
 
 	
-func instaintiate_enemy(enemy_scene: PackedScene, player: Player):
+func instaintiate_enemy(enemy_scene: PackedScene, player: Player, spawn_radius):
 	var enemy = enemy_scene.instantiate() as Node2D
-	enemy.global_position = get_spawn_position(player.global_position, SPAWN_RADIUS)
+	enemy.global_position = get_spawn_position(player.global_position, spawn_radius)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
+	enemy.health_component.max_health+=arena_difficulty
 	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
+	
 	EnemyCounter.add_enemy()
 	
 
@@ -45,7 +49,7 @@ func instaintiate_boss(enemy_scene: PackedScene, player: Player):
 	enemy.health_component.max_health = 100 + (arena_difficulty * 5) + (PlayerCounters.current_level)
 	enemy.health_component.current_health = enemy.health_component.max_health
 	enemy.health_component.update_health_bar()
-	enemy.enemy_drop_component.basic_exp_drop = 20
+	enemy.enemy_drop_component.basic_exp_drop = 5 + arena_difficulty
 	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
 	enemy.is_boss = true
 	EnemyCounter.add_enemy()
@@ -78,21 +82,25 @@ func get_random_direction():
 
 func on_spawn_timer_timeout():
 	spawn_timer.start()
+	if EnemyCounter.enemies >= 400:
+		return
 	var player = get_tree().get_first_node_in_group("player") as Player	
 	if !player:
 		return
 	var enemy_scene = enemy_table.pick_item()
-	instaintiate_enemy(enemy_scene, player)	
+	for i in enemies_per_spaun:
+		instaintiate_enemy(enemy_scene, player, SPAWN_RADIUS)	
+	
 	
 
 func on_horde_timer_timeout():
 	var player = get_tree().get_first_node_in_group("player") as Player	
 	if !player:
 		return
-	for n in range(PlayerCounters.current_level * 8):
+	for n in range(30 + arena_difficulty):
 		var enemy_scene = enemy_table.pick_item()
-		instaintiate_enemy(enemy_scene, player)
-		if(EnemyCounter.enemies > 600):
+		instaintiate_enemy(enemy_scene, player, HORDE_SPAWN_RADIUS)
+		if(EnemyCounter.enemies > 400):
 			return
 	
 
@@ -106,15 +114,18 @@ func on_boss_timer_timeout():
 	
 func on_arena_difficulty_increased(difficulty: int):
 	arena_difficulty = difficulty
-	spawn_timer.wait_time = SWAPN_INTERVAL - (0.02 * difficulty)
-	if difficulty == 2:
+	spawn_timer.wait_time = max(0.5, SWAPN_INTERVAL - (0.02 * difficulty))
+	if difficulty == 5:
 		enemy_table.add_item("wizard_enemy", wizard_scene, 1)
 	elif difficulty == 10:
 		enemy_table.change_item_weight("wizard_enemy", 5)
-	elif difficulty == 15:
-		enemy_table.change_item_weight("basic_enemy", 5)
-		enemy_table.change_item_weight("wizard_enemy", 15)
+		enemies_per_spaun+=1
 	elif difficulty == 20:
-		enemy_table.change_item_weight("basic_enemy", 1)
+		enemy_table.change_item_weight("basic_enemy", 10)
 		enemy_table.change_item_weight("wizard_enemy", 10)
+		enemies_per_spaun+=1
+	elif difficulty == 40:
+		enemy_table.change_item_weight("basic_enemy", 2)
+		enemy_table.change_item_weight("wizard_enemy", 8)
+		enemies_per_spaun+=1
 

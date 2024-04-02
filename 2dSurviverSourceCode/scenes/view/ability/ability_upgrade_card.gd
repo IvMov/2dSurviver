@@ -14,6 +14,8 @@ func _ready():
 	mouse_entered.connect(on_mouse_entered)
 
 func set_ability_upgrade(upgrade: AbilityUpgrade):
+	if !upgrade:
+		return
 	header_label.set_self_modulate(upgrade.main_color)
 	header_label.text = upgrade.name
 	description_label.text = upgrade.description

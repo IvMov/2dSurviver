@@ -4,15 +4,14 @@ extends Node2D
 @onready var label = $Label
 
 
-func _ready():
-	pass
-
-
 func start(text_number: float):
 	var text = "%0.1f" % text_number
 	label.text = text
 	var tween = create_tween()
-	
+	if text_number >= 10 && text_number < 20:
+		label.modulate = Color.YELLOW
+	elif text_number >= 20:
+		label.modulate = Color.DEEP_SKY_BLUE	
 	
 	tween.tween_property(self, "global_position", global_position + (Vector2.UP * 16), .3)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -23,3 +22,4 @@ func start(text_number: float):
 	
 	tween.tween_callback(queue_free)
 
+	

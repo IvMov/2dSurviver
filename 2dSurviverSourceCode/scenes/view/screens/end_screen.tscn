@@ -7,7 +7,7 @@
 font = ExtResource("2_lvxr6")
 font_size = 32
 
-[node name="EndScreen" type="CanvasLayer"]
+[node name="EndScreen" type="CanvasLayer" groups=["end_screen"]]
 process_mode = 3
 script = ExtResource("1_0kme1")
 

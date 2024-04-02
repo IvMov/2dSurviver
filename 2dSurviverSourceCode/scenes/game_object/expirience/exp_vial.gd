@@ -4,6 +4,7 @@ var VALUE: int
 
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var animation_player = $AnimationPlayer
+@onready var sprite_2d = $Sprite2D
 
 
 func _ready():

@@ -6,8 +6,9 @@
 script = ExtResource("1_hrq10")
 id = "self_hp_heal"
 name = "Character"
-amount = 5.0
+amount = 7.0
+max_lvl = 999.0
 main_color = Color(0, 0.905882, 0.376471, 1)
 second_color = Color(0, 0, 0, 1)
-description = "Heal your self 5 HP"
+description = "Heal your self 7 HP"
 skill = false

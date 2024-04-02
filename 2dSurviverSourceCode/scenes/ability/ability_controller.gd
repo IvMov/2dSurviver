@@ -12,4 +12,5 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 		get_parent().add_child(instance)
 		var upgrade_manger = get_tree().get_first_node_in_group("upgrade_manager") as UpgradeManager
 		upgrade_manger.upgrade_pool.append_array(instance.upgrades)
+		GameEvents.emit_ability_upgrade_applied()
 

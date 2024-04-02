@@ -15,6 +15,8 @@ func _ready():
 
 
 func _process(delta):
+	if arena_dificulty >= 40:
+		return
 	var next_time_target = endless_timer.wait_time - ((arena_dificulty+1) * DIFFICULTY_INTERVAL)
 	if endless_timer.time_left <= next_time_target:
 		arena_dificulty += 1

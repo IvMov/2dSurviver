@@ -158,7 +158,7 @@ acceleration = 15.0
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 40.0
+max_health = 33.0
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6n63d")]
 health_component = NodePath("../HealthComponent")
@@ -213,7 +213,3 @@ theme_override_styles/background = SubResource("StyleBoxFlat_egee0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dbs2p")
 value = 20.0
 show_percentage = false
-
-[node name="CollideTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true

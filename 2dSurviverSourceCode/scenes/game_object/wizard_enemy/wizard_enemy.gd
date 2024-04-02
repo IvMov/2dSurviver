@@ -5,13 +5,21 @@ extends CharacterBody2D
 @onready var animation_player = $AnimationPlayer
 @onready var health_component = $HealthComponent
 @onready var enemy_drop_component = $EnemyDropComponent
+@onready var hurtbox_component = $HurtboxComponent
+@onready var life_time_timer = $LifeTimeTimer
 
 var is_moving: bool = true
 var is_boss: bool = false
 var hurt: int = 2
+var base_speed: int
+
+func _ready():
+	base_speed = velocity_component.max_speed
 
 func _process(delta):
 	velocity_component.move(self)
+	if !is_boss:
+		velocity_component.max_speed = base_speed + int((999-life_time_timer.time_left)/2)
 	if is_boss:
 		calc_collides()
 	

@@ -14,7 +14,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="HordeTimer" type="Timer" parent="."]
-wait_time = 52.0
+wait_time = 55.0
 autostart = true
 
 [node name="BossTimer" type="Timer" parent="."]

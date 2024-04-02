@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_RENGE = 100
+const MAX_RENGE = 60
 
 @export var sword_ability: PackedScene
 @export var upgrades: Array[AbilityUpgrade]
@@ -48,7 +48,9 @@ func action_on_timer_timeout():
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "sword_rate":
 		var percent_improve = current_upgrades["sword_rate"]["lvl"] * upgrade.amount
-		ability_timer.wait_time = max(base_wait_time * (1 - percent_improve), 0.01)
+		ability_timer.wait_time = max(base_wait_time - percent_improve, 0.05)
 		ability_timer.start()
-	if upgrade.id == "sword_damage":
+		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "sword_damage":
 		damage *= 1 + upgrade.amount
+		GameEvents.emit_ability_upgrade_applied()

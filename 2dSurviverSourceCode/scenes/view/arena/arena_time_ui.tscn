@@ -11,22 +11,6 @@ outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 [node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_tnnl2")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 21.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 40
-
-[node name="RulesLabel" type="Label" parent="MarginContainer2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 24
-text = "Try to stay alive till 05:00. Good luck"
-
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,8 +45,6 @@ theme_override_constants/outline_size = 8
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
-tooltip_text = "
-"
 label_settings = SubResource("LabelSettings_3l0vb")
 horizontal_alignment = 3
 
@@ -85,22 +67,33 @@ horizontal_alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 
+[node name="ButtonPause" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 3
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+text = "Pause"
+
 [node name="ButtonClose" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+process_mode = 3
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Quit game"
+focus_mode = 0
+text = "Quit"
 
-[node name="TimerUI" type="Timer" parent="."]
-wait_time = 5.0
+[node name="PauseDelayTimer" type="Timer" parent="."]
+process_mode = 3
+wait_time = 0.4
 one_shot = true
-autostart = true
 
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonPause" to="." method="_on_button_pause_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonClose" to="." method="_on_button_close_pressed"]
-[connection signal="timeout" from="TimerUI" to="." method="_on_timer_ui_timeout"]

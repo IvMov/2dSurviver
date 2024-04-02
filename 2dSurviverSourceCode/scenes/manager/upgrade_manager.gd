@@ -23,9 +23,12 @@ func pick_upgrades(core_upgrades: Array[AbilityUpgrade], count: int) :
 	var upgrades = core_upgrades.duplicate()
 	var chosen_upgrades: Array[AbilityUpgrade] = []
 	for i in count:
+		if upgrades.is_empty():
+			return chosen_upgrades
 		var chosen_upgrade = upgrades.pick_random() as AbilityUpgrade
-		chosen_upgrades.append(chosen_upgrade)
-		upgrades.erase(chosen_upgrade)
+		if chosen_upgrade:
+			chosen_upgrades.append(chosen_upgrade)
+			upgrades.erase(chosen_upgrade)
 	return chosen_upgrades
 
 
@@ -44,7 +47,7 @@ func handle_skill_selected(upgrade: AbilityUpgrade):
 
 
 func check_is_max_lvl(upgrade: AbilityUpgrade): 
-	if current_upgrades[upgrade.id]["lvl"] >= 15:
+	if current_upgrades[upgrade.id]["lvl"] >= upgrade.max_lvl:
 		upgrade_pool.erase(upgrade)
 	
 	

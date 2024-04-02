@@ -32,6 +32,8 @@ func _input(event):
 
 func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
 	for upgrade in upgrades:
+		if !upgrade:
+			return
 		var card_instance = upgrade_card_scene.instantiate()
 		card_container.add_child(card_instance)
 		card_instance.set_ability_upgrade(upgrade)
@@ -55,6 +57,5 @@ func on_selected_do(upgrade: AbilityUpgrade):
 	clean_cards_from_screen()
 	animation_player.play("out")
 	await  animation_player.animation_finished
-	get_tree().paused = false
 	queue_free()
 

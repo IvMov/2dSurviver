@@ -14,14 +14,17 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 		return
 	
 	if upgrade.id == "self_movement_speed":
-		player.velocity_component.max_speed = player.velocity_component.max_speed * (1 + (current_upgrades["self_movement_speed"]["lvl"] * upgrade.amount))
-	if upgrade.id == "self_hp_up":
+		player.velocity_component.max_speed = min(player.velocity_component.max_speed * (1 + (current_upgrades["self_movement_speed"]["lvl"] * upgrade.amount)), 200)
+		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "self_hp_up":
 		player.health_component.max_health += upgrade.amount
 		player.health_component.health_changed.emit()
-	if upgrade.id == "self_hp_heal":
+		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "self_hp_heal":
 		if player.health_component.current_health + upgrade.amount > player.health_component.max_health:
 			player.health_component.current_health = player.health_component.max_health;
 		else: 
 			player.health_component.current_health += upgrade.amount;
 		player.health_component.health_changed.emit()
+		GameEvents.emit_ability_upgrade_applied()
 		
