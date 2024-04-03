@@ -40,7 +40,7 @@ func _process(delta):
 	
 
 func _input(event):
-	if event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause") || event.is_action_pressed("escape"):
 		_on_button_pause_pressed()
 		
 		

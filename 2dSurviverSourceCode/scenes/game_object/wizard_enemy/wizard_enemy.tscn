@@ -191,7 +191,7 @@ material = SubResource("ShaderMaterial_vqwfc")
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_hrra8")]
 coin_drop_chance = 0.5
 health_component = NodePath("../HealthComponent")
-basic_exp_drop = 15
+basic_exp_drop = 20
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_s4x1e")]
 health_component = NodePath("../HealthComponent")

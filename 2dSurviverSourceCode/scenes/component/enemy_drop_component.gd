@@ -23,9 +23,12 @@ func _ready():
 	
 func on_exp_drop(value, position):
 	var exp_inst = exp_vial.instantiate() as Node2D
+
 	exp_inst.global_position = position + (get_random_direction() * SPAWN_RADIUS)
+	
 	exp_inst.rotate(randf_range(0, TAU))
 	exp_inst.VALUE = value
+	exp_inst
 	Callable(instantiate_child).bind(exp_inst).call_deferred()
 	
 	
@@ -52,10 +55,10 @@ func get_random_direction():
 
 func on_arena_difficulty_increased(difficulty: int):
 	if difficulty == 5:
-		exp_multiplier+=0.1
+		exp_multiplier+=0.3
 	elif difficulty == 10:
-		exp_multiplier+=0.1
+		exp_multiplier+=0.3
 	elif difficulty == 20:
-		exp_multiplier+=0.2
+		exp_multiplier+=0.3
 	elif difficulty == 40:
-		exp_multiplier+=0.2
+		exp_multiplier+=0.3

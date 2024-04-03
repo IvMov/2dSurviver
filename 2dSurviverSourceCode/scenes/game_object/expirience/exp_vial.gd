@@ -6,9 +6,17 @@ var VALUE: int
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
 
-
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
+	if VALUE > 200:
+		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier4.png"))
+	elif VALUE > 150:
+		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier3.png"))
+	elif VALUE > 100:
+		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier2.png"))
+	else:
+		pass
+	
 
 
 func tween_collect(percent: float, start_position: Vector2):

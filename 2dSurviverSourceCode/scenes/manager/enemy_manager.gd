@@ -49,7 +49,7 @@ func instaintiate_boss(enemy_scene: PackedScene, player: Player):
 	enemy.health_component.max_health = 100 + (arena_difficulty * 5) + (PlayerCounters.current_level)
 	enemy.health_component.current_health = enemy.health_component.max_health
 	enemy.health_component.update_health_bar()
-	enemy.enemy_drop_component.basic_exp_drop = 5 + arena_difficulty
+	enemy.enemy_drop_component.basic_exp_drop = 20 + PlayerCounters.current_level + arena_difficulty
 	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
 	enemy.is_boss = true
 	EnemyCounter.add_enemy()

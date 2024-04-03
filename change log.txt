@@ -64,3 +64,9 @@ v-0.1.1:
 - enemies respawn if too far from player
 - enemies faster if not die too long
 - spawn system rebalance
+
+v-0.1.2:
+- add first (shitty but free) sounds
+- hit sound and death sound
+- more exp gain now
+- new expirience vials droped now (depend on amount of exp) red > 200, blue > 150, green_headed > 100

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k3rjeomgboew"
-path="res://.godot/imported/tile_0128.png-ec8fb298cae71ed212737e1f561e14bc.ctex"
+uid="uid://r301ro2kh7k5"
+path="res://.godot/imported/exp_vial_tier4.png-312a6d32fc73864a322e5e4d8e3925a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/expirience/tile_0128.png"
-dest_files=["res://.godot/imported/tile_0128.png-ec8fb298cae71ed212737e1f561e14bc.ctex"]
+source_file="res://scenes/game_object/expirience/exp_vial_tier4.png"
+dest_files=["res://.godot/imported/exp_vial_tier4.png-312a6d32fc73864a322e5e4d8e3925a2.ctex"]
 
 [params]
 
