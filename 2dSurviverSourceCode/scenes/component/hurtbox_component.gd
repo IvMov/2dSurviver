@@ -1,6 +1,8 @@
 extends Area2D
 class_name HurtboxComponent
 
+signal hit
+
 @export var health_component: HealthComponent
 @onready var timer = $Timer
 
@@ -19,6 +21,7 @@ func on_area_entered(other_area: Area2D):
 	var hitbox_component = other_area as HitboxComponent
 	var damage = hitbox_component.damage
 	get_damaged(damage)
+	hit.emit()
 	
 func get_damaged(damage):
 	health_component.damage(damage)

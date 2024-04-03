@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://doyadpvd7uonj"]
+[gd_scene load_steps=22 format=3 uid="uid://doyadpvd7uonj"]
 
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_exaa7"]
 [ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_jc82f"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="4_q2w8o"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="4_wbb8o"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_bo8gy"]
+[ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_component.tscn" id="10_cnl7v"]
+[ext_resource type="AudioStream" uid="uid://bjbcrrck0wjnk" path="res://assets/audio/hit/basic/impactPlate_light_000.ogg" id="10_dpld7"]
+[ext_resource type="AudioStream" uid="uid://4sts3lwvj560" path="res://assets/audio/hit/basic/impactPlate_light_001.ogg" id="11_2383m"]
+[ext_resource type="AudioStream" uid="uid://4f8infqfjxyn" path="res://assets/audio/hit/basic/impactPlate_light_002.ogg" id="12_52gwi"]
+[ext_resource type="AudioStream" uid="uid://75o431pfxxv4" path="res://assets/audio/hit/basic/impactPlate_light_003.ogg" id="13_y6isg"]
+[ext_resource type="AudioStream" uid="uid://bw03vn146wvy3" path="res://assets/audio/hit/basic/impactPlate_light_004.ogg" id="14_0umyi"]
 
 [sub_resource type="Animation" id="Animation_42b8n"]
 length = 0.001
@@ -136,6 +142,9 @@ shape = SubResource("CircleShape2D_gr8wg")
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_q2w8o")]
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
+
+[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("10_cnl7v")]
+streams = Array[AudioStream]([ExtResource("10_dpld7"), ExtResource("11_2383m"), ExtResource("12_52gwi"), ExtResource("13_y6isg"), ExtResource("14_0umyi")])
 
 [node name="Sprites" type="Node2D" parent="."]
 

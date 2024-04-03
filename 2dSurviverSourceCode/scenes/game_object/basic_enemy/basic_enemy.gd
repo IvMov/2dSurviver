@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var enemy_drop_component = $EnemyDropComponent
 @onready var hurtbox_component = $HurtboxComponent
 @onready var life_time_timer = $LifeTimeTimer
+@onready var random_audio_player_component = $RandomAudioPlayerComponent
 
 var is_boss: bool = false
 var hurt: int = 1
@@ -14,6 +15,8 @@ var base_speed: int
 
 func _ready():
 	base_speed = velocity_component.max_speed
+	hurtbox_component.hit.connect(on_hit)
+	
 	
 func _process(delta):
 	velocity_component.move(self)
@@ -35,3 +38,10 @@ func calc_collides():
 		if collider.is_in_group("enemy"):
 			collider.velocity = (velocity).rotated(randf_range(-1, 1))*1.5;
 			collider.move_and_slide()
+
+
+func on_hit():
+	random_audio_player_component.play_random_stream()
+	
+	
+

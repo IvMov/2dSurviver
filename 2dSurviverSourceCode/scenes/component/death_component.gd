@@ -2,12 +2,13 @@ extends Node2D
 
 @export var health_component: Node
 @export var sprite: Sprite2D
+@onready var random_audio_player_component = $RandomAudioPlayerComponent
 
 
 func _ready():
 	$GPUParticles2D.texture = sprite.texture
 	health_component.died.connect(on_died)
-
+	
 
 func on_died():
 	if !owner || not owner is Node2D:
@@ -20,4 +21,4 @@ func on_died():
 	global_position = spawn_position
 
 	$AnimationPlayer.play("default")
-	
+	random_audio_player_component.play_random_stream()

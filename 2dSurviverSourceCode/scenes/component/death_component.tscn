@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://du5wek35attp7"]
+[gd_scene load_steps=15 format=3 uid="uid://du5wek35attp7"]
 
 [ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_jmsns"]
 [ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_kfhgl"]
+[ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_component.tscn" id="3_gnfu6"]
+[ext_resource type="AudioStream" uid="uid://cf8avep6rc2or" path="res://assets/audio/death/impactMining_000.ogg" id="4_j741p"]
+[ext_resource type="AudioStream" uid="uid://na1c2c2ugjrj" path="res://assets/audio/death/impactMining_001.ogg" id="5_i6kw8"]
+[ext_resource type="AudioStream" uid="uid://b80mkw7soxdjj" path="res://assets/audio/death/impactMining_002.ogg" id="6_fagvj"]
+[ext_resource type="AudioStream" uid="uid://cd1jeqe458n2s" path="res://assets/audio/death/impactMining_003.ogg" id="7_m8n8i"]
+[ext_resource type="AudioStream" uid="uid://tpvuq6bs4vow" path="res://assets/audio/death/impactMining_004.ogg" id="8_jkvos"]
 
 [sub_resource type="Animation" id="Animation_i5ntr"]
 length = 0.001
@@ -89,3 +95,6 @@ process_material = SubResource("ParticleProcessMaterial_g0mdp")
 texture = ExtResource("1_kfhgl")
 one_shot = true
 trail_lifetime = 1.0
+
+[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("3_gnfu6")]
+streams = Array[AudioStream]([ExtResource("4_j741p"), ExtResource("5_i6kw8"), ExtResource("6_fagvj"), ExtResource("7_m8n8i"), ExtResource("8_jkvos")])
