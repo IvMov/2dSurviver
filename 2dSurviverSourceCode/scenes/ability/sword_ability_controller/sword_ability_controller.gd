@@ -5,6 +5,7 @@ const MAX_RENGE = 60
 @export var sword_ability: PackedScene
 @export var upgrades: Array[AbilityUpgrade]
 @onready var ability_timer = %AbilityTimer
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var controller_name = "Sword"
 var damage = 5
@@ -36,6 +37,7 @@ func action_on_timer_timeout():
 	)
 	
 	var sword_instance = sword_ability.instantiate() as SwordAbility	
+	audio_stream_player.play()
 	get_tree().get_first_node_in_group("foreground_layer").add_child(sword_instance)
 	sword_instance.hitbox_component.damage = damage
 	sword_instance.global_position = enemies[0].global_position 
@@ -45,10 +47,21 @@ func action_on_timer_timeout():
 	sword_instance.rotation = enemy_direction.angle()
 
 
+func rescale_audio():
+	if ability_timer.wait_time < .1:
+		audio_stream_player.pitch_scale = 1.4
+	elif ability_timer.wait_time < .2:
+		audio_stream_player.pitch_scale = 1.1
+	elif ability_timer.wait_time < .35:
+		audio_stream_player.pitch_scale = 0.9
+	else: 
+		audio_stream_player.pitch_scale = 0.7
+
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 	if upgrade.id == "sword_rate":
 		var percent_improve = current_upgrades["sword_rate"]["lvl"] * upgrade.amount
 		ability_timer.wait_time = max(base_wait_time - percent_improve, 0.05)
+		rescale_audio()
 		ability_timer.start()
 		GameEvents.emit_ability_upgrade_applied()
 	elif upgrade.id == "sword_damage":

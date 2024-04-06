@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=20 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_rgm4t"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="6_6n63d"]
+[ext_resource type="AudioStream" uid="uid://cp7qijxm7wu3g" path="res://assets/audio/ability/dodge-fast.ogg" id="9_64aor"]
+[ext_resource type="AudioStream" uid="uid://cybark1vh7x1p" path="res://assets/audio/hit/punch-0.ogg" id="10_p7723"]
 
 [sub_resource type="Animation" id="Animation_c8tx1"]
 length = 0.001
@@ -217,3 +219,12 @@ show_percentage = false
 [node name="CollideTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="SkillAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_64aor")
+volume_db = -15.0
+bus = &"sfx"
+
+[node name="CollisionAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_p7723")
+bus = &"sfx"

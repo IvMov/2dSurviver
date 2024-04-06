@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://7s64xspy1f1a"]
+[gd_scene load_steps=21 format=3 uid="uid://7s64xspy1f1a"]
 
 [ext_resource type="Script" path="res://scenes/game_object/wizard_enemy/wizard_enemy.gd" id="1_7gofe"]
 [ext_resource type="Texture2D" uid="uid://cuqq4gow20f67" path="res://scenes/game_object/wizard_enemy/tile_0111.png" id="1_ahhk7"]
@@ -10,11 +10,9 @@
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_qa71s"]
 [ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="7_hrra8"]
 [ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_component.tscn" id="9_lvvdf"]
-[ext_resource type="AudioStream" uid="uid://dlh2s01wmvtc7" path="res://assets/audio/hit/wizard/impactPlank_medium_000.ogg" id="15_ksgqo"]
-[ext_resource type="AudioStream" uid="uid://c84py63v6frcp" path="res://assets/audio/hit/wizard/impactPlank_medium_001.ogg" id="16_vprtl"]
-[ext_resource type="AudioStream" uid="uid://bc1fl2lg6go8y" path="res://assets/audio/hit/wizard/impactPlank_medium_002.ogg" id="17_e2hb0"]
-[ext_resource type="AudioStream" uid="uid://cku383fnhq8ki" path="res://assets/audio/hit/wizard/impactPlank_medium_003.ogg" id="18_riyrj"]
-[ext_resource type="AudioStream" uid="uid://75wtc8u4ejnq" path="res://assets/audio/hit/wizard/impactPlank_medium_004.ogg" id="19_0owdo"]
+[ext_resource type="AudioStream" uid="uid://cjnsjbcnxr1wp" path="res://assets/audio/hit/hit_1.ogg" id="12_50sme"]
+[ext_resource type="AudioStream" uid="uid://cyx8rugf8ysv1" path="res://assets/audio/hit/hit_0.ogg" id="12_d6870"]
+[ext_resource type="AudioStream" uid="uid://c1lptx6euppce" path="res://assets/audio/hit/hit_2.ogg" id="13_5dtmk"]
 
 [sub_resource type="Animation" id="Animation_7yvij"]
 length = 0.001
@@ -205,7 +203,7 @@ health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 
 [node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("9_lvvdf")]
-streams = Array[AudioStream]([ExtResource("15_ksgqo"), ExtResource("16_vprtl"), ExtResource("17_e2hb0"), ExtResource("18_riyrj"), ExtResource("19_0owdo")])
+streams = Array[AudioStream]([ExtResource("12_50sme"), ExtResource("13_5dtmk"), ExtResource("12_d6870")])
 
 [node name="Sprites" type="Node2D" parent="."]
 

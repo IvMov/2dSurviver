@@ -9,6 +9,8 @@ class_name Player
 @onready var skill_timer = %SkillTimer
 @onready var skill_bar = %SkillBar
 @onready var velocity_component = $VelocityComponent
+@onready var skill_audio_player = $SkillAudioPlayer
+@onready var collision_audio_player = $CollisionAudioPlayer
 
 var number_colliding_bodies: int = 0
 var hurt:int = 1
@@ -32,6 +34,7 @@ func _input(event):
 		current_dodge_speed = dodge_speed
 		var target_velocity = last_direction * current_dodge_speed
 		velocity  = target_velocity.lerp(target_velocity, exp(-get_process_delta_time()*velocity_component.acceleration))
+		skill_audio_player.play()
 		velocity_component.move(self)
 		skill_timer.start()
 
@@ -68,6 +71,7 @@ func handle_collision(delta):
 				collider.hurtbox_component.get_damaged(5)
 				current_dodge_speed-=50
 				velocity = velocity.lerp(last_direction * current_dodge_speed, exp(-delta*velocity_component.acceleration))
+				collision_audio_player.play()
 			else:	
 				collider.velocity = velocity.rotated(randf_range(-1.5, 1.5))*1.5;
 			collider.velocity_component.move(collider)	

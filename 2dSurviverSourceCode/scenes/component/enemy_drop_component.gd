@@ -28,7 +28,6 @@ func on_exp_drop(value, position):
 	
 	exp_inst.rotate(randf_range(0, TAU))
 	exp_inst.VALUE = value
-	exp_inst
 	Callable(instantiate_child).bind(exp_inst).call_deferred()
 	
 	
