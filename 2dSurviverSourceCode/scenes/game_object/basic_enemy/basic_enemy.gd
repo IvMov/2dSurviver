@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var enemy_drop_component = $EnemyDropComponent
 @onready var hurtbox_component = $HurtboxComponent
 @onready var life_time_timer = $LifeTimeTimer
-@onready var random_audio_player_component = $RandomAudioPlayerComponent
+@onready var random_audio_player_2d_component = $RandomAudioPlayer2DComponent
 
 var is_boss: bool = false
 var hurt: int = 1
@@ -41,7 +41,7 @@ func calc_collides():
 
 
 func on_hit():
-	random_audio_player_component.play_random_stream()
+	random_audio_player_2d_component.play_random_stream()
 	
 	
 

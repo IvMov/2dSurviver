@@ -5,7 +5,7 @@ var VALUE: int
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
-@onready var random_audio_player_component = $RandomAudioPlayerComponent
+@onready var random_audio_player_2d_component = $RandomAudioPlayer2DComponent
 
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
@@ -37,7 +37,7 @@ func disable_collision():
 	
 func on_area_entered(other_area: Area2D):
 	animation_player.play("moving")
-	random_audio_player_component.play_random_stream()
+	random_audio_player_2d_component.play_random_stream()
 	Callable(disable_collision).call_deferred()
 	
 	var tween = create_tween()

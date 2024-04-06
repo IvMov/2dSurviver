@@ -5,12 +5,14 @@ signal ability_upgrade_selected(upgrade: AbilityUpgrade)
 @export var upgrade_card_scene: PackedScene
 @onready var card_container: HBoxContainer = %CardContainer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var audio_stream_player = $AudioStreamPlayer
 
 var disable_inputs: bool = false
 var skill_inputs: Array = [1, 2, 3]
 
 func _ready():
 	get_tree().paused = true
+	audio_stream_player.play()
 
 
 func _input(event):

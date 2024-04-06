@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dyhdu470c6jdt"]
+[gd_scene load_steps=5 format=3 uid="uid://dyhdu470c6jdt"]
 
 [ext_resource type="Script" path="res://scenes/view/arena/arena_time_ui.gd" id="1_tnnl2"]
 [ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_h62sk"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/view/sound_button.tscn" id="3_bc054"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3l0vb"]
 font = ExtResource("2_h62sk")
@@ -73,7 +74,7 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="ButtonPause" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonPause" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bc054")]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(90, 0)
@@ -82,7 +83,7 @@ size_flags_vertical = 4
 focus_mode = 0
 text = "Pause"
 
-[node name="ButtonClose" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonClose" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bc054")]
 unique_name_in_owner = true
 process_mode = 3
 layout_mode = 2

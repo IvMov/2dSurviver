@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://25li74ojtlv7"]
+[gd_scene load_steps=8 format=3 uid="uid://25li74ojtlv7"]
 
 [ext_resource type="PackedScene" uid="uid://2p8y050pj32x" path="res://scenes/view/ability/ability_upgrade_card.tscn" id="1_3c5qq"]
 [ext_resource type="Script" path="res://scenes/view/ability/upgrade_screen.gd" id="1_qmq2m"]
+[ext_resource type="AudioStream" uid="uid://t8x6u3843o1w" path="res://assets/audio/level-up-bonus-sequence-1-186890.mp3" id="3_e3khm"]
 
 [sub_resource type="Animation" id="Animation_uyllg"]
 length = 0.001
@@ -91,3 +92,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_e3khm")
+volume_db = -20.0
+bus = &"ui"

@@ -18,5 +18,7 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_pq7l0")
-volume_db = -20.0
+volume_db = -25.0
 pitch_scale = 0.69
+max_polyphony = 2
+bus = &"sfx"

@@ -19,4 +19,5 @@ wait_time = 1.5
 stream = ExtResource("5_kc6nk")
 volume_db = -25.0
 pitch_scale = 0.8
+max_polyphony = 3
 bus = &"sfx"

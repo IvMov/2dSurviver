@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="4_s4x1e"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_qa71s"]
 [ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="7_hrra8"]
-[ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_component.tscn" id="9_lvvdf"]
+[ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="9_adbni"]
 [ext_resource type="AudioStream" uid="uid://cjnsjbcnxr1wp" path="res://assets/audio/hit/hit_1.ogg" id="12_50sme"]
 [ext_resource type="AudioStream" uid="uid://cyx8rugf8ysv1" path="res://assets/audio/hit/hit_0.ogg" id="12_d6870"]
 [ext_resource type="AudioStream" uid="uid://c1lptx6euppce" path="res://assets/audio/hit/hit_2.ogg" id="13_5dtmk"]
@@ -202,7 +202,7 @@ shape = SubResource("CircleShape2D_8e0ke")
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 
-[node name="RandomAudioPlayerComponent" parent="." instance=ExtResource("9_lvvdf")]
+[node name="RandomAudioPlayer2DComponent" parent="." instance=ExtResource("9_adbni")]
 streams = Array[AudioStream]([ExtResource("12_50sme"), ExtResource("13_5dtmk"), ExtResource("12_d6870")])
 
 [node name="Sprites" type="Node2D" parent="."]
