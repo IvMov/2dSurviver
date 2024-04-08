@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="4_wbb8o"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_bo8gy"]
 [ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="9_qpnyq"]
-[ext_resource type="AudioStream" uid="uid://cyx8rugf8ysv1" path="res://assets/audio/hit/hit_0.ogg" id="10_qv72t"]
-[ext_resource type="AudioStream" uid="uid://cjnsjbcnxr1wp" path="res://assets/audio/hit/hit_1.ogg" id="11_q3faq"]
-[ext_resource type="AudioStream" uid="uid://c1lptx6euppce" path="res://assets/audio/hit/hit_2.ogg" id="12_2jtv0"]
+[ext_resource type="AudioStream" uid="uid://r21ht3wlrtbo" path="res://assets/audio/hit/click1.ogg" id="10_7cuy1"]
+[ext_resource type="AudioStream" uid="uid://crcbjihf01y1y" path="res://assets/audio/hit/click2.ogg" id="11_exrid"]
+[ext_resource type="AudioStream" uid="uid://dde77cr2wh3yd" path="res://assets/audio/hit/click3.ogg" id="12_isu3b"]
 
 [sub_resource type="Animation" id="Animation_42b8n"]
 length = 0.001
@@ -142,7 +142,7 @@ health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 
 [node name="RandomAudioPlayer2DComponent" parent="." instance=ExtResource("9_qpnyq")]
-streams = Array[AudioStream]([ExtResource("10_qv72t"), ExtResource("11_q3faq"), ExtResource("12_2jtv0")])
+streams = Array[AudioStream]([ExtResource("10_7cuy1"), ExtResource("11_exrid"), ExtResource("12_isu3b")])
 
 [node name="Sprites" type="Node2D" parent="."]
 

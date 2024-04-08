@@ -1,7 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://2p8y050pj32x"]
+[gd_scene load_steps=16 format=3 uid="uid://2p8y050pj32x"]
 
 [ext_resource type="Script" path="res://scenes/view/ability/ability_upgrade_card.gd" id="1_nmcd4"]
 [ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_wsyad"]
+[ext_resource type="PackedScene" uid="uid://bblfwo8b6ntbk" path="res://scenes/component/random_audio_player_component.tscn" id="3_grnq4"]
+[ext_resource type="AudioStream" uid="uid://rshnbr076vj4" path="res://assets/audio/ability/hover/switch3.ogg" id="4_g3bgx"]
+[ext_resource type="AudioStream" uid="uid://bojqqdvlxt32l" path="res://assets/audio/ability/hover/switch4.ogg" id="5_1t7as"]
+[ext_resource type="AudioStream" uid="uid://bqyqts3m3i6ub" path="res://assets/audio/ability/hover/switch5.ogg" id="6_yla28"]
+[ext_resource type="AudioStream" uid="uid://bmfcga6f1ikww" path="res://assets/audio/click/click4.ogg" id="7_fb3fj"]
+[ext_resource type="AudioStream" uid="uid://bminkalbhpuh0" path="res://assets/audio/click/click5.ogg" id="8_531r6"]
 
 [sub_resource type="Theme" id="Theme_4kdgv"]
 
@@ -136,3 +142,13 @@ autowrap_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+
+[node name="HoverAudioPlayerComponent" parent="." instance=ExtResource("3_grnq4")]
+volume_db = -30.0
+bus = &"sfx"
+streams = Array[AudioStream]([ExtResource("4_g3bgx"), ExtResource("5_1t7as"), ExtResource("6_yla28")])
+
+[node name="ClickAudioPlayerComponent" parent="." instance=ExtResource("3_grnq4")]
+volume_db = -10.0
+bus = &"sfx"
+streams = Array[AudioStream]([ExtResource("7_fb3fj"), ExtResource("8_531r6")])

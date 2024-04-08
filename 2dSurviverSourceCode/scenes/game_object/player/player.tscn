@@ -160,7 +160,7 @@ acceleration = 15.0
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 40.0
+max_health = 30.0
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6n63d")]
 health_component = NodePath("../HealthComponent")

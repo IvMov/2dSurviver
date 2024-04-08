@@ -27,6 +27,7 @@ func get_time_elapsed():
 
 
 func on_timer_timeout():
+	get_parent().random_audio_player_component.stop()
 	var end_screen_instance = end_screen.instantiate()
 	get_parent().add_child(end_screen_instance)
 

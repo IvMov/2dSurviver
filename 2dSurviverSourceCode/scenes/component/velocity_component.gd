@@ -9,6 +9,8 @@ extends Node
 var velocity = Vector2.ZERO
 
 func accelerate_to_player(character_body: CharacterBody2D):
+	if !player:
+		return
 	if character_body.global_position.distance_to(player.global_position) > (enemy_manager.SPAWN_RADIUS+100):
 		character_body.global_position = enemy_manager.get_spawn_position(player.global_position, enemy_manager.SPAWN_RADIUS)
 	var direction = (player.global_position - character_body.global_position).normalized()

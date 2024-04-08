@@ -6,6 +6,9 @@ signal card_selected()
 @onready var description_label: Label = %Description
 @onready var color_rect: ColorRect = %ColorRect
 @onready var animation_player = $AnimationPlayer
+@onready var hover_audio_player_component = $HoverAudioPlayerComponent
+@onready var click_audio_player_component = $ClickAudioPlayerComponent
+
 
 var tween: Tween
 
@@ -24,12 +27,18 @@ func set_ability_upgrade(upgrade: AbilityUpgrade):
 func play_hover():
 	if tween:
 		tween.kill()
+	if hover_audio_player_component.playing:
+		hover_audio_player_component.stop()
+	hover_audio_player_component.play_random_stream()
+	
 	tween = create_tween()
 	tween.tween_property(self, "rotation", -0.02, 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE * 1.02, 0.1)
 	tween.chain()
 	tween.tween_property(self, "rotation", 0.00, 0.1)
 	tween.tween_property(self, "scale", Vector2.ONE, 0.1)
+	
+	
 	
 
 func play_selected():
@@ -49,6 +58,7 @@ func play_unselected():
 	
 	
 func select_card():
+	click_audio_player_component.play_random_stream()
 	get_tree().get_first_node_in_group("upgrade_screen").disable_inputs = true
 	play_selected()
 	await tween.finished

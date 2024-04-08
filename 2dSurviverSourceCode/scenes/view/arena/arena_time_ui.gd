@@ -19,7 +19,7 @@ var control_scene
 
 func _process(delta):
 	var format = "%0.01f";
-	if !arena_time_manager: 
+	if !arena_time_manager || !player: 
 		return
 	var time_elapsed = arena_time_manager.get_time_elapsed();
 	time = format_seconds_to_sring(time_elapsed)

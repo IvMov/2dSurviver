@@ -16,6 +16,8 @@ func _ready():
 	tween.tween_callback(queue_free)
 
 func tween_method(rotations: float):
+	if !player:
+		return
 	var percent = rotations / 4
 	var current_radius = 10 + percent * MAX_RADIUS
 	var current_direction = start_rotation.rotated(rotations * TAU)

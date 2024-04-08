@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b16qpcnwwmyb7"]
+[gd_scene load_steps=5 format=3 uid="uid://b16qpcnwwmyb7"]
 
 [ext_resource type="Script" path="res://scenes/view/screens/end_screen.gd" id="1_0kme1"]
+[ext_resource type="AudioStream" uid="uid://c0umr81gweed6" path="res://assets/audio/winend/success-fanfare-trumpets-6185.mp3" id="2_5efgp"]
 [ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_lvxr6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nupd1"]
@@ -10,6 +11,12 @@ font_size = 32
 [node name="EndScreen" type="CanvasLayer" groups=["end_screen"]]
 process_mode = 3
 script = ExtResource("1_0kme1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("2_5efgp")
+volume_db = -10.0
+bus = &"sfx"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
