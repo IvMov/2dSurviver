@@ -70,3 +70,12 @@ v-0.1.2:
 - hit sound and death sound
 - more exp gain now
 - new expirience vials droped now (depend on amount of exp) red > 200, blue > 150, green_headed > 100
+
+v-0.1.3:
+- add menu
+- add properties screen
+- add sound controll
+- remove pause button(replaced with menu)
+- add game music
+- add menu music
+- bugfixing 

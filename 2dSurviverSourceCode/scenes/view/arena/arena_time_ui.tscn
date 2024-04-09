@@ -74,14 +74,14 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="ButtonPause" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bc054")]
+[node name="ButtonMenu" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bc054")]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_vertical = 4
 focus_mode = 0
-text = "Pause"
+text = "Menu"
 
 [node name="ButtonClose" parent="MarginContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_bc054")]
 unique_name_in_owner = true
@@ -91,10 +91,5 @@ size_flags_vertical = 4
 focus_mode = 0
 text = "Quit"
 
-[node name="PauseDelayTimer" type="Timer" parent="."]
-process_mode = 3
-wait_time = 0.4
-one_shot = true
-
-[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonPause" to="." method="_on_button_pause_pressed"]
+[connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonMenu" to="." method="_on_button_menu_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/VBoxContainer/ButtonClose" to="." method="_on_button_close_pressed"]

@@ -4,5 +4,5 @@
 
 [node name="RandomAudioPlayerComponent" type="AudioStreamPlayer"]
 volume_db = -1.0
-bus = &"ui"
+bus = &"music"
 script = ExtResource("1_raeox")
