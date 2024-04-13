@@ -132,5 +132,7 @@ size_flags_vertical = 6
 text = "Pause, menu, back"
 
 [node name="BackButton" parent="MarginContainer/ColorRect/VBoxContainer2" instance=ExtResource("2_s3jjg")]
+custom_minimum_size = Vector2(184, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"

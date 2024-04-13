@@ -15,7 +15,7 @@ func _ready():
 	music_slider.value_changed.connect(on_audio_slider_changed.bind("music"))
 	update_display()
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("escape"):
 		on_back_button_pressed()
 		

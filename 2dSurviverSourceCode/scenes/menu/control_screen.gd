@@ -6,7 +6,7 @@ extends CanvasLayer
 func _ready():
 	back_button.pressed.connect(on_back_button_pressed)
 	
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("escape"):
 		on_back_button_pressed()
 

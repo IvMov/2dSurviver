@@ -6,10 +6,12 @@ extends CanvasLayer
 @onready var controls_button = $MarginContainer/Bacground/VBoxContainer/ControlsButton
 @onready var quit_button = $MarginContainer/Bacground/VBoxContainer/QuitButton
 
-
+var main_scene: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if !get_tree().paused:
+		main_scene = preload("res://scenes/main/main.tscn")
 	start_button.pressed.connect(on_start_button_pressed)
 	properties_button.pressed.connect(on_properties_button_pressed)
 	controls_button.pressed.connect(on_controls_button_pressed)
@@ -20,7 +22,7 @@ func _ready():
 		MusicPlayer.play()
 
 
-func _input(event):
+func  _unhandled_input(event):
 	if event.is_action_pressed("escape") && get_tree().paused:
 		on_start_button_pressed()
 
@@ -28,7 +30,11 @@ func _input(event):
 func on_start_button_pressed():
 	MusicPlayer.stop()
 	if !get_tree().paused:
-		get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+		ScreenTransition.play_transition()
+		await ScreenTransition.animation_player.animation_finished
+		get_tree().change_scene_to_packed(main_scene)
+		ScreenTransition.play_transition_back()
+		await ScreenTransition.animation_player.animation_finished
 	else:
 		get_tree().paused = false
 		get_parent().random_audio_player_component.play_random_stream()

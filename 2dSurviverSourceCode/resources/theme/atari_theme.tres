@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://d2al06adn72gg"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://d2al06adn72gg"]
 
 [ext_resource type="FontFile" uid="uid://keslssipxnkn" path="res://resources/fonts/AtariGames.ttf" id="1_0su2w"]
 [ext_resource type="Texture2D" uid="uid://d2h4o6tdw3emj" path="res://resources/theme/ui.png" id="1_xmm1m"]
@@ -21,6 +21,38 @@ texture_margin_top = 3.0
 texture_margin_right = 3.0
 texture_margin_bottom = 3.0
 region_rect = Rect2(4, 20, 8, 8)
+
+[sub_resource type="Gradient" id="Gradient_xa1w3"]
+offsets = PackedFloat32Array(0.463519, 1)
+colors = PackedColorArray(0.960784, 0.666667, 0.219608, 1, 0.247059, 0.14902, 0.192157, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nphqu"]
+gradient = SubResource("Gradient_xa1w3")
+width = 8
+height = 8
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6em8"]
+gradient = SubResource("Gradient_xa1w3")
+width = 10
+height = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhepn"]
+bg_color = Color(0.866667, 0.584314, 0.278431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1qaa"]
+bg_color = Color(0.960784, 0.666667, 0.219608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tophx"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7j1c"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -52,12 +84,17 @@ corner_radius_bottom_left = 2
 
 [resource]
 default_font = ExtResource("1_0su2w")
-default_font_size = 20
+BlueOutlineLabel/base_type = &"Label"
 Button/colors/font_color = Color(0.247059, 0.14902, 0.192157, 1)
 Button/colors/font_hover_color = Color(0.741176, 0.380392, 0.290196, 1)
 Button/styles/focus = SubResource("StyleBoxEmpty_wgp5i")
 Button/styles/hover = SubResource("StyleBoxTexture_17tbg")
 Button/styles/normal = SubResource("StyleBoxTexture_521pi")
+HSlider/icons/grabber = SubResource("GradientTexture2D_nphqu")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_m6em8")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_dhepn")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_b1qaa")
+HSlider/styles/slider = SubResource("StyleBoxFlat_tophx")
 Label/colors/font_color = Color(0.972549, 0.980392, 0.996078, 1)
 Label/colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 Label/constants/line_spacing = 0

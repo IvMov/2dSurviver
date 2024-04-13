@@ -79,3 +79,7 @@ v-0.1.3:
 - add game music
 - add menu music
 - bugfixing 
+
+v-0.1.4:
+- add scren transition with custom shader
+- fix buttons size

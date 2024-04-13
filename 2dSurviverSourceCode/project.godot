@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="2d Surviver"
+config/name="2d Survivor"
 run/main_scene="res://scenes/menu/menu_screen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=144
@@ -23,6 +23,7 @@ EnemyCounter="*res://scenes/counters/enemy_counter.gd"
 PlayerCounters="*res://scenes/counters/player_counters.gd"
 GameEvents="*res://scenes/events/game_events.tscn"
 MusicPlayer="*res://scenes/menu/music_player.tscn"
+ScreenTransition="*res://scenes/autoload/screen_transition.tscn"
 
 [debug]
 
