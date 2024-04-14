@@ -83,3 +83,8 @@ v-0.1.3:
 v-0.1.4:
 - add scren transition with custom shader
 - fix buttons size
+- fix bug on restart reset all skills
+- fix additional exp was calculated from coins also
+- add savings to game
+- add reset button to reset savings
+

@@ -9,6 +9,6 @@
 [node name="UpgradeManager" type="Node" groups=["upgrade_manager"]]
 process_mode = 3
 script = ExtResource("1_5bny6")
-upgrade_pool = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("4_vwf1u"), ExtResource("5_48fxt")])
+upgrade_pool_core = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("4_vwf1u"), ExtResource("5_48fxt")])
 self_abilities = ExtResource("4_i6bf2")
 upgrade_sreene_scene = ExtResource("3_v8dhv")

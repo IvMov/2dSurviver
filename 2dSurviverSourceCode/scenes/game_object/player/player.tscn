@@ -150,7 +150,6 @@ offset_top = -24.0
 offset_right = 16.0
 offset_bottom = -18.0
 pivot_offset = Vector2(16, 3)
-tooltip_text = "asd"
 max_value = 1.0
 show_percentage = false
 

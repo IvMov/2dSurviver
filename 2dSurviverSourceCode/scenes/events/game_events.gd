@@ -1,5 +1,7 @@
 extends Node
 
+signal game_started()
+signal game_win()
 signal exp_collected(value: int, position: Vector2)
 signal coin_collected(value: int, position: Vector2)
 signal exp_dropped(value: int, position: Vector2)
@@ -9,6 +11,12 @@ signal call_abillity_upgrade()
 signal ability_upgrade_applied()
 signal ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary)
 signal player_damaged(value: int)
+
+func emit_game_started():
+	game_started.emit()
+	
+func emit_game_win():
+	game_win.emit()
 
 func emit_exp_collected(value: int, position: Vector2):
 	exp_collected.emit(value, position)

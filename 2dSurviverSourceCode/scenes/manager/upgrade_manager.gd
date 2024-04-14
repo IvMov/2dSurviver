@@ -4,6 +4,7 @@ class_name UpgradeManager
 const MAX_LVL = 15
 
 @export var upgrade_pool: Array[AbilityUpgrade]
+@export var upgrade_pool_core: Array[AbilityUpgrade]
 @export var self_abilities: AbilityUpgrade
 @export var upgrade_sreene_scene: PackedScene
 
@@ -11,9 +12,11 @@ var current_upgrades = {
 }
 
 func _ready():
+	upgrade_pool = upgrade_pool_core.duplicate()
 	GameEvents.call_abillity_upgrade.connect(call_ability_upgrade_action)
-	call_first_abillity();\
-	upgrade_pool.append(self_abilities);	
+	call_first_abillity()
+	if !upgrade_pool.has(self_abilities):
+		upgrade_pool.append(self_abilities)	
 	
 
 

@@ -9,7 +9,7 @@ end_screen = ExtResource("2_7a63c")
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 361.0
+wait_time = 360.0
 one_shot = true
 autostart = true
 

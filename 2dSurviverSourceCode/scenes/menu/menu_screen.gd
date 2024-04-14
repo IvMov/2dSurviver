@@ -32,6 +32,7 @@ func on_start_button_pressed():
 	if !get_tree().paused:
 		ScreenTransition.play_transition()
 		await ScreenTransition.animation_player.animation_finished
+		GameEvents.emit_game_started()
 		get_tree().change_scene_to_packed(main_scene)
 		ScreenTransition.play_transition_back()
 		await ScreenTransition.animation_player.animation_finished

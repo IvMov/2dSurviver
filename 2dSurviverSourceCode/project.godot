@@ -12,6 +12,8 @@ config_version=5
 
 config/name="2d Survivor"
 run/main_scene="res://scenes/menu/menu_screen.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="2DSurvivor"
 config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=144
 boot_splash/bg_color=Color(0.105882, 0.156863, 0.0941176, 1)
@@ -24,6 +26,7 @@ PlayerCounters="*res://scenes/counters/player_counters.gd"
 GameEvents="*res://scenes/events/game_events.tscn"
 MusicPlayer="*res://scenes/menu/music_player.tscn"
 ScreenTransition="*res://scenes/autoload/screen_transition.tscn"
+MetaProgression="*res://scenes/autoload/meta_progression.tscn"
 
 [debug]
 

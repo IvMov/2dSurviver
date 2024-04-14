@@ -109,6 +109,13 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Full Screen"
 
+[node name="ResetButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_hrqjc")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Reset savings"
+
 [node name="BackButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("2_hrqjc")]
 custom_minimum_size = Vector2(184, 0)
 layout_mode = 2

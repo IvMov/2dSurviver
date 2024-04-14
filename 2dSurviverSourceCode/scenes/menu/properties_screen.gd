@@ -5,12 +5,14 @@ extends CanvasLayer
 @onready var music_slider = $MarginContainer/Bacground/VBoxContainer/VBoxContainer/MusicSound/MusicSlider
 @onready var window_button = $MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/WindowButton
 @onready var sfx_random_audio_player_component = $SfxRandomAudioPlayerComponent
+@onready var reset_button = $MarginContainer/Bacground/VBoxContainer/ResetButton
 
 
 
 func _ready():
 	window_button.pressed.connect(on_window_button_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
+	reset_button.pressed.connect(on_reset_button_pressed)
 	sfx_slider.value_changed.connect(on_audio_slider_changed.bind("sfx"))
 	music_slider.value_changed.connect(on_audio_slider_changed.bind("music"))
 	update_display()
@@ -53,6 +55,9 @@ func on_audio_slider_changed(value: float, bus_name: String):
 	set_bus_volume(value, bus_name)
 	if bus_name == "sfx":
 		sfx_random_audio_player_component.play_random_stream()
+
+func on_reset_button_pressed():
+	MetaProgression.reset_file();
 
 
 func on_back_button_pressed():

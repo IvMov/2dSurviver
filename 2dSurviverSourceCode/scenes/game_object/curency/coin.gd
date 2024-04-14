@@ -18,7 +18,7 @@ func tween_collect(percent: float, start_position: Vector2):
 	
 
 func collect():
-		GameEvents.emit_exp_collected(VALUE, global_position)
+		GameEvents.emit_coin_collected(VALUE, global_position)
 		queue_free()
 
 
