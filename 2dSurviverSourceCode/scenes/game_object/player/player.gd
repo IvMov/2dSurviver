@@ -128,5 +128,6 @@ func on_new_lvl(lvl: int):
 	health_component.max_health+=(odd * 5)
 	velocity_component.max_speed = min(velocity_component.max_speed + odd, 250)
 	health_component.current_health = min(health_component.max_health, health_component.current_health+5)
+	health_component.health_changed.emit()
 	
 	

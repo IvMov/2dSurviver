@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 @onready var progress_bar: ProgressBar = $MarginContainer/ProgressBar
+@onready var label = $MarginContainer/ProgressBar/Label
+
 
 func _ready():
 	progress_bar.min_value = PlayerCounters.start_expirience
@@ -11,6 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	progress_bar.value = PlayerCounters.expirience
+	label.text = "EXP: %10d / %10d" % [PlayerCounters.expirience, PlayerCounters.target_expirience]
 
 
 func rescale_on_level_up(newValue):

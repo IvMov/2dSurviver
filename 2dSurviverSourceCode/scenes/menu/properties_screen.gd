@@ -43,12 +43,8 @@ func set_bus_volume(value: float, bus_name):
 
 
 func on_window_button_pressed():
-	if DisplayServer.window_get_mode() ==  DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	update_display()
+	GameEvents.full_screen_pressed()
+	GameEvents.update_display()
 
 
 func on_audio_slider_changed(value: float, bus_name: String):

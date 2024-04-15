@@ -42,6 +42,11 @@ text = "2D survivor !"
 layout_mode = 2
 text = "Start"
 
+[node name="RestartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+layout_mode = 2
+text = "Restart
+"
+
 [node name="PropertiesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
 layout_mode = 2
 text = "Properties"
@@ -64,7 +69,7 @@ text = "Created by Erridan"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "v 0.1.3 "
+text = "v 0.1.4"
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2

@@ -87,4 +87,10 @@ v-0.1.4:
 - fix additional exp was calculated from coins also
 - add savings to game
 - add reset button to reset savings
+- change ui HUD (some simple icons placed in right top corner and bars in bottom)
+- add full screen on F button
+- fix bug - hp was not updated after lvl up
+- add restart button in main menu
+- fix bug when some counters not work whe paused
+
 

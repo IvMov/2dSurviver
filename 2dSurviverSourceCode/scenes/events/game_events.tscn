@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scenes/events/game_events.gd" id="1_3vbjf"]
 
 [node name="GameEvents" type="Node"]
+process_mode = 3
 script = ExtResource("1_3vbjf")

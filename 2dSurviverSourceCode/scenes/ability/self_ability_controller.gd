@@ -18,8 +18,8 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 		GameEvents.emit_ability_upgrade_applied()
 	elif upgrade.id == "self_hp_up":
 		player.health_component.max_health += upgrade.amount
-		player.health_component.health_changed.emit()
 		GameEvents.emit_ability_upgrade_applied()
+		player.health_component.health_changed.emit()
 	elif upgrade.id == "self_hp_heal":
 		if player.health_component.current_health + upgrade.amount > player.health_component.max_health:
 			player.health_component.current_health = player.health_component.max_health;

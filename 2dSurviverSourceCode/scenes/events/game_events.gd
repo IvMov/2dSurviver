@@ -12,6 +12,18 @@ signal ability_upgrade_applied()
 signal ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary)
 signal player_damaged(value: int)
 
+func _unhandled_input(event):
+	if event.is_action("full_screen") && event.is_released():
+		full_screen_pressed()
+		
+func full_screen_pressed():
+	if DisplayServer.window_get_mode() ==  DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
 func emit_game_started():
 	game_started.emit()
 	

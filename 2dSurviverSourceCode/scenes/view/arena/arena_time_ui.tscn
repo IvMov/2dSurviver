@@ -1,13 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyhdu470c6jdt"]
+[gd_scene load_steps=8 format=3 uid="uid://dyhdu470c6jdt"]
 
 [ext_resource type="Script" path="res://scenes/view/arena/arena_time_ui.gd" id="1_tnnl2"]
-[ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_h62sk"]
 [ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/view/sound_button.tscn" id="3_bc054"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_3l0vb"]
-font = ExtResource("2_h62sk")
-outline_size = 4
-outline_color = Color(0.247059, 0.14902, 0.192157, 1)
+[ext_resource type="Texture2D" uid="uid://gcq38lhn4qgd" path="res://assets/ui/coin.png" id="4_8n1sj"]
+[ext_resource type="Texture2D" uid="uid://bffmtyuvnaqru" path="res://assets/ui/run.png" id="5_0tmmg"]
+[ext_resource type="PackedScene" uid="uid://nddmr3u6woan" path="res://scenes/view/ability_container_ui.tscn" id="6_v17iw"]
+[ext_resource type="Texture2D" uid="uid://cwm864eina8t5" path="res://assets/ui/sword.png" id="7_avptd"]
+[ext_resource type="Texture2D" uid="uid://oknlfdeeoaj7" path="res://assets/ui/battle-axe.png" id="8_uwf4o"]
 
 [node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_tnnl2")
@@ -34,35 +33,63 @@ size_flags_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemiesLabel" type="Label" parent="MarginContainer"]
-unique_name_in_owner = true
+[node name="StatsContainer" type="MarginContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
-theme_override_constants/outline_size = 8
 
-[node name="AbilityLabel" type="Label" parent="MarginContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/StatsContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-label_settings = SubResource("LabelSettings_3l0vb")
-horizontal_alignment = 3
 
-[node name="StatsLabel" type="Label" parent="MarginContainer"]
-unique_name_in_owner = true
+[node name="SpeedContainer" type="HBoxContainer" parent="MarginContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatsContainer/VBoxContainer/SpeedContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/StatsContainer/VBoxContainer/SpeedContainer/MarginContainer"]
+texture = ExtResource("5_0tmmg")
+centered = false
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/StatsContainer/VBoxContainer/SpeedContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-label_settings = SubResource("LabelSettings_3l0vb")
-horizontal_alignment = 3
+text = "30 / 30"
+
+[node name="CoinsContainer" type="HBoxContainer" parent="MarginContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatsContainer/VBoxContainer/CoinsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/StatsContainer/VBoxContainer/CoinsContainer/MarginContainer"]
+texture = ExtResource("4_8n1sj")
+centered = false
+
+[node name="CoinsLabel" type="Label" parent="MarginContainer/StatsContainer/VBoxContainer/CoinsContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "30 / 30"
+
+[node name="SwordAbilityContainerUI" parent="MarginContainer/StatsContainer/VBoxContainer" instance=ExtResource("6_v17iw")]
+layout_mode = 2
+sprite = ExtResource("7_avptd")
+ability_name = "Sword"
+
+[node name="AxeAbilityContainerUI" parent="MarginContainer/StatsContainer/VBoxContainer" instance=ExtResource("6_v17iw")]
+layout_mode = 2
+sprite = ExtResource("8_uwf4o")
+ability_name = "Axe"
 
 [node name="Skill" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_colors/font_color = Color(0.505882, 0.505882, 0.505882, 0.823529)
 theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
-text = "Press SPACE to dodge (you will need it!)"
+text = "Press SPACE to dodge"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]

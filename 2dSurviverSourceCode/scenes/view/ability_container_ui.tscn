@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://nddmr3u6woan"]
+
+[ext_resource type="Script" path="res://scenes/view/ability_container_ui.gd" id="1_ba2vp"]
+
+[node name="AbilityContainerUI" type="HBoxContainer"]
+script = ExtResource("1_ba2vp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
+centered = false
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "DMG: 11.2 | CD: 0.1"
