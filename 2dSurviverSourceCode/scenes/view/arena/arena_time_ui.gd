@@ -7,8 +7,10 @@ extends CanvasLayer
 @onready var button_menu = %ButtonMenu
 @onready var speed_label = $MarginContainer/StatsContainer/VBoxContainer/SpeedContainer/MarginContainer/SpeedLabel
 @onready var coins_label = $MarginContainer/StatsContainer/VBoxContainer/CoinsContainer/MarginContainer/CoinsLabel
-@onready var sword_ability_container_ui = $MarginContainer/StatsContainer/VBoxContainer/SwordAbilityContainerUI
-@onready var axe_ability_container_ui = $MarginContainer/StatsContainer/VBoxContainer/AxeAbilityContainerUI
+@onready var sword_ability_container_ui = $MarginContainer/MarginContainer2/SkillContainer/SwordAbilityContainerUI
+@onready var axe_ability_container_ui = $MarginContainer/MarginContainer2/SkillContainer/AxeAbilityContainerUI
+@onready var level_label = $MarginContainer/StatsContainer/VBoxContainer/LevelContainer/MarginContainer/LevelLabel
+@onready var hp_regen_label = $MarginContainer/StatsContainer/VBoxContainer/HpRegenContainer/MarginContainer/HpRegenLabel
 
 
 var time: String
@@ -18,15 +20,18 @@ func _ready():
 	reset_labels()
 	GameEvents.ability_upgrade_applied.connect(on_ability_upgrade_applied)
 	PlayerCounters.coin_added.connect(on_coin_added)
+	PlayerCounters.lvl_upped.connect(on_lvl_upped)
+	var hp_upgrade = MetaProgression.meta_data["upgrades"]["hp_regen"]
+	var num: float = hp_upgrade["base"] + (hp_upgrade["value"] * hp_upgrade["lvl"])
+	hp_regen_label.text = "%0.01f hp/sec" % num
 
 
 func _process(delta):
 	if !arena_time_manager || !player: 
 		return
 	var time_elapsed = arena_time_manager.get_time_elapsed();
-	time = format_seconds_to_sring(time_elapsed)
+	time = GameEvents.format_seconds_to_sring(time_elapsed)
 	time_label.text = "time: " + time
-	
 	speed_label.text = "%3d / 250" % player.velocity.length()
 
 
@@ -40,19 +45,12 @@ func reset_labels():
 	axe_ability_container_ui.reset_skill_ui()
 	coins_label.text = "%8d $" % 0
 	speed_label.text = "%3d / %3d" % [0, 0]
-
-		
-func format_seconds_to_sring(seconds: float):
-	if !seconds:
-		return "GAME END"
-		
-	var minutes = floor(seconds/60)
-	var remaining_seconds = floor(seconds) if minutes == 0 else int(seconds) % 60
-	
-	return ("%02d" % minutes) + ":" + ("%02d" % remaining_seconds) if minutes != 10 else "GAME END"
+	level_label.text = "LVL: 0"
+	hp_regen_label.text = "%0.1f hp/sec" % 0
 
 
 func _on_button_close_pressed():
+	GameEvents.emit_save_game()
 	get_tree().quit()
 
 
@@ -82,3 +80,8 @@ func on_ability_upgrade_applied():
 
 func on_coin_added():
 	coins_label.text = "%8d $" % PlayerCounters.run_coins
+
+
+func on_lvl_upped():
+	level_label.text = "LVL: %3d" % PlayerCounters.current_level
+

@@ -6,10 +6,10 @@
 script = ExtResource("1_ltpwa")
 id = "self_movement_speed"
 name = "Character"
-amount = 0.05
-max_lvl = 5.0
+amount = 0.1
+max_lvl = 3.0
 main_color = Color(0, 0.905882, 0.376471, 1)
 second_color = Color(0, 0, 0, 1)
-description = "Movement speed  + 5%
+description = "Movement speed  + 10%
 "
 skill = false

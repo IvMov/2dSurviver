@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1jwvvt84srui"]
+[gd_scene load_steps=6 format=3 uid="uid://d1jwvvt84srui"]
 
 [ext_resource type="Script" path="res://scenes/autoload/meta_progression.gd" id="1_y5ujn"]
+[ext_resource type="Resource" uid="uid://wr003t6aqyec" path="res://resources/permanent_upgrades/axe_dmg.tres" id="2_i3lus"]
+[ext_resource type="Resource" uid="uid://bef3fkboctt1r" path="res://resources/permanent_upgrades/hp_regen.tres" id="3_dlmn0"]
+[ext_resource type="Resource" uid="uid://cuds48s0cahwy" path="res://scenes/sword_dmg.tres" id="4_sau5p"]
+[ext_resource type="Resource" uid="uid://ep11pxv4l2v4" path="res://resources/permanent_upgrades/hp_up.tres" id="5_lry1t"]
 
 [node name="MetaProgression" type="Node"]
 script = ExtResource("1_y5ujn")
+permanent_upgrade_pool = Array[Resource("res://resources/permanent_upgrades/meta_upgrade.gd")]([ExtResource("2_i3lus"), ExtResource("3_dlmn0"), ExtResource("4_sau5p"), ExtResource("5_lry1t")])

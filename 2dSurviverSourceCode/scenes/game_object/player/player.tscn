@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=22 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_45ek8"]
+[ext_resource type="Resource" uid="uid://ep11pxv4l2v4" path="res://resources/permanent_upgrades/hp_up.tres" id="2_jhvyo"]
+[ext_resource type="Resource" uid="uid://bef3fkboctt1r" path="res://resources/permanent_upgrades/hp_regen.tres" id="2_k7020"]
 [ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://scenes/game_object/player/player.png" id="2_vq2dk"]
 [ext_resource type="PackedScene" uid="uid://br48xjfhelu00" path="res://scenes/component/velocity_component.tscn" id="3_hcsht"]
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
@@ -116,7 +118,7 @@ shader_parameter/lerp_precent = 1.0
 shader_parameter/rgb = Vector3(1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtp82"]
-radius = 19.105
+radius = 15.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhnb1"]
 radius = 9.0
@@ -136,6 +138,8 @@ motion_mode = 1
 wall_min_slide_angle = 0.0872665
 safe_margin = 0.2
 script = ExtResource("1_w3avd")
+hp_up = ExtResource("2_jhvyo")
+hp_regen = ExtResource("2_k7020")
 floating_text = ExtResource("2_5cehh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -159,7 +163,7 @@ acceleration = 15.0
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_45ek8")]
 health_bar = NodePath("../HealthBar")
-max_health = 30.0
+max_health = 5.0
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("6_6n63d")]
 health_component = NodePath("../HealthComponent")
@@ -175,12 +179,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="PickupArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
-position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_mtp82")
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
@@ -227,3 +229,5 @@ bus = &"sfx"
 [node name="CollisionAudioPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_p7723")
 bus = &"sfx"
+
+[node name="HpRegenTimer" type="Timer" parent="."]

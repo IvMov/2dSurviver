@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cbx77d86q6y83" path="res://scenes/game_object/curency/coin_1.png" id="1_x4tl2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_22ipj"]
-radius = 32.0
+radius = 20.0
 
 [sub_resource type="Animation" id="Animation_7alef"]
 length = 0.001

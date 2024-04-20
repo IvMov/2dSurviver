@@ -9,18 +9,22 @@ const DIFFICULTY_INTERVAL = 10
 @onready var endless_timer = $EndlessTimer
 
 var arena_dificulty = 0
-
+var del = 0.0
 func _ready():
 	timer.timeout.connect(on_timer_timeout)
 
 
 func _process(delta):
 	if arena_dificulty >= 40:
-		return
-	var next_time_target = endless_timer.wait_time - ((arena_dificulty+1) * DIFFICULTY_INTERVAL)
-	if endless_timer.time_left <= next_time_target:
-		arena_dificulty += 1
-		arena_difficulty_increased.emit(arena_dificulty)
+			return
+	del+= delta # I dont remember wtf is that and why I add it :D
+	if (del > 1):
+		del = 0;
+		
+		var next_time_target = endless_timer.wait_time - ((arena_dificulty+1) * DIFFICULTY_INTERVAL)
+		if endless_timer.time_left <= next_time_target:
+			arena_dificulty += 1
+			arena_difficulty_increased.emit(arena_dificulty)
 
 func get_time_elapsed():
 	return endless_timer.wait_time - endless_timer.time_left

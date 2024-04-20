@@ -1,7 +1,7 @@
 extends Node
 
 const SPAWN_RADIUS = 10
-@export_range(0, 1) var coin_drop_chance: float = 0.2
+@export_range(0, 1) var coin_drop_chance: float
 
 @export var coin: PackedScene
 @export var exp_vial: PackedScene
@@ -10,14 +10,13 @@ const SPAWN_RADIUS = 10
 @onready var enemy_manager = get_tree().get_first_node_in_group("enemy_manager")
 
 var EXP: int
+var COINS_BASE: int = 10
 var COINS: int
-var exp_multiplier: float = 1.1
 
 
 func _ready():
-	get_tree().get_first_node_in_group("arena_time_manager").arena_difficulty_increased.connect(on_arena_difficulty_increased)
-	EXP = exp_multiplier * (basic_exp_drop * ceil(1 + (randf()*10)))
-	COINS = ceil(randf()*10)
+	EXP = PlayerCounters.current_level + (basic_exp_drop * ceil(2 + (randf()*8)))
+	COINS = ceil(randf()*COINS_BASE)
 	(health_component as HealthComponent).died.connect(on_dead_drop)
 	
 	
@@ -40,7 +39,7 @@ func on_coin_drop(value, position):
 
 func on_dead_drop():
 	on_exp_drop(EXP, get_parent().global_position)
-	if randf() > 1 - coin_drop_chance: 
+	if randf() <= coin_drop_chance: 
 		on_coin_drop(COINS, get_parent().global_position)
 	
 	
@@ -51,13 +50,3 @@ func instantiate_child(inst: Node2D):
 func get_random_direction():
 	return Vector2.RIGHT.rotated(randf_range(0, TAU))
 
-
-func on_arena_difficulty_increased(difficulty: int):
-	if difficulty == 5:
-		exp_multiplier+=0.3
-	elif difficulty == 10:
-		exp_multiplier+=0.3
-	elif difficulty == 20:
-		exp_multiplier+=0.3
-	elif difficulty == 40:
-		exp_multiplier+=0.3

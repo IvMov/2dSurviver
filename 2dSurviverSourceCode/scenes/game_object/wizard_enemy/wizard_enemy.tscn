@@ -187,7 +187,7 @@ sprite = NodePath("../Sprites/Sprite2D")
 material = SubResource("ShaderMaterial_vqwfc")
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_hrra8")]
-coin_drop_chance = 0.5
+coin_drop_chance = 0.2
 health_component = NodePath("../HealthComponent")
 basic_exp_drop = 20
 
@@ -224,5 +224,9 @@ autostart = true
 wait_time = 999.0
 one_shot = true
 autostart = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

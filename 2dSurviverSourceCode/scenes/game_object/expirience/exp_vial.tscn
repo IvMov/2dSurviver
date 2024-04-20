@@ -44,7 +44,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0qcdi"]
-radius = 32.0
+radius = 20.0
 
 [node name="ExpVial" type="Node2D" groups=["exp"]]
 script = ExtResource("1_rth3s")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dq2rhyr34fkbs"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_w8qao"]
+
+[resource]
+script = ExtResource("1_w8qao")
+id = "self_radius"
+name = "Character"
+amount = 20.0
+max_lvl = 4.0
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Increase pick up radius!"
+skill = false

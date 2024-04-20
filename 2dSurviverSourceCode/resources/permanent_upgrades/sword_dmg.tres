@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://5ynrwyvr6wud"]
+
+[ext_resource type="Script" path="res://resources/permanent_upgrades/meta_upgrade.gd" id="1_aaw76"]
+
+[resource]
+script = ExtResource("1_aaw76")
+id = "sword_dmg"
+base = 4.0
+value = 2.0
+title = "Sword damage +2"
+base_price = 500
+lvl_price_multiplier = 2
+max_lvl = 5

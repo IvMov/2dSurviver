@@ -5,16 +5,15 @@ extends CanvasLayer
 @onready var music_slider = $MarginContainer/Bacground/VBoxContainer/VBoxContainer/MusicSound/MusicSlider
 @onready var window_button = $MarginContainer/Bacground/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/WindowButton
 @onready var sfx_random_audio_player_component = $SfxRandomAudioPlayerComponent
-@onready var reset_button = $MarginContainer/Bacground/VBoxContainer/ResetButton
 
 
 
 func _ready():
 	window_button.pressed.connect(on_window_button_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
-	reset_button.pressed.connect(on_reset_button_pressed)
 	sfx_slider.value_changed.connect(on_audio_slider_changed.bind("sfx"))
 	music_slider.value_changed.connect(on_audio_slider_changed.bind("music"))
+	GameEvents.window_changed.connect(on_window_changed)
 	update_display()
 
 func _unhandled_input(event):
@@ -23,8 +22,7 @@ func _unhandled_input(event):
 		
 		
 func update_display():
-	var is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
-	window_button.text = "Windowed" if is_fullscreen else "Full screen"
+	window_button.text = "Windowed" if GameEvents.full_screen else "Full screen"
 	sfx_slider.value = get_bus_volume("sfx")
 	music_slider.value = get_bus_volume("music")
 
@@ -44,7 +42,7 @@ func set_bus_volume(value: float, bus_name):
 
 func on_window_button_pressed():
 	GameEvents.full_screen_pressed()
-	GameEvents.update_display()
+	update_display()
 
 
 func on_audio_slider_changed(value: float, bus_name: String):
@@ -52,9 +50,9 @@ func on_audio_slider_changed(value: float, bus_name: String):
 	if bus_name == "sfx":
 		sfx_random_audio_player_component.play_random_stream()
 
-func on_reset_button_pressed():
-	MetaProgression.reset_file();
-
 
 func on_back_button_pressed():
 	queue_free()
+
+func on_window_changed():
+	update_display()

@@ -1,7 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cct8riucugkru"]
+[gd_scene load_steps=2 format=3 uid="uid://onmppeqqxsd4"]
 
-[ext_resource type="Script" path="res://scenes/counters/enemy_counter.gd" id="1_no0kx"]
+[sub_resource type="GDScript" id="GDScript_wrxub"]
+script/source = "extends Node
+
+var enemies: int = 0
+
+func add_enemy():
+	enemies = enemies + 1;
+	
+	
+func minus_enemy():
+	enemies = enemies - 1;
+
+
+func reset_counters():
+	enemies = 0
+"
 
 [node name="EnemyCounter" type="Node"]
 process_mode = 3
-script = ExtResource("1_no0kx")
+script = SubResource("GDScript_wrxub")

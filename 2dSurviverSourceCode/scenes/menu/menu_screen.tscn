@@ -47,6 +47,11 @@ layout_mode = 2
 text = "Restart
 "
 
+[node name="StatsAndUpgradesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+layout_mode = 2
+text = "Stats & Shop
+"
+
 [node name="PropertiesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
 layout_mode = 2
 text = "Properties"
@@ -55,9 +60,13 @@ text = "Properties"
 layout_mode = 2
 text = "Controls"
 
+[node name="GiveUpButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+layout_mode = 2
+text = "Save & Give up "
+
 [node name="QuitButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
 layout_mode = 2
-text = "Quit"
+text = "Save & Quit"
 
 [node name="Label3" type="Label" parent="MarginContainer"]
 layout_mode = 2

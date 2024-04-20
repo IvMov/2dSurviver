@@ -8,9 +8,9 @@ func start(text_number: float):
 	var text = "%0.1f" % text_number
 	label.text = text
 	var tween = create_tween()
-	if text_number >= 10 && text_number < 20:
+	if text_number >= 20 && text_number < 50:
 		label.modulate = Color.YELLOW
-	elif text_number >= 20:
+	elif text_number >= 50:
 		label.modulate = Color.DEEP_SKY_BLUE	
 	
 	tween.tween_property(self, "global_position", global_position + (Vector2.UP * 16), .3)\

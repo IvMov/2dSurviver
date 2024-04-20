@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nddmr3u6woan"]
+[gd_scene load_steps=3 format=3 uid="uid://nddmr3u6woan"]
 
 [ext_resource type="Script" path="res://scenes/view/ability_container_ui.gd" id="1_ba2vp"]
+[ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="2_qj7v8"]
 
 [node name="AbilityContainerUI" type="HBoxContainer"]
 script = ExtResource("1_ba2vp")
@@ -15,4 +16,6 @@ centered = false
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_qj7v8")
 text = "DMG: 11.2 | CD: 0.1"

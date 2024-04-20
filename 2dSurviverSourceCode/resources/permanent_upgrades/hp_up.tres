@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://ep11pxv4l2v4"]
+
+[ext_resource type="Script" path="res://resources/permanent_upgrades/meta_upgrade.gd" id="1_oybbu"]
+
+[resource]
+script = ExtResource("1_oybbu")
+id = "hp_up"
+base = 5.0
+value = 5.0
+title = "Start HP +5"
+base_price = 100
+lvl_price_multiplier = 2
+max_lvl = 5

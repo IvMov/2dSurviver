@@ -92,5 +92,16 @@ v-0.1.4:
 - fix bug - hp was not updated after lvl up
 - add restart button in main menu
 - fix bug when some counters not work whe paused
+- add meta upgrades system(progress saving in game)
+- add shop for upgrades
+- rebalance game - require upgrades to win
+- add hp regeneration meta upgrade
+- add hp sword/axe dmg up meta upgrades
+- add reset savings button
+- review collision policy (enemies after collision move .3 sec) 
+- add sword size skill (to be equal by power to axe)
+- add increasing pick up radius skill
+- change after lvl up healing now depannds on max hp
 
 
+- 

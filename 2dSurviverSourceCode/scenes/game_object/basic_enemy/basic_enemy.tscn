@@ -117,7 +117,7 @@ health_bar = NodePath("../HealthBar")
 max_health = 10.0
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_pc0ff")]
-max_speed = 60
+max_speed = 70
 acceleration = 10.0
 
 [node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_wbb8o")]
@@ -126,9 +126,9 @@ sprite = NodePath("../Sprites/Sprite2D")
 material = SubResource("ShaderMaterial_qdc6s")
 
 [node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_ly4q8")]
-coin_drop_chance = 0.25
+coin_drop_chance = 0.1
 health_component = NodePath("../HealthComponent")
-basic_exp_drop = 15
+basic_exp_drop = 10
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_fpcap")]
 health_component = NodePath("../HealthComponent")
@@ -164,5 +164,9 @@ autostart = true
 wait_time = 999.0
 one_shot = true
 autostart = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

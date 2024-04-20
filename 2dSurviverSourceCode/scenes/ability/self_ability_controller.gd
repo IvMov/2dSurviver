@@ -6,6 +6,7 @@ extends Node
 
 func _ready():
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
+	
 
 
 func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
@@ -19,12 +20,15 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 	elif upgrade.id == "self_hp_up":
 		player.health_component.max_health += upgrade.amount
 		GameEvents.emit_ability_upgrade_applied()
-		player.health_component.health_changed.emit()
+		player.health_component.health_changed.emit(false)
 	elif upgrade.id == "self_hp_heal":
 		if player.health_component.current_health + upgrade.amount > player.health_component.max_health:
 			player.health_component.current_health = player.health_component.max_health;
 		else: 
 			player.health_component.current_health += upgrade.amount;
-		player.health_component.health_changed.emit()
+		player.health_component.health_changed.emit(false)
 		GameEvents.emit_ability_upgrade_applied()
-		
+	elif upgrade.id == "self_radius":
+		player.collision_shape_2d.shape.radius += upgrade.amount
+		GameEvents.emit_ability_upgrade_applied()
+

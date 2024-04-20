@@ -10,6 +10,7 @@ shader_parameter/vignette_opacity = 0.291
 shader_parameter/vignette_rgb = Color(0.247059, 0.14902, 0.192157, 1)
 
 [node name="Vignette" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_i36xf")
 
 [node name="ColorRect" type="ColorRect" parent="."]

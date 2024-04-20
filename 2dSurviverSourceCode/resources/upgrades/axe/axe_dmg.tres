@@ -6,10 +6,10 @@
 script = ExtResource("1_4olgy")
 id = "axe_dmg"
 name = "Axe"
-amount = 0.1
-max_lvl = 20.0
+amount = 0.2
+max_lvl = 12.0
 main_color = Color(0.717647, 0.247059, 0, 1)
 second_color = Color(0, 0, 0, 1)
-description = "Damage + 10%
+description = "Damage + 20%
 "
 skill = false

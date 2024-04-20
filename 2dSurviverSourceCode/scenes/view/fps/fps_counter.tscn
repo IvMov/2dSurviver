@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://imcjrickfoj8"]
+[gd_scene load_steps=3 format=3 uid="uid://imcjrickfoj8"]
 
+[ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="1_25q2s"]
 [ext_resource type="Script" path="res://scenes/view/fps/fps_counter.gd" id="1_k8lkt"]
 
 [node name="FPSCounter" type="CanvasLayer"]
 
-[node name="Label" type="Label" parent="."]
-offset_right = 35.0
-offset_bottom = 23.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 23.0
+offset_bottom = 13.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_25q2s")
 script = ExtResource("1_k8lkt")

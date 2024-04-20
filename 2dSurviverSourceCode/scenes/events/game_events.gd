@@ -11,17 +11,34 @@ signal call_abillity_upgrade()
 signal ability_upgrade_applied()
 signal ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary)
 signal player_damaged(value: int)
+signal window_changed()
+signal save_game()
+signal permanent_upgrade_buy(upgrade: MetaUpgrade)
+
+var full_screen: bool = true
 
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():
 		full_screen_pressed()
 		
 func full_screen_pressed():
-	if DisplayServer.window_get_mode() ==  DisplayServer.WINDOW_MODE_FULLSCREEN:
+	var is_fullscreen = DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN
+	if is_fullscreen:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MINIMIZED)
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	full_screen = !is_fullscreen
+	emit_window_changed()
+
+func format_seconds_to_sring(seconds: float):
+	if !seconds:
+		return "00:00"
+		
+	var minutes = floor(seconds/60)
+	var remaining_seconds = floor(seconds) if minutes == 0 else int(seconds) % 60
+	
+	return ("%02d" % minutes) + ":" + ("%02d" % remaining_seconds) if minutes < 99 else "GAME END"
 
 
 func emit_game_started():
@@ -63,3 +80,11 @@ func emit_ability_upgrade_applied():
 func emit_player_damaged(value: int):
 	player_damaged.emit(value)
 	
+func emit_window_changed():
+	window_changed.emit()
+	
+func emit_save_game():
+	save_game.emit()
+	
+func emit_permanent_upgrade_buy(upgrade: MetaUpgrade):
+	permanent_upgrade_buy.emit(upgrade)

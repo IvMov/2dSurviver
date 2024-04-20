@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://bef3fkboctt1r"]
+
+[ext_resource type="Script" path="res://resources/permanent_upgrades/meta_upgrade.gd" id="1_qhx7t"]
+
+[resource]
+script = ExtResource("1_qhx7t")
+id = "hp_regen"
+base = 0.0
+value = 0.2
+title = "Regeneration +0.2 hp/sec"
+base_price = 1000
+lvl_price_multiplier = 2
+max_lvl = 3

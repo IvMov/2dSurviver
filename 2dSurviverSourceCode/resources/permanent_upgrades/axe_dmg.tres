@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://wr003t6aqyec"]
+
+[ext_resource type="Script" path="res://resources/permanent_upgrades/meta_upgrade.gd" id="1_o2q4f"]
+
+[resource]
+script = ExtResource("1_o2q4f")
+id = "axe_dmg"
+base = 4.0
+value = 2.0
+title = "Axe damage +2"
+base_price = 500
+lvl_price_multiplier = 2
+max_lvl = 5

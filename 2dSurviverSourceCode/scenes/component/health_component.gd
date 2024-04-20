@@ -2,11 +2,12 @@ extends Node
 class_name HealthComponent
 
 signal died
-signal health_changed
+signal health_changed(is_hurt: bool)
 
 @export var health_bar: Node
 @export var max_health: float
 var current_health: float
+var is_dead:bool = false
 
 
 func _ready():
@@ -14,19 +15,20 @@ func _ready():
 		max_health = max_health + (randf() * 5) + PlayerCounters.current_level
 	current_health = max_health
 	health_changed.connect(on_health_changed)
-	health_changed.emit()
+	health_changed.emit(false)
 	
 	
 func damage(amount: float):
 	current_health = max(current_health - amount, 0)
-	health_changed.emit()
+	health_changed.emit(true)
 	Callable(check_death).call_deferred()
 
 
 func check_death():
-	if current_health == 0:
+	if current_health == 0 && !is_dead:
+		is_dead = true
 		died.emit()
-		EnemyCounter.minus_enemy()
+		PlayerCounters.run_kills+=1
 		owner.queue_free()
 	
 		
@@ -42,5 +44,5 @@ func update_health_bar():
 	health_bar.value = get_health_precent()	
 
 
-func on_health_changed():
+func on_health_changed(is_hurt):
 	update_health_bar()

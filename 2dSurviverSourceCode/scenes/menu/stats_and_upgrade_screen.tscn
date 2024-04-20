@@ -1,0 +1,352 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg5jjvv5m8gjj"]
+
+[ext_resource type="Script" path="res://scenes/menu/stats_and_upgrade_screen.gd" id="1_375j8"]
+[ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="1_ojf5t"]
+[ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/view/sound_button.tscn" id="2_13r5c"]
+[ext_resource type="PackedScene" uid="uid://yhkdwe5vcyqc" path="res://permanent_upgrade_card.tscn" id="2_o3hgn"]
+
+[node name="StatsAndUpgradeScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_375j8")
+packed_permanent_upgrade_card = ExtResource("2_o3hgn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.427493, 0.427493, 0.427493, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="StatsContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Name" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Money"
+vertical_alignment = 1
+
+[node name="GamesLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Games"
+vertical_alignment = 1
+
+[node name="WinsLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Wins"
+vertical_alignment = 1
+
+[node name="BestTimeLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Best Time"
+vertical_alignment = 1
+
+[node name="EnemiesKilledLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Kills"
+vertical_alignment = 1
+
+[node name="RegenLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Regen HP"
+vertical_alignment = 1
+
+[node name="SwordLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Sword damage"
+vertical_alignment = 1
+
+[node name="AxeLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Axe damage"
+vertical_alignment = 1
+
+[node name="Line" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Line" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line2" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line3" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line4" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line5" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line6" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line7" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line8" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Values" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0.960784, 0.666667, 0.219608, 1)
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "1000 $"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="GamesLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "000000000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="WinsLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "000000000"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BestTimeLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "12 min 30 sec"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="EnemiesKilledLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "000000001"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RegenHpLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "0 hp/sec"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BasicSwordDmgLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "4"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BasicAxeDmgLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "4"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="UpgradeContainer" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Upgrades" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer/Upgrades"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer/Upgrades/Header"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lvl" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer/Upgrades/Header"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "LVL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/UpgradeContainer/Upgrades/Header"]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Price"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BackButton" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_13r5c")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Save & Back"
+
+[node name="Label" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResetButton" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("2_13r5c")]
+custom_minimum_size = Vector2(184, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+tooltip_text = "It will remove all your progress, and you are goig to start game from empty list"
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "Reset your progress"
