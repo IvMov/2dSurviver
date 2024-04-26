@@ -10,7 +10,7 @@ class_name Player
 @onready var sprites = $Sprites
 @onready var skill_timer = %SkillTimer
 @onready var skill_bar = %SkillBar
-@onready var velocity_component = $VelocityComponent
+@onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var skill_audio_player = $SkillAudioPlayer
 @onready var collision_audio_player = $CollisionAudioPlayer
 @onready var collision_shape_2d = $PickupArea/CollisionShape2D
@@ -41,6 +41,8 @@ func _ready():
 	health_component.max_health = start_hp
 	health_component.current_health = start_hp
 	health_component.health_changed.emit(false)	
+	set_collision_layer(2)
+
 
 func _input(event):
 	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
@@ -79,7 +81,7 @@ func handle_collision(delta):
 	var collision = get_last_slide_collision()
 	if collision:
 		var collider = collision.get_collider();
-		if last_collider == collider:
+		if collider && last_collider == collider && collider.is_in_group("enemy"):
 			return
 		last_collider = collider
 		if collider && collider.is_in_group("enemy"):
@@ -103,9 +105,16 @@ func get_movement_vector():
 	return vector
 
 
-func check_deal_damage():
+func check_deal_damage(is_distance_damage: bool):
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
+		if is_distance_damage:
+			hurt = 1
+			deal_damage()
 		return
+	deal_damage()
+	
+
+func deal_damage():
 	GameEvents.emit_player_damaged(hurt)
 	var floating_text_inst = floating_text.instantiate() as Node2D
 	health_component.damage(hurt)
@@ -117,7 +126,8 @@ func check_deal_damage():
 	floating_text_inst.z_index = 1;
 	floating_text_inst.start(hurt)
 	floating_text_inst.label.set_modulate(Color.RED)
-
+	
+	
 
 func animate_player(movement_vector: Vector2):
 	var animation_name = "RESET" if movement_vector.is_zero_approx() else "walk"
@@ -146,7 +156,7 @@ func on_body_entered(body: Node2D):
 		hurt = 10 if body.is_boss else body.hurt
 	else:
 		hurt = 15 if body.is_boss else (body.hurt * 2)
-	check_deal_damage()
+	check_deal_damage(false)
 
 
 func on_body_exited(body: Node2D):
@@ -154,7 +164,7 @@ func on_body_exited(body: Node2D):
 
 
 func on_damage_interval_timeout_timeout():
-	check_deal_damage()
+	check_deal_damage(false)
 	
 func on_new_lvl(lvl: int):
 	var odd = PlayerCounters.current_level%2

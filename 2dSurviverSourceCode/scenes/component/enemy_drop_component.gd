@@ -15,10 +15,12 @@ var COINS: int
 
 
 func _ready():
-	EXP = PlayerCounters.current_level + (basic_exp_drop * ceil(2 + (randf()*8)))
-	COINS = ceil(randf()*COINS_BASE)
+	calc_coins_and_exp()
 	(health_component as HealthComponent).died.connect(on_dead_drop)
 	
+func calc_coins_and_exp():
+	COINS = ceil(randf()*COINS_BASE)
+	EXP = PlayerCounters.current_level + (basic_exp_drop * ceil(2 + (randf()*8)))
 	
 func on_exp_drop(value, position):
 	var exp_inst = exp_vial.instantiate() as Node2D
@@ -33,7 +35,7 @@ func on_exp_drop(value, position):
 func on_coin_drop(value, position):
 	var coin_inst = coin.instantiate() as Node2D
 	coin_inst.global_position = position + (get_random_direction() * SPAWN_RADIUS)
-	coin_inst.rotate(randf_range(0, TAU))
+	#coin_inst.rotate(randf_range(0, TAU))
 	coin_inst.VALUE = value
 	Callable(instantiate_child).bind(coin_inst).call_deferred()
 

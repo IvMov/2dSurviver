@@ -29,11 +29,10 @@ func update_info():
 	
 func set_labels():
 	name_label.text = upgrade.title
-	var current_lvl = 0 if !current_upgrade else current_upgrade["lvl"]
+	var current_lvl = current_upgrade["lvl"]
 	var lvl = "%d/%d" % [current_lvl, upgrade.max_lvl]
 	is_max_lvl = current_lvl == upgrade.max_lvl
 	lvl_label.text = lvl
-	print(current_upgrade)
 	price_label.text = "%d $" % price
 	if current_upgrade["lvl"] == upgrade.max_lvl:
 		price_label.text = "sold out"

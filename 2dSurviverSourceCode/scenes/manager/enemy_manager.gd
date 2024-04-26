@@ -10,8 +10,10 @@ const SWAPN_INTERVAL = 1.2
 @onready var horde_timer: Timer = $HordeTimer
 @onready var boss_timer: Timer = $BossTimer
 
-@export var basic_enemy_scene: PackedScene
-@export var wizard_scene: PackedScene
+@export var green_enemy_scene: PackedScene
+@export var wizard_enemy_scene: PackedScene
+@export var cyclop_enemy_scene: PackedScene
+@export var ranged_wizard_enemy_scene: PackedScene
 
 var enemy_table = WeightedTable.new()
 var arena_difficulty: int
@@ -25,37 +27,27 @@ func _ready():
 	spawn_timer.wait_time = SWAPN_INTERVAL;
 	spawn_timer.start()
 	horde_timer.timeout.connect(on_horde_timer_timeout)
-	enemy_table.add_item("basic_enemy", basic_enemy_scene, 10)
+	enemy_table.add_item("green_enemy", green_enemy_scene, 10)
 	get_tree().get_first_node_in_group("arena_time_manager").arena_difficulty_increased.connect(on_arena_difficulty_increased)
 	
 
 	
 func instaintiate_enemy(enemy_scene: PackedScene, player: Player, spawn_radius):
-	var enemy = enemy_scene.instantiate() as Node2D
+	var enemy: CharacterBody2D = enemy_scene.instantiate()
+	
 	enemy.global_position = get_spawn_position(player.global_position, spawn_radius)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
-	enemy.health_component.max_health+=PlayerCounters.current_level*2
+	enemy.health_component.max_health+=PlayerCounters.current_level*5
 	enemy.health_component.current_health = enemy.health_component.max_health
-	
-	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
 	enemies+=1
 	
 
 func instaintiate_boss(enemy_scene: PackedScene, player: Player):
-	var enemy = enemy_scene.instantiate() as CharacterBody2D
-	enemy.set_scale(Vector2(5,5))
+	var enemy: CharacterBody2D = enemy_scene.instantiate()
 	
 	enemy.global_position = get_spawn_position(player.global_position, SPAWN_RADIUS)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
-	enemy.velocity_component.max_speed = 100 + PlayerCounters.current_level
-	enemy.health_component.max_health = 100 + (arena_difficulty * 10) + (PlayerCounters.current_level * 2)
-	enemy.health_component.current_health = enemy.health_component.max_health
-	enemy.health_component.update_health_bar()
-	enemy.enemy_drop_component.EXP = 200 + arena_difficulty * 10
-	enemy.enemy_drop_component.COINS = 10 + arena_difficulty
-	enemy.enemy_drop_component.coin_drop_chance = 1
-	enemy.health_component.health_bar.modulate = Color(1, 0.616, 1)
-	enemy.is_boss = true
+	enemy.set_is_boss(100, 200)
 	enemies+=1
 
 
@@ -86,7 +78,6 @@ func get_random_direction():
 
 func on_spawn_timer_timeout():
 	spawn_timer.start()
-	print(enemies - PlayerCounters.run_kills)
 	if enemies - PlayerCounters.run_kills >= 250:
 		return
 	var player = get_tree().get_first_node_in_group("player") as Player	
@@ -120,19 +111,33 @@ func on_boss_timer_timeout():
 func on_arena_difficulty_increased(difficulty: int):
 	arena_difficulty = difficulty
 	spawn_timer.wait_time = max(0.2, SWAPN_INTERVAL - (0.02 * difficulty))
-	if difficulty == 5:
-		enemy_table.add_item("wizard_enemy", wizard_scene, 1)
-		enemies_per_spaun+=1
-	elif difficulty == 10:
-		enemy_table.change_item_weight("wizard_enemy", 5)
-		enemies_per_spaun+=1
-	elif difficulty == 20:
-		enemy_table.change_item_weight("basic_enemy", 10)
-		enemy_table.change_item_weight("wizard_enemy", 10)
-		enemies_per_spaun+=2
-	elif difficulty == 40:
-		enemy_table.change_item_weight("basic_enemy", 2)
-		enemy_table.change_item_weight("wizard_enemy", 8)
-		enemies_per_spaun+=2
+	print(enemy_table.items)
+	match difficulty:
+		5: 
+			enemy_table.add_item("cyclop_enemy", cyclop_enemy_scene, 1)
+			enemy_table.change_item_weight("green_enemy", 9)
+			enemies_per_spaun+=1
+		10:
+			enemy_table.add_item("wizard_enemy", wizard_enemy_scene, 1)
+			enemy_table.change_item_weight("green_enemy", 8)
+			enemies_per_spaun+=1
+		15:
+			enemy_table.add_item("ranged_wizard_enemy", ranged_wizard_enemy_scene, 1)
+			enemy_table.change_item_weight("green_enemy", 4)
+			enemy_table.change_item_weight("wizard_enemy", 4)
+			enemies_per_spaun+=1
+		20:
+			enemy_table.change_item_weight("green_enemy", 1)
+			enemy_table.change_item_weight("wizard_enemy", 6)
+			enemies_per_spaun+=1
+		30: 
+			enemy_table.change_item_weight("wizard_enemy", 1)
+			enemy_table.change_item_weight("ranged_wizard_enemy", 4)
+			enemy_table.change_item_weight("cyclop_enemy", 4)
+			enemies_per_spaun+=1
+		40: 
+			enemy_table.change_item_weight("ranged_wizard_enemy", 6)
+			enemy_table.change_item_weight("cyclop_enemy", 6)
+			enemies_per_spaun+=2
 
 

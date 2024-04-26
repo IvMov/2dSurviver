@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_45ek8"]
 [ext_resource type="Resource" uid="uid://ep11pxv4l2v4" path="res://resources/permanent_upgrades/hp_up.tres" id="2_jhvyo"]
 [ext_resource type="Resource" uid="uid://bef3fkboctt1r" path="res://resources/permanent_upgrades/hp_regen.tres" id="2_k7020"]
-[ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://scenes/game_object/player/player.png" id="2_vq2dk"]
 [ext_resource type="PackedScene" uid="uid://br48xjfhelu00" path="res://scenes/component/velocity_component.tscn" id="3_hcsht"]
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_rgm4t"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="6_6n63d"]
 [ext_resource type="AudioStream" uid="uid://cp7qijxm7wu3g" path="res://assets/audio/ability/dodge-fast.ogg" id="9_64aor"]
 [ext_resource type="AudioStream" uid="uid://cybark1vh7x1p" path="res://assets/audio/hit/punch-0.ogg" id="10_p7723"]
+[ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://assets/game_objects/player/player.png" id="10_uek1e"]
 
 [sub_resource type="Animation" id="Animation_c8tx1"]
 length = 0.001
@@ -133,7 +133,8 @@ bg_color = Color(0, 0.976471, 0.333333, 0)
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.443137)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 9
+collision_layer = 2
+collision_mask = 41
 motion_mode = 1
 wall_min_slide_angle = 0.0872665
 safe_margin = 0.2
@@ -186,8 +187,8 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_mtp82")
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 2
+collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
 shape = SubResource("CircleShape2D_nhnb1")
@@ -195,7 +196,7 @@ shape = SubResource("CircleShape2D_nhnb1")
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprites"]
-texture = ExtResource("2_vq2dk")
+texture = ExtResource("10_uek1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ca1rr")

@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://l84ie17a7enf"]
+
+[ext_resource type="Script" path="res://scenes/game_object/interfaces/enemy/basic_enemy.gd" id="1_f7t8m"]
+[ext_resource type="PackedScene" uid="uid://2680n7oq23fk" path="res://scenes/component/health_component.tscn" id="2_xdca0"]
+[ext_resource type="PackedScene" uid="uid://br48xjfhelu00" path="res://scenes/component/velocity_component.tscn" id="3_gsw4q"]
+[ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="4_xg4kg"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_fh6sd"]
+[ext_resource type="PackedScene" uid="uid://c6cppckanm15j" path="res://scenes/component/enemy_drop_component.tscn" id="6_idcvn"]
+[ext_resource type="PackedScene" uid="uid://bqtx3g3xpjgjf" path="res://scenes/component/hurtbox_component.tscn" id="7_bcpub"]
+[ext_resource type="PackedScene" uid="uid://du5wek35attp7" path="res://scenes/component/death_component.tscn" id="8_7owds"]
+[ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="9_f3x3v"]
+[ext_resource type="AudioStream" uid="uid://r21ht3wlrtbo" path="res://assets/audio/hit/click1.ogg" id="10_lbr6r"]
+[ext_resource type="AudioStream" uid="uid://crcbjihf01y1y" path="res://assets/audio/hit/click2.ogg" id="11_cs0lb"]
+[ext_resource type="AudioStream" uid="uid://dde77cr2wh3yd" path="res://assets/audio/hit/click3.ogg" id="12_58vel"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdc6s"]
+resource_local_to_scene = true
+shader = ExtResource("5_fh6sd")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gr8wg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0hv68"]
+radius = 8.0
+
+[node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 9
+motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_on_leave = 2
+safe_margin = 0.2
+script = ExtResource("1_f7t8m")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(32, 6)
+offset_left = -16.0
+offset_top = -19.0
+offset_right = 16.0
+offset_bottom = -13.0
+pivot_offset = Vector2(16, 3)
+max_value = 1.0
+value = 0.5
+show_percentage = false
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("health_bar") instance=ExtResource("2_xdca0")]
+health_bar = NodePath("../HealthBar")
+max_health = 10.0
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_gsw4q")]
+max_speed = 70
+acceleration = 10.0
+
+[node name="DamageFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_xg4kg")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Sprites/Sprite2D")
+material = SubResource("ShaderMaterial_qdc6s")
+
+[node name="EnemyDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_idcvn")]
+coin_drop_chance = 0.1
+health_component = NodePath("../HealthComponent")
+basic_exp_drop = 10
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_bcpub")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_gr8wg")
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_7owds")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Sprites/Sprite2D")
+
+[node name="RandomAudioPlayer2DComponent" parent="." instance=ExtResource("9_f3x3v")]
+streams = Array[AudioStream]([ExtResource("10_lbr6r"), ExtResource("11_cs0lb"), ExtResource("12_58vel")])
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+offset = Vector2(0, -6)
+
+[node name="CollisionShapeTerrain" type="CollisionShape2D" parent="."]
+light_mask = 9
+visibility_layer = 8
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_0hv68")
+
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
+wait_time = 999.0
+one_shot = true
+autostart = true
+
+[node name="CollisionTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="MovementTimer" to="." method="_on_timer_timeout"]

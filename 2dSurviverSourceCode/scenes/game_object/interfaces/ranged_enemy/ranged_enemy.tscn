@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://14sbobkpxnl0"]
+
+[ext_resource type="PackedScene" uid="uid://l84ie17a7enf" path="res://scenes/game_object/interfaces/enemy/basic_enemy.tscn" id="1_txuqm"]
+[ext_resource type="Script" path="res://scenes/game_object/interfaces/ranged_enemy/ranged_enemy.gd" id="2_vkp1k"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="4_2r8kr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdc6s"]
+resource_local_to_scene = true
+shader = ExtResource("4_2r8kr")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
+
+[node name="RangedEnemy" instance=ExtResource("1_txuqm")]
+script = ExtResource("2_vkp1k")
+projectile_scene = null
+shoot_cd = 0.5
+projectile_speed = 100
+attack_distance = 110
+
+[node name="VelocityComponent" parent="." index="2"]
+max_speed = 60
+
+[node name="DamageFlashComponent" parent="." index="3"]
+material = SubResource("ShaderMaterial_qdc6s")
+
+[node name="EnemyDropComponent" parent="." index="4"]
+coin_drop_chance = 0.05
+
+[node name="StandTimer" type="Timer" parent="." index="13"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AttackCdTimer" type="Timer" parent="." index="14"]
+one_shot = true

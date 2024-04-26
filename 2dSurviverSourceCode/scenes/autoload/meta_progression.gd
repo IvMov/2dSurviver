@@ -19,7 +19,6 @@ func _ready():
 		if !empty_meta_data["upgrades"].has(upgrade.id):
 			empty_meta_data["upgrades"][upgrade.id] = add_empty_upgrade(upgrade)
 	init_meta_data()
-	print(meta_data)
 	
 	GameEvents.game_started.connect(on_game_started)
 	GameEvents.game_win.connect(on_game_win)
@@ -67,7 +66,6 @@ func on_game_win():
 
 
 func on_save_game():
-	print(PlayerCounters.run_coins)
 	meta_data["coins"] += PlayerCounters.run_coins
 	meta_data["kills"] += PlayerCounters.run_kills
 	var time_manager = get_tree().get_first_node_in_group("arena_time_manager") 

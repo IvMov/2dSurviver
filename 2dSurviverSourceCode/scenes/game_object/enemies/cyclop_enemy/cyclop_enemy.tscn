@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://ea5fwmistgfm"]
+
+[ext_resource type="PackedScene" uid="uid://14sbobkpxnl0" path="res://scenes/game_object/interfaces/ranged_enemy/ranged_enemy.tscn" id="1_um8k6"]
+[ext_resource type="PackedScene" uid="uid://ckb2q5ouuck6x" path="res://scenes/game_object/projectiles/stone_projectile.tscn" id="2_rtmo3"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="2_xlsbs"]
+[ext_resource type="Texture2D" uid="uid://ds3ipcww5kcnl" path="res://assets/game_objects/enemies/cyclop_enemy.png" id="4_wa5by"]
+
+[sub_resource type="Animation" id="Animation_uci1u"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vk18s"]
+resource_name = "walk"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0248341, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -0.496682), Vector2(0, -4), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bn0h1"]
+_data = {
+"RESET": SubResource("Animation_uci1u"),
+"walk": SubResource("Animation_vk18s")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vdf1"]
+resource_local_to_scene = true
+shader = ExtResource("2_xlsbs")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
+
+[node name="CyclopEnemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_um8k6")]
+projectile_scene = ExtResource("2_rtmo3")
+shoot_cd = 0.8
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_bn0h1")
+}
+
+[node name="HealthComponent" parent="." index="2"]
+max_health = 5.0
+
+[node name="DamageFlashComponent" parent="." index="4"]
+material = SubResource("ShaderMaterial_3vdf1")
+
+[node name="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("4_wa5by")

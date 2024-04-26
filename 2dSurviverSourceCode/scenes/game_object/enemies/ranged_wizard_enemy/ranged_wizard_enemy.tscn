@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsxxdker4kmca"]
+
+[ext_resource type="PackedScene" uid="uid://14sbobkpxnl0" path="res://scenes/game_object/interfaces/ranged_enemy/ranged_enemy.tscn" id="1_j1oxd"]
+[ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="2_428oh"]
+[ext_resource type="Script" path="res://scenes/game_object/enemies/ranged_wizard_enemy/ranged_wizard_enemy.gd" id="2_omfqs"]
+[ext_resource type="PackedScene" uid="uid://e5ugi7pnite7" path="res://scenes/game_object/projectiles/wizard_projectile.tscn" id="3_q4x3l"]
+[ext_resource type="Texture2D" uid="uid://ua3yej8seh3n" path="res://assets/game_objects/enemies/rannged_wizard_enemy.png" id="4_4qcjc"]
+
+[sub_resource type="Animation" id="Animation_ugbbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tu7o1"]
+resource_name = "walk"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:skew")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.254818, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0872665, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l5qma"]
+_data = {
+"RESET": SubResource("Animation_ugbbn"),
+"walk": SubResource("Animation_tu7o1")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o8lnt"]
+resource_local_to_scene = true
+shader = ExtResource("2_428oh")
+shader_parameter/lerp_precent = 1.0
+shader_parameter/rgb = Vector3(1, 1, 1)
+
+[node name="RangedWizardEnemy" node_paths=PackedStringArray("animation_player") instance=ExtResource("1_j1oxd")]
+script = ExtResource("2_omfqs")
+projectile_scene = ExtResource("3_q4x3l")
+shoot_cd = 0.6
+projectile_speed = 120
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_l5qma")
+}
+
+[node name="HealthComponent" parent="." index="2"]
+max_health = 15.0
+
+[node name="VelocityComponent" parent="." index="3"]
+max_speed = 70
+
+[node name="DamageFlashComponent" parent="." index="4"]
+material = SubResource("ShaderMaterial_o8lnt")
+
+[node name="EnemyDropComponent" parent="." index="5"]
+coin_drop_chance = 0.15
+basic_exp_drop = 15
+
+[node name="Sprite2D" parent="Sprites" index="0"]
+texture = ExtResource("4_4qcjc")
+
+[node name="AttackCdTimer" parent="." index="15"]
+wait_time = 0.5

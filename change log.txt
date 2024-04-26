@@ -104,4 +104,10 @@ v-0.1.4:
 - change after lvl up healing now depannds on max hp
 
 
-- 
+v-0.1.5
+- refactor code now enemies inherit from basic models
+- add new ranged enemy - Cyclop
+- add new ranged enemy - ranged Wizard
+- modify - skills can interact with projectiles
+- rebalance gameplay
+

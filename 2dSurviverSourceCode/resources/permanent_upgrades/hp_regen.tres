@@ -8,6 +8,6 @@ id = "hp_regen"
 base = 0.0
 value = 0.2
 title = "Regeneration +0.2 hp/sec"
-base_price = 1000
+base_price = 500
 lvl_price_multiplier = 2
 max_lvl = 3

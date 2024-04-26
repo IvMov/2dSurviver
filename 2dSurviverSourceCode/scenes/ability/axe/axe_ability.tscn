@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0nygmiqnaabn"]
 
-[ext_resource type="Texture2D" uid="uid://bslip1w752e0w" path="res://scenes/ability/axe/axe.png" id="1_cvnpc"]
+[ext_resource type="Texture2D" uid="uid://bslip1w752e0w" path="res://assets/game_objects/skills/axe.png" id="1_cvnpc"]
 [ext_resource type="Script" path="res://scenes/ability/axe/axe_ability.gd" id="1_mxjmj"]
 [ext_resource type="PackedScene" uid="uid://b5hxbgqxcyyfl" path="res://scenes/component/hitbox_component.tscn" id="3_t23ll"]
 
@@ -84,6 +84,7 @@ texture = ExtResource("1_cvnpc")
 offset = Vector2(0, -4.58)
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_t23ll")]
+collision_layer = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, -5)

@@ -8,6 +8,6 @@ id = "axe_dmg"
 base = 4.0
 value = 2.0
 title = "Axe damage +2"
-base_price = 500
+base_price = 200
 lvl_price_multiplier = 2
 max_lvl = 5

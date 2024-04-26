@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://5umsd617f01x"]
 
-[ext_resource type="Texture2D" uid="uid://gxlmkbfgb1ll" path="res://scenes/game_object/expirience/exp_vial_tier1.png" id="1_c15vg"]
 [ext_resource type="Script" path="res://scenes/game_object/expirience/exp_vial.gd" id="1_rth3s"]
+[ext_resource type="Texture2D" uid="uid://gxlmkbfgb1ll" path="res://assets/game_objects/dropable/exp_vial_tier1.png" id="2_6b3vi"]
 [ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="3_okmtb"]
 [ext_resource type="AudioStream" uid="uid://bfvwamm3pt38c" path="res://assets/audio/vial/vial_0.ogg" id="4_3eqia"]
 [ext_resource type="AudioStream" uid="uid://dmusd4bdau1ci" path="res://assets/audio/vial/vial_1.ogg" id="5_wpk4f"]
@@ -62,7 +62,7 @@ collision_mask = 16
 shape = SubResource("CircleShape2D_0qcdi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_c15vg")
+texture = ExtResource("2_6b3vi")
 
 [node name="RandomAudioPlayer2DComponent" parent="." instance=ExtResource("3_okmtb")]
 streams = Array[AudioStream]([ExtResource("4_3eqia"), ExtResource("5_wpk4f")])

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b6dkcyga0c8tq"]
 
 [ext_resource type="Script" path="res://scenes/game_object/curency/coin.gd" id="1_o8jjq"]
-[ext_resource type="Texture2D" uid="uid://cbx77d86q6y83" path="res://scenes/game_object/curency/coin_1.png" id="1_x4tl2"]
+[ext_resource type="Texture2D" uid="uid://chrvb3srldcd0" path="res://assets/game_objects/dropable/coin1.png" id="2_qs3v7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_22ipj"]
 radius = 20.0
@@ -34,7 +34,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.8),
 "transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2), Vector2(0.8, 0.8)]
+"values": [Vector2(0.8, 0.8), Vector2(1.5, 1.5), Vector2(0.8, 0.8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_krcls"]
@@ -44,6 +44,7 @@ _data = {
 }
 
 [node name="Coin" type="Node2D" groups=["coin"]]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_o8jjq")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -55,7 +56,7 @@ shape = SubResource("CircleShape2D_22ipj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.98023e-08, 4)
-texture = ExtResource("1_x4tl2")
+texture = ExtResource("2_qs3v7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

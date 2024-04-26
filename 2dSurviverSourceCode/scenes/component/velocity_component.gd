@@ -1,12 +1,19 @@
 extends Node
+class_name VelocityComponent
 
 @export var max_speed: int = 90
 @export var acceleration: float = 5
-@onready var player = get_tree().get_root().get_node("Main").get_node("Entities").get_node("Player")
+@onready var player: Player = get_tree().get_root().get_node("Main").get_node("Entities").get_node("Player")
 @onready var enemy_manager = get_tree().get_first_node_in_group("enemy_manager")
 
-
 var velocity = Vector2.ZERO
+
+
+func get_player_position() -> Vector2:
+	if !player:
+		return Vector2.ZERO
+	return player.global_position
+
 
 func accelerate_to_player(character_body: CharacterBody2D):
 	if !player:

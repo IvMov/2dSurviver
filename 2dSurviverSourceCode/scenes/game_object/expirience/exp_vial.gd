@@ -9,14 +9,12 @@ var VALUE: int
 
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
-	if VALUE > 200:
-		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier4.png"))
-	elif VALUE > 150:
-		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier3.png"))
-	elif VALUE > 100:
-		sprite_2d.texture = (load("res://scenes/game_object/expirience/exp_vial_tier2.png"))
-	else:
-		pass
+	if VALUE > 160:
+		sprite_2d.texture = (load("res://assets/game_objects/dropable/exp_vial_tier4.png"))
+	elif VALUE > 120:
+		sprite_2d.texture = (load("res://assets/game_objects/dropable/exp_vial_tier3.png"))
+	elif VALUE > 80:
+		sprite_2d.texture = (load("res://assets/game_objects/dropable/exp_vial_tier2.png"))
 	
 
 

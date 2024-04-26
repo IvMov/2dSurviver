@@ -34,7 +34,6 @@ func _process(delta):
 	time_label.text = "time: " + time
 	speed_label.text = "%3d / 250" % player.velocity.length()
 
-
 func _unhandled_input(event):
 	if event.is_action_pressed("pause") || event.is_action_pressed("escape"):
 		_on_button_menu_pressed()

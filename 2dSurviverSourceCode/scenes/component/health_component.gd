@@ -11,8 +11,6 @@ var is_dead:bool = false
 
 
 func _ready():
-	if !(get_parent() is Player):
-		max_health = max_health + (randf() * 5) + PlayerCounters.current_level
 	current_health = max_health
 	health_changed.connect(on_health_changed)
 	health_changed.emit(false)

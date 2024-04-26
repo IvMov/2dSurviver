@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce2c7e20vc4qx"]
+[gd_scene load_steps=6 format=3 uid="uid://ce2c7e20vc4qx"]
 
 [ext_resource type="Script" path="res://scenes/manager/enemy_manager.gd" id="1_nggqr"]
-[ext_resource type="PackedScene" uid="uid://doyadpvd7uonj" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="2_qymyb"]
-[ext_resource type="PackedScene" uid="uid://7s64xspy1f1a" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="3_hc1f6"]
+[ext_resource type="PackedScene" uid="uid://b2dp33cyms6td" path="res://scenes/game_object/enemies/green_enemy/green_enemy.tscn" id="2_ecnck"]
+[ext_resource type="PackedScene" uid="uid://cykl246sd7jk4" path="res://scenes/game_object/enemies/wizard_enemy/wizard_enemy.tscn" id="3_ohgj3"]
+[ext_resource type="PackedScene" uid="uid://ea5fwmistgfm" path="res://scenes/game_object/enemies/cyclop_enemy/cyclop_enemy.tscn" id="4_888wg"]
+[ext_resource type="PackedScene" uid="uid://bsxxdker4kmca" path="res://scenes/game_object/enemies/ranged_wizard_enemy/ranged_wizard_enemy.tscn" id="5_ra2jg"]
 
 [node name="EnemyManager" type="Node" groups=["enemy_manager"]]
 script = ExtResource("1_nggqr")
-basic_enemy_scene = ExtResource("2_qymyb")
-wizard_scene = ExtResource("3_hc1f6")
+green_enemy_scene = ExtResource("2_ecnck")
+wizard_enemy_scene = ExtResource("3_ohgj3")
+cyclop_enemy_scene = ExtResource("4_888wg")
+ranged_wizard_enemy_scene = ExtResource("5_ra2jg")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 1.2

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://du5wek35attp7"]
 
 [ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_jmsns"]
-[ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_kfhgl"]
+[ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://assets/game_objects/enemies/green_enemy.png" id="1_kfhgl"]
 [ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="3_n2h4n"]
 [ext_resource type="AudioStream" uid="uid://d2xtlsfk468h2" path="res://assets/audio/death/monster-death-grunt-131480.mp3" id="4_2y3of"]
 

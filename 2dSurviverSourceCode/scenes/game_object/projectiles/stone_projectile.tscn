@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckb2q5ouuck6x"]
+
+[ext_resource type="Script" path="res://scenes/game_object/projectiles/projectile.gd" id="1_sqytt"]
+[ext_resource type="Texture2D" uid="uid://dqph3vkqatnko" path="res://assets/game_objects/projectiles/cyclop_stone.png" id="2_1qutq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyjwh"]
+radius = 4.0
+
+[node name="StoneProjectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 7
+script = ExtResource("1_sqytt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_1qutq")
+offset = Vector2(0, -3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jyjwh")
+
+[node name="LifeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true

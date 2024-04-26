@@ -2,12 +2,16 @@ extends Node2D
 
 var VALUE: int
 
+@onready var sprite_2d = $Sprite2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 @onready var animation_player = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
+	if VALUE > 10:
+		sprite_2d.texture = load("res://assets/game_objects/dropable/coin2.png")
+
 	
 func tween_collect(percent: float, start_position: Vector2):
 	var player = get_tree().get_first_node_in_group("player") as Node2D

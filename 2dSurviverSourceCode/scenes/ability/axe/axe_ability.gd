@@ -1,4 +1,5 @@
 extends Node2D
+class_name AxeAbility
 
 const MAX_RADIUS = 200
 @onready var hitbox_component = $HitboxComponent
