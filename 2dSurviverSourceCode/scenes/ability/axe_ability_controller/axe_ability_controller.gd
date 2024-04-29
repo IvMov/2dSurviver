@@ -6,6 +6,10 @@ extends Node
 @onready var ability_timer = %AbilityTimer
 @onready var audio_stream_player = $AudioStreamPlayer
 
+@onready var player = get_tree().get_first_node_in_group("player") as Player
+@onready var foreground = get_tree().get_first_node_in_group("foreground_layer")
+
+
 var controller_name = "Axe"
 var base_damage: int
 var damage: float
@@ -35,13 +39,9 @@ func rescale_audio():
 
 
 func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Player
-	if !player: 
+	if !player || !foreground: 
 		return
-	
-	var foreground = get_tree().get_first_node_in_group("foreground_layer")
-	if !foreground:
-		return
+
 	audio_stream_player.play()
 	var axe_instance = axe_ability_scene.instantiate() as Node2D
 	foreground.add_child(axe_instance)

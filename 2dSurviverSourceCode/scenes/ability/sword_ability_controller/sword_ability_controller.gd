@@ -8,6 +8,10 @@ const MAX_RENGE = 80
 @onready var ability_timer = %AbilityTimer
 @onready var audio_stream_player = $AudioStreamPlayer
 
+@onready var player = get_tree().get_first_node_in_group("player") as Player
+@onready var foreground = get_tree().get_first_node_in_group("foreground_layer")
+
+
 var controller_name = "Sword"
 var base_damage: int
 var damage: float
@@ -23,8 +27,7 @@ func _ready():
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrad_added)
 
 func action_on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
-	if !player: 
+	if !player || !foreground: 
 		return
 		
 	var enemies = get_tree().get_nodes_in_group("enemy")
@@ -41,7 +44,7 @@ func action_on_timer_timeout():
 	
 	var sword_instance = sword_ability.instantiate() as SwordAbility	
 	audio_stream_player.play()
-	get_tree().get_first_node_in_group("foreground_layer").add_child(sword_instance)
+	foreground.add_child(sword_instance)
 	sword_instance.scale_factor = scale_factor
 	sword_instance.hitbox_component.damage = damage
 	sword_instance.global_position = enemies[0].global_position 

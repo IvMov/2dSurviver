@@ -15,6 +15,7 @@ class_name Player
 @onready var collision_audio_player = $CollisionAudioPlayer
 @onready var collision_shape_2d = $PickupArea/CollisionShape2D
 @onready var hp_regen_timer = $HpRegenTimer
+@onready var energy_component = $EnergyComponent
 
 
 var number_colliding_bodies: int = 0
@@ -25,9 +26,12 @@ var hp_regen_value: float
 var current_dodge_speed = dodge_speed
 var start_hp: float
 var last_collider
+var energy_cost: float = 10
 
 
 func _ready():
+	var arrow = load("res://assets/ui/cursor2.png")
+	Input.set_custom_mouse_cursor(arrow)
 	hp_regen_value = calculate_hp_regen()
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
@@ -44,8 +48,8 @@ func _ready():
 	set_collision_layer(2)
 
 
-func _input(event):
-	if event.is_action_pressed("active_skill") && skill_timer.is_stopped():
+func _unhandled_input(event):
+	if event.is_action_pressed("active_skill") && skill_timer.is_stopped() && energy_component.minus_energy(energy_cost):
 		var movement_vector = get_movement_vector()
 		if movement_vector == Vector2.ZERO:
 			movement_vector = (Vector2.ONE).rotated(randf_range(0, TAU))
@@ -153,9 +157,9 @@ func calculate_hp_regen():
 func on_body_entered(body: Node2D):
 	number_colliding_bodies += 1
 	if PlayerCounters.current_level < 40:
-		hurt = 10 if body.is_boss else body.hurt
+		hurt = 5 if body.is_boss else body.hurt
 	else:
-		hurt = 15 if body.is_boss else (body.hurt * 2)
+		hurt = 10 if body.is_boss else (body.hurt * 2)
 	check_deal_damage(false)
 
 

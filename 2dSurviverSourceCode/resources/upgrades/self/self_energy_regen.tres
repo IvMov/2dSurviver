@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://b8rkgi3hmo08t"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_4vjgt"]
+
+[resource]
+script = ExtResource("1_4vjgt")
+id = "self_energy_regen"
+name = "Character"
+amount = 0.2
+max_lvl = 5.0
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Energy regen +2sec"
+skill = false

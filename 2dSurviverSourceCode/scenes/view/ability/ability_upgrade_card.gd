@@ -1,4 +1,5 @@
 extends PanelContainer
+class_name AbilityCard
 
 signal card_selected()
 
@@ -8,7 +9,9 @@ signal card_selected()
 @onready var animation_player = $AnimationPlayer
 @onready var hover_audio_player_component = $HoverAudioPlayerComponent
 @onready var click_audio_player_component = $ClickAudioPlayerComponent
-
+@onready var new_label = %NewLabel
+@onready var level_label = %LevelLabel
+var current_ability_lvl: int
 
 var tween: Tween
 
@@ -23,6 +26,9 @@ func set_ability_upgrade(upgrade: AbilityUpgrade):
 	header_label.text = upgrade.name
 	description_label.text = upgrade.description
 	color_rect.set_color(upgrade.main_color)
+	new_label.text = "NEW" if upgrade.skill else ""
+	level_label.text ="" if  upgrade.skill else "%d / %d" % [current_ability_lvl, upgrade.max_lvl]
+	get_theme_stylebox("panel").set_border_color(upgrade.main_color)
 
 func play_hover():
 	if tween:

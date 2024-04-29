@@ -13,5 +13,6 @@ max_lvl = 1.0
 main_color = Color(0, 0.905882, 0.376471, 1)
 second_color = Color(0, 0, 0, 1)
 description = "Unlock self improvements!
+Energy, HP, Speed and etc!
 "
 skill = true

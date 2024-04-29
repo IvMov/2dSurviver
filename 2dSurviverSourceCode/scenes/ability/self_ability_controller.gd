@@ -31,4 +31,10 @@ func on_ability_upgrad_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 	elif upgrade.id == "self_radius":
 		player.collision_shape_2d.shape.radius += upgrade.amount
 		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "self_energy_up":
+		player.energy_component.increase_max_energy(upgrade.amount)
+		GameEvents.emit_ability_upgrade_applied()
+	elif upgrade.id == "self_energy_regen":
+		player.energy_component.increase_regen(upgrade.amount)
+		GameEvents.emit_ability_upgrade_applied()
 

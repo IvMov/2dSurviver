@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1jwvvt84srui"]
+[gd_scene load_steps=7 format=3 uid="uid://d1jwvvt84srui"]
 
 [ext_resource type="Script" path="res://scenes/autoload/meta_progression.gd" id="1_y5ujn"]
 [ext_resource type="Resource" uid="uid://wr003t6aqyec" path="res://resources/permanent_upgrades/axe_dmg.tres" id="2_i3lus"]
 [ext_resource type="Resource" uid="uid://bef3fkboctt1r" path="res://resources/permanent_upgrades/hp_regen.tres" id="3_dlmn0"]
 [ext_resource type="Resource" uid="uid://5ynrwyvr6wud" path="res://resources/permanent_upgrades/sword_dmg.tres" id="5_jd03c"]
 [ext_resource type="Resource" uid="uid://ep11pxv4l2v4" path="res://resources/permanent_upgrades/hp_up.tres" id="5_lry1t"]
+[ext_resource type="Resource" uid="uid://b7at7pu30vsbi" path="res://resources/permanent_upgrades/bow_dmg.tres" id="6_tg00v"]
 
 [node name="MetaProgression" type="Node"]
 script = ExtResource("1_y5ujn")
-permanent_upgrade_pool = Array[Resource("res://resources/permanent_upgrades/meta_upgrade.gd")]([ExtResource("2_i3lus"), ExtResource("3_dlmn0"), ExtResource("5_lry1t"), ExtResource("5_jd03c")])
+permanent_upgrade_pool = Array[Resource("res://resources/permanent_upgrades/meta_upgrade.gd")]([ExtResource("2_i3lus"), ExtResource("3_dlmn0"), ExtResource("5_lry1t"), ExtResource("5_jd03c"), ExtResource("6_tg00v")])

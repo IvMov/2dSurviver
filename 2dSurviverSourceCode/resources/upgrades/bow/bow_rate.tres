@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ds57qy6dtcs78"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_0xsk5"]
+
+[resource]
+script = ExtResource("1_0xsk5")
+id = "bow_rate"
+name = "Bow"
+amount = 0.2
+max_lvl = 10.0
+main_color = Color(0.396078, 0.376471, 0.121569, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Cooldown reduced - 0.2s
+"
+skill = false

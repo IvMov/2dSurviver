@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://caqfu32mlh7c8"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_54hka"]
+
+[resource]
+script = ExtResource("1_54hka")
+id = "self_energy_up"
+name = "Character"
+amount = 10.0
+max_lvl = 10.0
+main_color = Color(0, 0.905882, 0.376471, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Max energy +10"
+skill = false

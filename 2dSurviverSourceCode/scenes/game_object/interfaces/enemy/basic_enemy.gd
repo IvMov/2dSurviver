@@ -70,8 +70,9 @@ func set_is_boss(coins_base: int, exp_base: int):
 	#stats
 	velocity_component.max_speed = 100 + current_lvl
 	health_component.max_health = 100 + (current_lvl * 20)
+	if	current_lvl > 50:
+		health_component.max_health = 100 + (current_lvl * 40)
 	health_component.current_health = health_component.max_health
-	print(health_component.max_health)
 	health_component.update_health_bar()
 	
 	#drop

@@ -126,6 +126,14 @@ theme_override_fonts/font = ExtResource("1_ojf5t")
 text = "Axe damage"
 vertical_alignment = 1
 
+[node name="BowLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Name"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "Bow damage"
+vertical_alignment = 1
+
 [node name="Line" type="VBoxContainer" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -194,6 +202,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Line8" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Line9" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Line"]
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_vertical = 6
@@ -271,6 +288,15 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="BasicAxeDmgLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_ojf5t")
+text = "4"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BasicBowDmgLabel" type="Label" parent="MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 6

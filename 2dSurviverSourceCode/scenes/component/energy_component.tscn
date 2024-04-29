@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://h53mfdnavmxs"]
+
+[ext_resource type="Script" path="res://scenes/component/energy_component.gd" id="1_t3b73"]
+
+[node name="EnergyComponent" type="Node"]
+script = ExtResource("1_t3b73")
+
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true

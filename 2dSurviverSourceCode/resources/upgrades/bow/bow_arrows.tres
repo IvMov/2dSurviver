@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://b6wo85e3t6n0m"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_44mgq"]
+
+[resource]
+script = ExtResource("1_44mgq")
+id = "bow_arrows"
+name = "Bow"
+amount = 2.0
+max_lvl = 3.0
+main_color = Color(0.396078, 0.376471, 0.121569, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Add aditional arrow to shot +2"
+skill = false

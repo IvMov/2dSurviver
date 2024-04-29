@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=23 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dnq02gcko1cja" path="res://scenes/ability/ability_controller.tscn" id="4_nf0ln"]
 [ext_resource type="Shader" path="res://scenes/component/damage_flash_component_shader.gdshader" id="5_rgm4t"]
 [ext_resource type="PackedScene" uid="uid://4eygpv6ar4kx" path="res://scenes/component/damage_flash_component.tscn" id="6_6n63d"]
+[ext_resource type="PackedScene" uid="uid://h53mfdnavmxs" path="res://scenes/component/energy_component.tscn" id="9_7t8vr"]
 [ext_resource type="AudioStream" uid="uid://cp7qijxm7wu3g" path="res://assets/audio/ability/dodge-fast.ogg" id="9_64aor"]
 [ext_resource type="AudioStream" uid="uid://cybark1vh7x1p" path="res://assets/audio/hit/punch-0.ogg" id="10_p7723"]
 [ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://assets/game_objects/player/player.png" id="10_uek1e"]
@@ -170,6 +171,11 @@ max_health = 5.0
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Sprites/Sprite2D")
 material = SubResource("ShaderMaterial_w85bb")
+
+[node name="EnergyComponent" parent="." instance=ExtResource("9_7t8vr")]
+max_energy = 50.0
+current_energy = 50.0
+energy_regen = 0.5
 
 [node name="AbilityManager" type="Node" parent="."]
 

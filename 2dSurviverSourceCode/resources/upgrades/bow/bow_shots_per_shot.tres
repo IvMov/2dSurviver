@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://bxqg00xhpv10d"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_y5oa7"]
+
+[resource]
+script = ExtResource("1_y5oa7")
+id = "bow_shots"
+name = "Bow"
+amount = 1.0
+max_lvl = 3.0
+main_color = Color(0.396078, 0.376471, 0.121569, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Add aditional shot on CD"
+skill = false

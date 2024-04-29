@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://j2ng0bjlifmh"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_c1lub"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_c1lub")
+id = "bow_dmg"
+name = "Bow"
+amount = 0.2
+max_lvl = 10.0
+main_color = Color(0.396078, 0.376471, 0.121569, 1)
+second_color = Color(0, 0, 0, 1)
+description = "Damage + 20%
+"
+skill = false

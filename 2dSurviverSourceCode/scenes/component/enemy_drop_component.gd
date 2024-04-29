@@ -12,6 +12,7 @@ const SPAWN_RADIUS = 10
 var EXP: int
 var COINS_BASE: int = 10
 var COINS: int
+var ORBS: int = 10
 
 
 func _ready():
@@ -19,7 +20,7 @@ func _ready():
 	(health_component as HealthComponent).died.connect(on_dead_drop)
 	
 func calc_coins_and_exp():
-	COINS = ceil(randf()*COINS_BASE)
+	COINS = 1 + ceil(randf()*COINS_BASE)
 	EXP = PlayerCounters.current_level + (basic_exp_drop * ceil(2 + (randf()*8)))
 	
 func on_exp_drop(value, position):

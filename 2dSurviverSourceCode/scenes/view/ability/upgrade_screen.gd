@@ -6,6 +6,7 @@ signal ability_upgrade_selected(upgrade: AbilityUpgrade)
 @onready var card_container: HBoxContainer = %CardContainer
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var audio_stream_player = $AudioStreamPlayer
+var upgrade_manager: UpgradeManager
 
 var disable_inputs: bool = false
 var skill_inputs: Array = [1, 2, 3]
@@ -13,6 +14,7 @@ var skill_inputs: Array = [1, 2, 3]
 func _ready():
 	get_tree().paused = true
 	audio_stream_player.play()
+	upgrade_manager = get_tree().get_first_node_in_group("upgrade_manager")
 
 
 func _input(event):
@@ -36,7 +38,8 @@ func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
 	for upgrade in upgrades:
 		if !upgrade:
 			return
-		var card_instance = upgrade_card_scene.instantiate()
+		var card_instance: AbilityCard = upgrade_card_scene.instantiate()
+		card_instance.current_ability_lvl = upgrade_manager.get_upgrade_level(upgrade)
 		card_container.add_child(card_instance)
 		card_instance.set_ability_upgrade(upgrade)
 		card_instance.card_selected.connect(on_selected_do.bind(upgrade))

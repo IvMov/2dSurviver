@@ -11,6 +11,7 @@ extends CanvasLayer
 @onready var axe_ability_container_ui = $MarginContainer/MarginContainer2/SkillContainer/AxeAbilityContainerUI
 @onready var level_label = $MarginContainer/StatsContainer/VBoxContainer/LevelContainer/MarginContainer/LevelLabel
 @onready var hp_regen_label = $MarginContainer/StatsContainer/VBoxContainer/HpRegenContainer/MarginContainer/HpRegenLabel
+@onready var skill_container = $MarginContainer/MarginContainer2/SkillContainer
 
 
 var time: String
@@ -66,17 +67,17 @@ func on_ability_upgrade_applied():
 		return
 		
 	var nodes = player.get_tree().get_nodes_in_group("ability_controller")
+	var abilities = skill_container.get_children()
 	for node in nodes:
-		if sword_ability_container_ui.ability_name == node.controller_name:
-			sword_ability_container_ui.dmg = node.damage
-			sword_ability_container_ui.cd = node.ability_timer.wait_time
-			sword_ability_container_ui.update_skill_ui()
-			
-		elif axe_ability_container_ui.ability_name == node.controller_name:
-			axe_ability_container_ui.dmg = node.damage
-			axe_ability_container_ui.cd = node.ability_timer.wait_time
-			axe_ability_container_ui.update_skill_ui()
-
+		for ability_container in abilities:
+			if ability_container.ability_name == node.controller_name:
+				ability_container.dmg = node.damage
+				ability_container.cd = node.ability_timer.wait_time
+				ability_container.update_skill_ui()
+				abilities.erase(ability_container)
+				break
+		
+		
 func on_coin_added():
 	coins_label.text = "%8d $" % PlayerCounters.run_coins
 

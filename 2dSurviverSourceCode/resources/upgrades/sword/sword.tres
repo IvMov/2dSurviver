@@ -12,6 +12,6 @@ amount = 0.0
 max_lvl = 1.0
 main_color = Color(1, 0, 0, 1)
 second_color = Color(0, 0, 0, 1)
-description = "Swings with sword!
-"
+description = "Swings with sword.
+Looks good when max upgraded!"
 skill = true

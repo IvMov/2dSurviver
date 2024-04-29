@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scenes/game_object/projectiles/projectile.gd" id="1_1qvgm"]
 [ext_resource type="Texture2D" uid="uid://ct22hh280v88g" path="res://assets/game_objects/projectiles/wizard_projectile.png" id="2_j4a4t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_jyjwh"]
-radius = 4.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rvssh"]
+radius = 3.0
+height = 8.0
 
 [node name="WizardProjectile" type="Area2D"]
 collision_layer = 32
@@ -16,8 +17,9 @@ speed = 200
 texture = ExtResource("2_j4a4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_jyjwh")
+position = Vector2(3, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_rvssh")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0

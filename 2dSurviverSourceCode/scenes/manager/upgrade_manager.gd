@@ -1,8 +1,6 @@
 extends Node
 class_name UpgradeManager
 
-const MAX_LVL = 15
-
 @export var upgrade_pool: Array[AbilityUpgrade]
 @export var upgrade_pool_core: Array[AbilityUpgrade]
 @export var self_abilities: AbilityUpgrade
@@ -41,7 +39,7 @@ func pick_abilities() :
 	for upgrade in upgrades:
 		if (upgrade.skill):
 			chosen_upgrades.append(upgrade)
-	return pick_upgrades(chosen_upgrades, 2);	
+	return pick_upgrades(chosen_upgrades, 3);	
 	
 	
 func handle_skill_selected(upgrade: AbilityUpgrade):
@@ -53,6 +51,8 @@ func check_is_max_lvl(upgrade: AbilityUpgrade):
 	if current_upgrades[upgrade.id]["lvl"] >= upgrade.max_lvl:
 		upgrade_pool.erase(upgrade)
 	
+func get_upgrade_level(upgrade: AbilityUpgrade) -> int:
+	return 0 if !current_upgrades.has(upgrade.id) else current_upgrades[upgrade.id]["lvl"]
 	
 func apply_upgrade(upgrade: AbilityUpgrade):
 	var has_upgrade = current_upgrades.has(upgrade.id)

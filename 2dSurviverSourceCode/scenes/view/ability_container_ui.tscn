@@ -7,15 +7,17 @@
 script = ExtResource("1_ba2vp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="MarginContainer"]
 centered = false
+offset = Vector2(2, 2)
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_colors/font_outline_color = Color(0.247059, 0.14902, 0.192157, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_qj7v8")
-text = "DMG: 11.2 | CD: 0.1"
+text = "DMG: 11.2 , CD: 0.1 "

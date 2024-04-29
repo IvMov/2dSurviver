@@ -14,6 +14,7 @@ extends CanvasLayer
 @onready var regen_hp_label = $MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values/RegenHpLabel
 @onready var basic_sword_dmg_label = $MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values/BasicSwordDmgLabel
 @onready var basic_axe_dmg_label = $MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values/BasicAxeDmgLabel
+@onready var basic_bow_dmg_label = $MarginContainer/ColorRect/VBoxContainer/MarginContainer/StatsContainer/HBoxContainer/Values/BasicBowDmgLabel
 
 var active_upgrades: Dictionary
 
@@ -47,14 +48,15 @@ func update_shop():
 
 func update_labels():
 	money_label.text = "%d $" % MetaProgression.meta_data["coins"]
-	games_label.text = "%08d" % MetaProgression.meta_data["runs"]
-	wins_label.text = "%08d" % MetaProgression.meta_data["win_runs"]
+	games_label.text = "%d" % MetaProgression.meta_data["runs"]
+	wins_label.text = "%d" % MetaProgression.meta_data["win_runs"]
 	best_time_label.text = GameEvents.format_seconds_to_sring(MetaProgression.meta_data["best_time"])
-	enemies_killed_label.text = "%08d" % MetaProgression.meta_data["kills"]
+	enemies_killed_label.text = "%d" % MetaProgression.meta_data["kills"]
 	active_upgrades = MetaProgression.meta_data["upgrades"];
 	regen_hp_label.text = "%0.1f" % calc_current_upgrade_value(active_upgrades["hp_regen"])
 	basic_sword_dmg_label.text = "%d" % calc_current_upgrade_value(active_upgrades["sword_dmg"])
 	basic_axe_dmg_label.text = "%d" % calc_current_upgrade_value(active_upgrades["axe_dmg"])
+	basic_bow_dmg_label.text = "%d" % calc_current_upgrade_value(active_upgrades["bow_dmg"])
 	
 
 func on_permanent_upgrade_buy(upgrade: MetaUpgrade):

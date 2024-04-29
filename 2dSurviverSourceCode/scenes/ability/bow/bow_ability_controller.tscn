@@ -1,0 +1,30 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpxs1e46ti7cm"]
+
+[ext_resource type="Script" path="res://scenes/ability/bow/bow_ability_controller.gd" id="1_tpv21"]
+[ext_resource type="PackedScene" uid="uid://b8qihbniwo4m4" path="res://scenes/game_object/projectiles/arrow_projectile.tscn" id="2_eb05o"]
+[ext_resource type="Resource" uid="uid://b7at7pu30vsbi" path="res://resources/permanent_upgrades/bow_dmg.tres" id="2_qo3s5"]
+[ext_resource type="Resource" uid="uid://b6wo85e3t6n0m" path="res://resources/upgrades/bow/bow_arrows.tres" id="4_id0tr"]
+[ext_resource type="Resource" uid="uid://j2ng0bjlifmh" path="res://resources/upgrades/bow/bow_dmg.tres" id="5_krye8"]
+[ext_resource type="AudioStream" uid="uid://tqi6487yog82" path="res://assets/audio/ability/bow.ogg" id="6_f5gyy"]
+[ext_resource type="Resource" uid="uid://ds57qy6dtcs78" path="res://resources/upgrades/bow/bow_rate.tres" id="6_w7hli"]
+[ext_resource type="Resource" uid="uid://bxqg00xhpv10d" path="res://resources/upgrades/bow/bow_shots_per_shot.tres" id="7_qiqej"]
+
+[node name="BowAbilityController" type="Node" groups=["ability_controller"]]
+script = ExtResource("1_tpv21")
+bow_dmg = ExtResource("2_qo3s5")
+bow_arrow_scene = ExtResource("2_eb05o")
+upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("4_id0tr"), ExtResource("6_w7hli"), ExtResource("7_qiqej"), ExtResource("5_krye8")])
+
+[node name="AbilityTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_f5gyy")
+pitch_scale = 0.8
+max_polyphony = 3
+bus = &"sfx"
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true

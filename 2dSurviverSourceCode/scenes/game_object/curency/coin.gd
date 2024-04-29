@@ -10,6 +10,7 @@ var VALUE: int
 func _ready():
 	$Area2D.area_entered.connect(on_area_entered)
 	if VALUE > 10:
+		scale = Vector2.ONE * 1.2
 		sprite_2d.texture = load("res://assets/game_objects/dropable/coin2.png")
 
 	

@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyhdu470c6jdt"]
+[gd_scene load_steps=12 format=3 uid="uid://dyhdu470c6jdt"]
 
 [ext_resource type="Script" path="res://scenes/view/arena/arena_time_ui.gd" id="1_tnnl2"]
 [ext_resource type="Texture2D" uid="uid://bf0b8wde1rqh2" path="res://assets/ui/next-level.png" id="2_2oy5y"]
 [ext_resource type="PackedScene" uid="uid://dyfrlujou827f" path="res://scenes/view/sound_button.tscn" id="3_bc054"]
 [ext_resource type="Texture2D" uid="uid://gcq38lhn4qgd" path="res://assets/ui/coin.png" id="4_8n1sj"]
+[ext_resource type="Texture2D" uid="uid://cew1t3uclewkw" path="res://assets/game_objects/skills/sword.png" id="4_hrb4g"]
 [ext_resource type="Texture2D" uid="uid://bffmtyuvnaqru" path="res://assets/ui/run.png" id="5_0tmmg"]
+[ext_resource type="Texture2D" uid="uid://bslip1w752e0w" path="res://assets/game_objects/skills/axe.png" id="5_njnql"]
 [ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="6_guocr"]
+[ext_resource type="Texture2D" uid="uid://b6ju0klkeolap" path="res://assets/ui/bow1.png" id="6_hm3sb"]
 [ext_resource type="PackedScene" uid="uid://nddmr3u6woan" path="res://scenes/view/ability_container_ui.tscn" id="6_v17iw"]
-[ext_resource type="Texture2D" uid="uid://cwm864eina8t5" path="res://assets/ui/sword.png" id="7_avptd"]
-[ext_resource type="Texture2D" uid="uid://oknlfdeeoaj7" path="res://assets/ui/battle-axe.png" id="8_uwf4o"]
 [ext_resource type="Texture2D" uid="uid://drb2wv4yloqwd" path="res://assets/ui/hp_regen.png" id="9_u0xsi"]
 
 [node name="ArenaTimeUI" type="CanvasLayer"]
@@ -18,7 +19,7 @@ script = ExtResource("1_tnnl2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -30.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -49,13 +50,18 @@ size_flags_vertical = 8
 
 [node name="SwordAbilityContainerUI" parent="MarginContainer/MarginContainer2/SkillContainer" instance=ExtResource("6_v17iw")]
 layout_mode = 2
-sprite = ExtResource("7_avptd")
+sprite = ExtResource("4_hrb4g")
 ability_name = "Sword"
 
 [node name="AxeAbilityContainerUI" parent="MarginContainer/MarginContainer2/SkillContainer" instance=ExtResource("6_v17iw")]
 layout_mode = 2
-sprite = ExtResource("8_uwf4o")
+sprite = ExtResource("5_njnql")
 ability_name = "Axe"
+
+[node name="BowAbilityContainerUI" parent="MarginContainer/MarginContainer2/SkillContainer" instance=ExtResource("6_v17iw")]
+layout_mode = 2
+sprite = ExtResource("6_hm3sb")
+ability_name = "Bow"
 
 [node name="StatsContainer" type="MarginContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(90, 0)

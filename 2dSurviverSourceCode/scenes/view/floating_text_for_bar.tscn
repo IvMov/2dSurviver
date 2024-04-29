@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://uxyosmc2oqk6"]
+
+[ext_resource type="Script" path="res://scenes/view/floating_text_for_bar.gd" id="1_5fuan"]
+
+[node name="FloatingTextForBar" type="Node2D"]
+top_level = true
+script = ExtResource("1_5fuan")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 14.0
+theme_override_font_sizes/font_size = 16

@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8sbsw7m85j6h"]
+[gd_scene load_steps=8 format=3 uid="uid://b8sbsw7m85j6h"]
 
 [ext_resource type="Script" path="res://scenes/ability/self_ability_controller.gd" id="1_qxwt0"]
 [ext_resource type="Resource" uid="uid://ctg36mfl8f2vl" path="res://resources/upgrades/self/self_hp_heal.tres" id="2_mdaid"]
 [ext_resource type="Resource" uid="uid://dbx604xbn717y" path="res://resources/upgrades/self/self_hp_up.tres" id="3_nk2tx"]
 [ext_resource type="Resource" uid="uid://c7gwqtrf1by5e" path="res://resources/upgrades/self/self_movement_speed.tres" id="4_b55sx"]
 [ext_resource type="Resource" uid="uid://dq2rhyr34fkbs" path="res://resources/upgrades/self/self_radius.tres" id="5_ivjrh"]
+[ext_resource type="Resource" uid="uid://b8rkgi3hmo08t" path="res://resources/upgrades/self/self_energy_regen.tres" id="6_8v0mr"]
+[ext_resource type="Resource" uid="uid://caqfu32mlh7c8" path="res://resources/upgrades/self/self_energy_up.tres" id="7_nm7ib"]
 
 [node name="SelfAbilityController" type="Node"]
 script = ExtResource("1_qxwt0")
-upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_mdaid"), ExtResource("3_nk2tx"), ExtResource("4_b55sx"), ExtResource("5_ivjrh")])
+upgrades = Array[Resource("res://resources/upgrades/ability_upgrade.gd")]([ExtResource("2_mdaid"), ExtResource("3_nk2tx"), ExtResource("4_b55sx"), ExtResource("5_ivjrh"), ExtResource("6_8v0mr"), ExtResource("7_nm7ib")])

@@ -3,21 +3,27 @@
 [ext_resource type="Script" path="res://scenes/view/ability/ability_upgrade_card.gd" id="1_nmcd4"]
 [ext_resource type="FontFile" uid="uid://b6mrtdyn73pow" path="res://resources/fonts/monogram.ttf" id="2_wsyad"]
 [ext_resource type="PackedScene" uid="uid://bblfwo8b6ntbk" path="res://scenes/component/random_audio_player_component.tscn" id="3_grnq4"]
-[ext_resource type="AudioStream" uid="uid://rshnbr076vj4" path="res://assets/audio/ability/hover/switch3.ogg" id="4_g3bgx"]
-[ext_resource type="AudioStream" uid="uid://bojqqdvlxt32l" path="res://assets/audio/ability/hover/switch4.ogg" id="5_1t7as"]
-[ext_resource type="AudioStream" uid="uid://bqyqts3m3i6ub" path="res://assets/audio/ability/hover/switch5.ogg" id="6_yla28"]
+[ext_resource type="FontFile" uid="uid://bohi3uylgc1th" path="res://resources/fonts/Habbo.ttf" id="3_n20a5"]
+[ext_resource type="AudioStream" uid="uid://rshnbr076vj4" path="res://assets/hover/switch3.ogg" id="4_g3bgx"]
+[ext_resource type="AudioStream" uid="uid://bojqqdvlxt32l" path="res://assets/hover/switch4.ogg" id="5_1t7as"]
+[ext_resource type="AudioStream" uid="uid://bqyqts3m3i6ub" path="res://assets/hover/switch5.ogg" id="6_yla28"]
 [ext_resource type="AudioStream" uid="uid://bmfcga6f1ikww" path="res://assets/audio/click/click4.ogg" id="7_fb3fj"]
 [ext_resource type="AudioStream" uid="uid://bminkalbhpuh0" path="res://assets/audio/click/click5.ogg" id="8_531r6"]
 
-[sub_resource type="Theme" id="Theme_4kdgv"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ihg0y"]
-bg_color = Color(0, 0, 0, 0.768627)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_blend = true
+resource_local_to_scene = true
+bg_color = Color(0.247059, 0.14902, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0.164706, 0.164706, 0.164706, 0.6)
+shadow_size = 8
+shadow_offset = Vector2(8, 8)
 
 [sub_resource type="Animation" id="Animation_xpd7x"]
 length = 0.001
@@ -82,22 +88,19 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_hw3j5"]
 font_size = 28
+outline_size = 16
+outline_color = Color(0.00392157, 0.0156863, 0.0313726, 0.937255)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ks5yj"]
 line_spacing = 0.0
 font = ExtResource("2_wsyad")
-font_size = 24
 font_color = Color(0.796078, 0.796078, 0.796078, 1)
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 0
-shadow_offset = Vector2(0, 0)
 
 [node name="AbilityUpgradeCard" type="PanelContainer"]
-custom_minimum_size = Vector2(135, 220)
-offset_right = 135.0
+custom_minimum_size = Vector2(130, 200)
+offset_right = 130.0
 offset_bottom = 220.0
 pivot_offset = Vector2(100, 150)
-theme = SubResource("Theme_4kdgv")
 theme_override_styles/panel = SubResource("StyleBoxFlat_ihg0y")
 script = ExtResource("1_nmcd4")
 
@@ -114,7 +117,6 @@ layout_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.380392, 0.670588, 0.678431, 1)
 theme_override_font_sizes/font_size = 16
 text = "Test1
 "
@@ -131,7 +133,7 @@ color = Color(0.784314, 0.917647, 0.886275, 1)
 
 [node name="Description" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 100)
+custom_minimum_size = Vector2(60, 80)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
@@ -140,8 +142,28 @@ label_settings = SubResource("LabelSettings_ks5yj")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="NewLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.960784, 0.666667, 0.219608, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "NEW"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(20, 25)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_n20a5")
+theme_override_font_sizes/font_size = 16
+text = "10/999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HoverAudioPlayerComponent" parent="." instance=ExtResource("3_grnq4")]
 volume_db = -30.0

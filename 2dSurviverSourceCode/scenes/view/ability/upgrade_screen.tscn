@@ -97,4 +97,3 @@ size_flags_vertical = 4
 process_mode = 3
 stream = ExtResource("3_e3khm")
 volume_db = -20.0
-bus = &"ui"
