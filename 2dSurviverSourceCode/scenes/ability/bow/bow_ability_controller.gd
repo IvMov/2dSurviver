@@ -25,6 +25,7 @@ var energy_cost: float = 5
 func _ready():
 	var arrow = load("res://assets/ui/mouse_shot.png")
 	Input.set_custom_mouse_cursor(arrow)
+	
 	calculate_base_damage()
 	ability_timer.wait_time = 3
 	

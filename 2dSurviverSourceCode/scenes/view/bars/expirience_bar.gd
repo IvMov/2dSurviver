@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var progress_bar: ProgressBar = $MarginContainer/ProgressBar
-@onready var label = $MarginContainer/ProgressBar/Label
+@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var label = $ProgressBar/Label
 
 
 func _ready():
