@@ -118,3 +118,8 @@ v-0.1.5
 - dodge now require energy and internal cooldown
 - upgrades in shop are cheaper
 
+v-0.2.0
+- fix bug when clicking the hp bars - shots are not emited
+TODO: game aim 10 min and reach max time
+TODO: game instructions
+TODO: mayve particles on dodge

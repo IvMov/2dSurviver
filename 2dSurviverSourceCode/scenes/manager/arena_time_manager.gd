@@ -15,7 +15,7 @@ func _ready():
 
 
 func _process(delta):
-	if arena_dificulty >= 40:
+	if arena_dificulty >= 60:
 			return
 	del+= delta # I dont remember wtf is that and why I add it :D
 	if (del > 1):

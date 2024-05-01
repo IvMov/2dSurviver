@@ -52,7 +52,7 @@ func calc_collides():
 	var collision = get_last_slide_collision()
 	if collision:
 		var collider = collision.get_collider();
-		if collider && collider.is_in_group("enemy"):
+		if collider && collider.is_in_group("enemy") && !collider.is_boss:
 			collider.velocity = (velocity).rotated(randf_range(-1, 1))*2;
 			collider.collided()
 
