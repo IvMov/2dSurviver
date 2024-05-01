@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bb2dcdhx1qbyv"]
+[gd_scene load_steps=28 format=3 uid="uid://bb2dcdhx1qbyv"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_w3avd"]
 [ext_resource type="PackedScene" uid="uid://de6io54hdaex4" path="res://scenes/view/floating_text.tscn" id="2_5cehh"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cp7qijxm7wu3g" path="res://assets/audio/ability/dodge-fast.ogg" id="9_64aor"]
 [ext_resource type="AudioStream" uid="uid://cybark1vh7x1p" path="res://assets/audio/hit/punch-0.ogg" id="10_p7723"]
 [ext_resource type="Texture2D" uid="uid://c6im6esdf34eg" path="res://assets/game_objects/player/player.png" id="10_uek1e"]
+[ext_resource type="Texture2D" uid="uid://8ee6sgwkow2n" path="res://assets/game_objects/particles/particle.png" id="14_56kt2"]
 
 [sub_resource type="Animation" id="Animation_c8tx1"]
 length = 0.001
@@ -64,6 +65,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ParticleComponent/GPUParticles2D:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_cy7l3"]
 resource_name = "walk"
@@ -106,9 +119,62 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(0.9, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 0.9), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_o1icj"]
+resource_name = "dodge"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0248341, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -0.496682), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprites/Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 1.2), Vector2(1.2, 0.9), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ParticleComponent/GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2c4q"]
 _data = {
 "RESET": SubResource("Animation_c8tx1"),
+"dodge": SubResource("Animation_o1icj"),
 "walk": SubResource("Animation_cy7l3")
 }
 
@@ -132,6 +198,28 @@ bg_color = Color(0, 0.976471, 0.333333, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbs2p"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.443137)
+
+[sub_resource type="Curve" id="Curve_iqo6m"]
+_data = [Vector2(0.222997, 0.981612), 0.0, 0.0, 0, 0, Vector2(0.376307, 0.692308), 0.0, 0.0, 0, 0, Vector2(0.916376, 0.0622348), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e68lo"]
+curve = SubResource("Curve_iqo6m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2phou"]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 0.8
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angular_velocity_min = 600.0
+angular_velocity_max = 800.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 40.0
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_e68lo")
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
@@ -238,3 +326,13 @@ stream = ExtResource("10_p7723")
 bus = &"sfx"
 
 [node name="HpRegenTimer" type="Timer" parent="."]
+
+[node name="ParticleComponent" type="Node2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleComponent"]
+position = Vector2(0, 10)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_2phou")
+texture = ExtResource("14_56kt2")
+lifetime = 0.3
+one_shot = true

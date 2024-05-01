@@ -120,6 +120,8 @@ v-0.1.5
 
 v-0.2.0
 - fix bug when clicking the hp bars - shots are not emited
-TODO: game aim 10 min and reach max time
+- add particles on dodge action
+- rebalance arena - 10 min for win
+- after 10 min bosses will spawn eventually more often
 TODO: game instructions
-TODO: mayve particles on dodge
+TODO: game difficulty choosing

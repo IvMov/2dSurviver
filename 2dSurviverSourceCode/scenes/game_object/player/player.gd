@@ -16,6 +16,7 @@ class_name Player
 @onready var collision_shape_2d = $PickupArea/CollisionShape2D
 @onready var hp_regen_timer = $HpRegenTimer
 @onready var energy_component = $EnergyComponent
+@onready var animation_player = $AnimationPlayer
 
 
 var number_colliding_bodies: int = 0
@@ -58,6 +59,7 @@ func _unhandled_input(event):
 		var target_velocity = last_direction * current_dodge_speed
 		velocity  = target_velocity.lerp(target_velocity, exp(-get_process_delta_time()*velocity_component.acceleration))
 		skill_audio_player.play()
+		animation_player.play("dodge")
 		velocity_component.move(self)
 		skill_timer.start()
 
