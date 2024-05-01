@@ -125,3 +125,4 @@ v-0.2.0
 - after 10 min bosses will spawn eventually more often
 - add some instructions how to play
 - add difficulty choosing
+- fix bug when accidently click was counted as card choose

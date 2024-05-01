@@ -7,14 +7,19 @@ signal ability_upgrade_selected(upgrade: AbilityUpgrade)
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var audio_stream_player = $AudioStreamPlayer
 var upgrade_manager: UpgradeManager
+@onready var label = $MarginContainer/Label
+@onready var timer = $Timer
 
 var disable_inputs: bool = false
 var skill_inputs: Array = [1, 2, 3]
 
 func _ready():
+	if PlayerCounters.current_level  > 0:
+		label.text = "! NEW LEVEL - %d !" % PlayerCounters.current_level 
 	get_tree().paused = true
 	audio_stream_player.play()
 	upgrade_manager = get_tree().get_first_node_in_group("upgrade_manager")
+	timer.timeout.connect(on_timer_timeout)
 
 
 func _input(event):
@@ -64,3 +69,5 @@ func on_selected_do(upgrade: AbilityUpgrade):
 	await  animation_player.animation_finished
 	queue_free()
 
+func on_timer_timeout():
+	card_container.set_mouse_filter(Control.MOUSE_FILTER_PASS)

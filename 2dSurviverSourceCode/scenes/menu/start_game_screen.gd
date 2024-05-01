@@ -19,8 +19,6 @@ func _ready():
 	normal.pressed.connect(on_difficulty_pressed_normal)
 	hard.pressed.connect(on_difficulty_pressed_hard)
 	toggle_buttons(current_difficulty)
-	print(PlayerCounters.get_game_difficulty())
-	print(MetaProgression.meta_data)
 
 	
 func toggle_buttons(difficulty: int):

@@ -39,7 +39,11 @@ func instaintiate_enemy(enemy_scene: PackedScene, player: Player, spawn_radius):
 	
 	enemy.global_position = get_spawn_position(player.global_position, spawn_radius)
 	get_tree().get_first_node_in_group("entities_layer").add_child(enemy)
-	enemy.health_component.max_health+= enemy_health_bonus
+	
+	if game_difficulty > 1:
+		enemy.health_component.max_health+= enemy_health_bonus*2
+	else:
+		enemy.health_component.max_health+= enemy_health_bonus
 	enemy.health_component.current_health = enemy.health_component.max_health
 	enemies+=1
 	
