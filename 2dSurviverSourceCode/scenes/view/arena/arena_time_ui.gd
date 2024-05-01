@@ -11,6 +11,8 @@ extends CanvasLayer
 @onready var axe_ability_container_ui = $MarginContainer/MarginContainer2/SkillContainer/AxeAbilityContainerUI
 @onready var level_label = $MarginContainer/StatsContainer/VBoxContainer/LevelContainer/MarginContainer/LevelLabel
 @onready var hp_regen_label = $MarginContainer/StatsContainer/VBoxContainer/HpRegenContainer/MarginContainer/HpRegenLabel
+@onready var energy_regen_label = $MarginContainer/StatsContainer/VBoxContainer/EnergyRegenContainer/MarginContainer/EnergyRegenLabel
+
 @onready var skill_container = $MarginContainer/MarginContainer2/SkillContainer
 
 
@@ -47,6 +49,7 @@ func reset_labels():
 	speed_label.text = "%3d / %3d" % [0, 0]
 	level_label.text = "LVL: 0"
 	hp_regen_label.text = "%0.1f hp/sec" % 0
+	energy_regen_label.text = "%0.1f mp/sec" % 0
 
 
 func _on_button_close_pressed():
@@ -63,6 +66,7 @@ func _on_button_menu_pressed():
 
 
 func on_ability_upgrade_applied():
+	energy_regen_label.text = "%0.01f mp/sec" % (player.energy_component.energy_regen * 10)
 	if !player.is_inside_tree():
 		return
 		

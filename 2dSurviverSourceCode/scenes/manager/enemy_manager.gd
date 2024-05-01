@@ -21,7 +21,7 @@ var arena_difficulty: int
 var enemies_per_spaun: int = 1
 var enemies: int = 0
 var enemy_health_bonus: float = 0
-
+var game_difficulty: int = PlayerCounters.game_difficulty
 
 func _ready():
 	spawn_timer.timeout.connect(on_spawn_timer_timeout)
@@ -129,7 +129,7 @@ func on_arena_difficulty_increased(difficulty: int):
 			enemy_table.add_item("ranged_wizard_enemy", ranged_wizard_enemy_scene, 1)
 			enemy_table.change_item_weight("green_enemy", 4)
 			enemy_table.change_item_weight("wizard_enemy", 4)
-			enemy_health_bonus= PlayerCounters.current_level * 2
+			enemy_health_bonus= PlayerCounters.current_level * 1 * game_difficulty
 		20:
 			enemy_table.change_item_weight("green_enemy", 2)
 			enemy_table.change_item_weight("wizard_enemy", 6)
@@ -138,18 +138,18 @@ func on_arena_difficulty_increased(difficulty: int):
 			enemy_table.change_item_weight("wizard_enemy", 2)
 			enemy_table.change_item_weight("ranged_wizard_enemy", 3)
 			enemy_table.change_item_weight("cyclop_enemy", 3)
-			enemy_health_bonus= PlayerCounters.current_level * 3
+			enemy_health_bonus= PlayerCounters.current_level * 1.5 * game_difficulty
 		45: 
 			enemy_table.change_item_weight("green_enemy", 1)
 			enemy_table.change_item_weight("ranged_wizard_enemy", 6)
 			enemy_table.change_item_weight("cyclop_enemy", 6)
 			enemies_per_spaun+=1
-			enemy_health_bonus= PlayerCounters.current_level * 4
+			enemy_health_bonus= PlayerCounters.current_level * 2 * game_difficulty
 		50:
 			enemy_table.change_item_weight("wizard_enemy", 1)
 		60:
-			enemies_per_spaun+=2
-			enemy_health_bonus = PlayerCounters.current_level * 8
+			enemies_per_spaun+=game_difficulty
+			enemy_health_bonus = PlayerCounters.current_level * 4 * game_difficulty
 			
 			
 

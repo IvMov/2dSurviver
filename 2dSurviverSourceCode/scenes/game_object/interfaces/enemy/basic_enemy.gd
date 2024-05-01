@@ -14,7 +14,7 @@ class_name BasicEnemy
 
 
 var is_boss: bool = false
-var hurt: int = 1
+var hurt: int = 2 if PlayerCounters.game_difficulty > 2 else 1
 var base_speed: int
 var is_collided: bool
 var is_moving: bool = true

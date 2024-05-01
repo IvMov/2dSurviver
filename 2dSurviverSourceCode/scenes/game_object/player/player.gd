@@ -114,7 +114,7 @@ func get_movement_vector():
 func check_deal_damage(is_distance_damage: bool):
 	if number_colliding_bodies == 0 || !damage_interval_timer.is_stopped():
 		if is_distance_damage:
-			hurt = 1
+			hurt = 2 if PlayerCounters.game_difficulty > 2 else 1
 			deal_damage()
 		return
 	deal_damage()
@@ -158,10 +158,11 @@ func calculate_hp_regen():
 	
 func on_body_entered(body: Node2D):
 	number_colliding_bodies += 1
+	var num = 7 if PlayerCounters.game_difficulty > 2 else 4
 	if PlayerCounters.current_level < 40:
-		hurt = 5 if body.is_boss else body.hurt
+		hurt = num if body.is_boss else body.hurt
 	else:
-		hurt = 10 if body.is_boss else (body.hurt * 2)
+		hurt = num*2 if body.is_boss else (body.hurt * 2)
 	check_deal_damage(false)
 
 

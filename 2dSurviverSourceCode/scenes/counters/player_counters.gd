@@ -10,6 +10,7 @@ var target_expirience: int = 100
 var base_exp_level: int = 200
 var run_coins: int = 0
 var run_kills: int = 0
+var game_difficulty: int # 1 - easy, 2 - normal, 3- hard
 
 func _ready():
 	GameEvents.exp_collected.connect(handle_exp_collected)
@@ -17,6 +18,9 @@ func _ready():
 	GameEvents.ability_upgrade_applied.connect(on_ablility_upgrade_applied)
 	GameEvents.coin_collected.connect(on_coin_collected)
 
+func get_game_difficulty():
+	game_difficulty = MetaProgression.meta_data["difficulty"] if MetaProgression.meta_data.has("difficulty") else 2
+	return game_difficulty
 	
 func handle_exp_collected(value, pos):
 	expirience+=value

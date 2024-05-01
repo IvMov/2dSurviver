@@ -78,7 +78,7 @@ text = "Created by Erridan"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "v 0.1.5"
+text = "v 0.2.0"
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2

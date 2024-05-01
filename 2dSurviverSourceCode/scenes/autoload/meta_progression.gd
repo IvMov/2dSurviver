@@ -4,6 +4,7 @@ const FILE_PATH = "user://2d_survivor.save"
 @export var permanent_upgrade_pool: Array[MetaUpgrade]
 
 var empty_meta_data: Dictionary = {
+	"difficulty": 2,
 	"runs": 0,
 	"win_runs" : 0,
 	"coins": 0,
@@ -66,6 +67,7 @@ func on_game_win():
 
 
 func on_save_game():
+	meta_data["difficulty"] = PlayerCounters.game_difficulty if PlayerCounters.game_difficulty != 0 else PlayerCounters.get_game_difficulty()
 	meta_data["coins"] += PlayerCounters.run_coins
 	meta_data["kills"] += PlayerCounters.run_kills
 	var time_manager = get_tree().get_first_node_in_group("arena_time_manager") 

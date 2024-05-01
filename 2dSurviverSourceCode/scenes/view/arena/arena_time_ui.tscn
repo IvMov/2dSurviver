@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dyhdu470c6jdt"]
+[gd_scene load_steps=13 format=3 uid="uid://dyhdu470c6jdt"]
 
 [ext_resource type="Script" path="res://scenes/view/arena/arena_time_ui.gd" id="1_tnnl2"]
 [ext_resource type="Texture2D" uid="uid://bf0b8wde1rqh2" path="res://assets/ui/next-level.png" id="2_2oy5y"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b6ju0klkeolap" path="res://assets/ui/bow1.png" id="6_hm3sb"]
 [ext_resource type="PackedScene" uid="uid://nddmr3u6woan" path="res://scenes/view/ability_container_ui.tscn" id="6_v17iw"]
 [ext_resource type="Texture2D" uid="uid://drb2wv4yloqwd" path="res://assets/ui/hp_regen.png" id="9_u0xsi"]
+[ext_resource type="Texture2D" uid="uid://11fjnm61s207" path="res://assets/game_objects/dropable/energy_orb.png" id="11_y2to3"]
 
 [node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_tnnl2")
@@ -144,6 +145,24 @@ size_flags_horizontal = 8
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("6_guocr")
 text = "0.1 hp/sec"
+
+[node name="EnergyRegenContainer" type="HBoxContainer" parent="MarginContainer/StatsContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/StatsContainer/VBoxContainer/EnergyRegenContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/StatsContainer/VBoxContainer/EnergyRegenContainer/MarginContainer"]
+texture = ExtResource("11_y2to3")
+centered = false
+
+[node name="EnergyRegenLabel" type="Label" parent="MarginContainer/StatsContainer/VBoxContainer/EnergyRegenContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_guocr")
+text = "0.1 mp/sec"
 
 [node name="Skill" type="Label" parent="MarginContainer"]
 layout_mode = 2

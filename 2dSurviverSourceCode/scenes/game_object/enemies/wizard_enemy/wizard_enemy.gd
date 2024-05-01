@@ -2,7 +2,7 @@ extends BasicEnemy
 
 func _ready():
 	super._ready()
-	hurt = 2
+	hurt = 3 if PlayerCounters.game_difficulty > 2 else 2
 	
 #used in animation
 func set_is_moving(moving: bool): 

@@ -123,5 +123,5 @@ v-0.2.0
 - add particles on dodge action
 - rebalance arena - 10 min for win
 - after 10 min bosses will spawn eventually more often
-TODO: game instructions
-TODO: game difficulty choosing
+- add some instructions how to play
+- add difficulty choosing

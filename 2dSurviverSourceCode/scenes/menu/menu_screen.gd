@@ -10,15 +10,12 @@ extends CanvasLayer
 @onready var give_up_button = $MarginContainer/Bacground/VBoxContainer/GiveUpButton
 
 
-var main_scene: PackedScene
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if !get_tree().paused:
 		restart_button.visible = false
 		give_up_button.visible = false
 		stats_and_upgrades_button.visible = true
-		main_scene = preload("res://scenes/main/main.tscn")
 	start_button.pressed.connect(on_start_button_pressed)
 	
 	stats_and_upgrades_button.pressed.connect(on_stats_and_upgrades_button)
@@ -43,15 +40,13 @@ func  _unhandled_input(event):
 
 
 func on_start_button_pressed():
-	MusicPlayer.stop()
+	
 	if !get_tree().paused:
-		ScreenTransition.play_transition()
-		await ScreenTransition.animation_player.animation_finished
-		GameEvents.emit_game_started()
-		get_tree().change_scene_to_packed(main_scene)
-		ScreenTransition.play_transition_back()
-		await ScreenTransition.animation_player.animation_finished
+		var scene = load("res://scenes/menu/start_game_screen.tscn")
+		var start = scene.instantiate()
+		get_parent().add_child(start)
 	else:
+		MusicPlayer.stop()
 		get_tree().paused = false
 		get_parent().random_audio_player_component.play_random_stream()
 		queue_free()
