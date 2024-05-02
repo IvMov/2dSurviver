@@ -26,7 +26,7 @@ func set_defeat():
 	PlayerCounters.run_coins-=100
 	$AudioStreamPlayer.stream = load("res://assets/audio/gameend/jingles_NES00.ogg")
 	%TitleLabel.text = "You DIED!"
-	%DescriptionLabel.text = "What a shame, they ate you! \n Now you can go to Menu and \n buy some upgrades in Shop!"
+	%DescriptionLabel.text = "They ate you! But don't worry! \n Now you can go to the Menu and \n buy some UPGRADES in Shop!"
 	
 	%ContinueButton.queue_free()
 	continue_active = false

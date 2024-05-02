@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_nupd1"]
 font = ExtResource("2_lvxr6")
-font_size = 32
+font_size = 24
 
 [node name="EndScreen" type="CanvasLayer" groups=["end_screen"]]
 process_mode = 3
@@ -52,9 +52,10 @@ vertical_alignment = 1
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Thanks for playing my game!
+text = "You finish main game. 
 Now you can go to buy
-some upgrades in menu!
+some upgrades in menu 
+or continue fighting darkness!
 +100 $"
 label_settings = SubResource("LabelSettings_nupd1")
 horizontal_alignment = 1

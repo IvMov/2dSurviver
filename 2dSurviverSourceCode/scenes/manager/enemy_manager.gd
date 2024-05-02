@@ -150,10 +150,12 @@ func on_arena_difficulty_increased(difficulty: int):
 			enemies_per_spaun+=1
 			enemy_health_bonus= PlayerCounters.current_level * 2 * game_difficulty
 		50:
-			enemy_table.change_item_weight("wizard_enemy", 1)
+			enemy_table.change_item_weight("green_enemy", 2)
+			enemy_table.change_item_weight("wizard_enemy", 2)
+			enemy_table.change_item_weight("ranged_wizard_enemy", 3)
+			enemy_table.change_item_weight("cyclop_enemy", 3)
 		60:
 			enemies_per_spaun+=game_difficulty
 			enemy_health_bonus = PlayerCounters.current_level * 4 * game_difficulty
-			
-			
+
 

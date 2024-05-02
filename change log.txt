@@ -126,3 +126,8 @@ v-0.2.0
 - add some instructions how to play
 - add difficulty choosing
 - fix bug when accidently click was counted as card choose
+
+v-0.2.1 
+- rebalance late game
+- change name
+- small fixes

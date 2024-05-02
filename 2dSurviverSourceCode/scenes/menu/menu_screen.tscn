@@ -36,36 +36,50 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
-text = "2D survivor !"
+text = "A Knight of Arena"
 
 [node name="StartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Start"
 
 [node name="RestartButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Restart
 "
 
 [node name="StatsAndUpgradesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Stats & Shop
 "
 
 [node name="PropertiesButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Properties"
 
 [node name="ControlsButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Controls"
 
 [node name="GiveUpButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Save & Give up "
 
 [node name="QuitButton" parent="MarginContainer/Bacground/VBoxContainer" instance=ExtResource("1_lrbd7")]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Save & Quit"
 
 [node name="Label3" type="Label" parent="MarginContainer"]
@@ -78,7 +92,7 @@ text = "Created by Erridan"
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "v 0.2.0"
+text = "v 0.2.1"
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
