@@ -3,6 +3,7 @@ class_name AbilityCard
 
 signal card_selected()
 
+@onready var hotkey_label = $HotkeyLabel
 @onready var header_label: Label = %Header
 @onready var description_label: Label = %Description
 @onready var color_rect: ColorRect = %ColorRect

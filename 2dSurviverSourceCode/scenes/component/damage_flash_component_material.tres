@@ -5,5 +5,3 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_q0gib")
-shader_parameter/lerp_precent = 1.0
-shader_parameter/rgb = Vector3(1, 1, 1)

@@ -1,60 +1,62 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3nh0takoj5ro"]
+[gd_scene load_steps=8 format=3 uid="uid://b3nh0takoj5ro"]
 
 [ext_resource type="Script" path="res://scenes/autoload/screen_transition.gd" id="1_frs5k"]
 [ext_resource type="Shader" path="res://scenes/autoload/screen_transition.gdshader" id="1_h44ve"]
+[ext_resource type="Texture2D" uid="uid://mn3voc21qye2" path="res://assets/ui/title_loading.png" id="3_s1tvq"]
 
 [sub_resource type="Animation" id="Animation_0haw5"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [1.61]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:material:shader_parameter/time")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [2.0]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_h6a2o"]
 resource_name = "default"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/time")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.01),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"update": 0,
+"values": [0.0, 1.61]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:material:shader_parameter/time")
+tracks/1/path = NodePath("Sprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.7]
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yigxg"]
@@ -63,10 +65,10 @@ _data = {
 "default": SubResource("Animation_h6a2o")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_davc6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fwtg1"]
 shader = ExtResource("1_h44ve")
-shader_parameter/time = 2.0
-shader_parameter/color = Color(0.866667, 0.584314, 0.278431, 1)
+shader_parameter/time = 1.61
+shader_parameter/color = Color(0, 0, 0, 0.0862745)
 
 [node name="ScreenTransition" type="CanvasLayer"]
 process_mode = 3
@@ -78,11 +80,7 @@ libraries = {
 "": SubResource("AnimationLibrary_yigxg")
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-material = SubResource("ShaderMaterial_davc6")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_fwtg1")
+texture = ExtResource("3_s1tvq")
+centered = false

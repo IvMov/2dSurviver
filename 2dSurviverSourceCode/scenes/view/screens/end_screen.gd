@@ -36,7 +36,7 @@ func on_restart_button_pressed():
 	get_tree().paused = false
 	PlayerCounters.reset_counters()
 	GameEvents.emit_game_started()
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	get_tree().change_scene_to_packed(GameEvents.main_scene)
 
 
 func on_quit_button_pressed():
@@ -56,6 +56,4 @@ func on_end_and_stats_button_pressed():
 	get_tree().paused = false
 	PlayerCounters.reset_counters()
 	get_tree().change_scene_to_file("res://scenes/menu/menu_screen.tscn")
-	var scene = load("res://scenes/menu/stats_and_upgrade_screen.tscn")
-	var properties = scene.instantiate()
-	get_parent().add_child(properties)
+

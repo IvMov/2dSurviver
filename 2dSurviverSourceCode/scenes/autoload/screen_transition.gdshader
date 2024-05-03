@@ -7,6 +7,7 @@ uniform float time = 1.0;
 uniform vec3 color : source_color;
 void fragment()
 {
+	vec4 native_color = texture(TEXTURE, UV);
 	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 uv = FRAGCOORD.xy / iResolution.xy;
     float resolution = 5.0;
@@ -16,7 +17,7 @@ void fragment()
     );
     
     if(sin(time) > rand(lowresxy)){
-		COLOR = vec4(color.xyz, 1.0);
+		COLOR = vec4(native_color.xyz, 1.0);
     }else{
 		COLOR = vec4(0.0,0.0,0.0,0.0);
 		// change to COLOR = vec4(0.0,0.0,0.0,1.0); to make black pixels

@@ -7,12 +7,9 @@ extends CanvasLayer
 @onready var normal = $ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer/Normal
 @onready var hard = $ScrollContainer/MarginContainer/VBoxContainer/Difficulties/MarginContainer/Hard
 
-
-var main_scene: PackedScene
 var current_difficulty: int = PlayerCounters.get_game_difficulty()
 
 func _ready():
-	main_scene = preload("res://scenes/main/main.tscn")
 	start_button.pressed.connect(on_start_button_pressed)
 	back_button.pressed.connect(on_back_button_pressed)
 	easy.pressed.connect(on_difficulty_pressed_easy)
@@ -36,9 +33,8 @@ func on_start_button_pressed():
 	ScreenTransition.play_transition()
 	await ScreenTransition.animation_player.animation_finished
 	GameEvents.emit_game_started()
-	get_tree().change_scene_to_packed(main_scene)
+	get_tree().change_scene_to_packed(GameEvents.main_scene)
 	ScreenTransition.play_transition_back()
-	await ScreenTransition.animation_player.animation_finished
 	queue_free()
 	
 func on_difficulty_pressed_easy():

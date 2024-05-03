@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://du5wek35attp7"]
+[gd_scene load_steps=9 format=3 uid="uid://du5wek35attp7"]
 
 [ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_jmsns"]
 [ext_resource type="Texture2D" uid="uid://ikt3oa25hlw1" path="res://assets/game_objects/enemies/green_enemy.png" id="1_kfhgl"]
+[ext_resource type="Material" uid="uid://cs38ovnx41f5u" path="res://resources/death_component_particles.tres" id="2_w64fd"]
 [ext_resource type="PackedScene" uid="uid://diixha44k86k2" path="res://scenes/component/random_audio_player_2d_component.tscn" id="3_n2h4n"]
 [ext_resource type="AudioStream" uid="uid://d2xtlsfk468h2" path="res://assets/audio/death/monster-death-grunt-131480.mp3" id="4_2y3of"]
 
@@ -55,27 +56,6 @@ _data = {
 "default": SubResource("Animation_doyax")
 }
 
-[sub_resource type="Curve" id="Curve_w8hw2"]
-min_value = 0.7
-max_value = 1.2
-_data = [Vector2(0, 1.2), 0.0, 0.436568, 0, 0, Vector2(0.521886, 1.05889), 1.25276, 1.25276, 0, 0, Vector2(0.976431, 0.701696), -0.462248, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_5ma1o"]
-curve = SubResource("Curve_w8hw2")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g0mdp"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-initial_velocity_min = -20.0
-initial_velocity_max = 20.0
-angular_velocity_min = -400.0
-angular_velocity_max = 400.0
-gravity = Vector3(0, -400, 0)
-scale_min = 0.8
-scale_max = 1.2
-scale_curve = SubResource("CurveTexture_5ma1o")
-
 [node name="DeathComponent" type="Node2D"]
 script = ExtResource("1_jmsns")
 
@@ -87,7 +67,7 @@ libraries = {
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_g0mdp")
+process_material = ExtResource("2_w64fd")
 texture = ExtResource("1_kfhgl")
 one_shot = true
 trail_lifetime = 1.0

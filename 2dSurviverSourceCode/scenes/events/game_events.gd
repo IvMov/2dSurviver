@@ -15,7 +15,16 @@ signal window_changed()
 signal save_game()
 signal permanent_upgrade_buy(upgrade: MetaUpgrade)
 
+const MAIN_SCENE_PATH : String = "res://scenes/main/main.tscn"
+var main_scene: PackedScene;
 var full_screen: bool = true
+
+func _ready():
+	ResourceLoader.load_threaded_request(MAIN_SCENE_PATH)
+
+func _process(delta):
+	if ResourceLoader.load_threaded_get_status(MAIN_SCENE_PATH) == 3: 
+		main_scene = ResourceLoader.load_threaded_get(MAIN_SCENE_PATH)
 
 func _unhandled_input(event):
 	if event.is_action("full_screen") && event.is_released():

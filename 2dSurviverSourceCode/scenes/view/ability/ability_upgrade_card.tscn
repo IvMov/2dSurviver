@@ -133,7 +133,7 @@ color = Color(0.784314, 0.917647, 0.886275, 1)
 
 [node name="Description" type="Label" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(60, 80)
+custom_minimum_size = Vector2(60, 70)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 14
@@ -174,3 +174,12 @@ streams = Array[AudioStream]([ExtResource("4_g3bgx"), ExtResource("5_1t7as"), Ex
 volume_db = -10.0
 bus = &"sfx"
 streams = Array[AudioStream]([ExtResource("7_fb3fj"), ExtResource("8_531r6")])
+
+[node name="HotkeyLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.427451, 0.427451, 0.427451, 1)
+theme_override_fonts/font = ExtResource("3_n20a5")
+theme_override_font_sizes/font_size = 16

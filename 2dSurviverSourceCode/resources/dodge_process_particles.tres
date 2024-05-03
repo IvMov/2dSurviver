@@ -1,0 +1,23 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bkq7qhehebbga"]
+
+[sub_resource type="Curve" id="Curve_iqo6m"]
+_data = [Vector2(0.222997, 0.981612), 0.0, 0.0, 0, 0, Vector2(0.376307, 0.692308), 0.0, 0.0, 0, 0, Vector2(0.916376, 0.0622348), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_e68lo"]
+curve = SubResource("Curve_iqo6m")
+
+[resource]
+particle_flag_disable_z = true
+spread = 180.0
+flatness = 0.8
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+angular_velocity_min = 600.0
+angular_velocity_max = 800.0
+gravity = Vector3(0, 0, 0)
+damping_min = 10.0
+damping_max = 40.0
+scale_min = 0.5
+scale_max = 1.5
+alpha_curve = SubResource("CurveTexture_e68lo")

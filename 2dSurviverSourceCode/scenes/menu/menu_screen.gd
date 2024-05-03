@@ -59,9 +59,9 @@ func on_restart_button_pressed():
 	ScreenTransition.play_transition()
 	await ScreenTransition.animation_player.animation_finished
 	GameEvents.emit_game_started()
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	get_tree().change_scene_to_packed(GameEvents.main_scene)
 	ScreenTransition.play_transition_back()
-	await ScreenTransition.animation_player.animation_finished
+	
 	
 func on_stats_and_upgrades_button():
 	var scene = load("res://scenes/menu/stats_and_upgrade_screen.tscn")

@@ -13,5 +13,6 @@ max_lvl = 1.0
 main_color = Color(0.396078, 0.376471, 0.121569, 1)
 second_color = Color(0, 0, 0, 1)
 description = "Shoot yout enemies now!
-BONUS SKILL: Cick to shoot in desired direction! "
+BONUS
+: Click to shoot in desired direction! "
 skill = true

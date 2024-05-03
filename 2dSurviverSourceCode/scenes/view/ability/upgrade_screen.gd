@@ -40,15 +40,20 @@ func _input(event):
 
 
 func set_ability_upgrades(upgrades: Array[AbilityUpgrade]):
+	var i = 1;
 	for upgrade in upgrades:
+		
 		if !upgrade:
 			return
 		var card_instance: AbilityCard = upgrade_card_scene.instantiate()
 		card_instance.current_ability_lvl = upgrade_manager.get_upgrade_level(upgrade)
 		card_container.add_child(card_instance)
+		card_instance.hotkey_label.text = " press %d" % i
 		card_instance.set_ability_upgrade(upgrade)
+		
 		card_instance.card_selected.connect(on_selected_do.bind(upgrade))
 		await card_instance.animation_player.animation_finished
+		i+=1;
 
 
 func clean_cards_from_screen():
