@@ -119,7 +119,7 @@ func on_boss_timer_timeout():
 	
 func on_arena_difficulty_increased(difficulty: int):
 	arena_difficulty = difficulty
-	spawn_timer.wait_time = max(0.3, SWAPN_INTERVAL - (0.02 * difficulty))
+	spawn_timer.wait_time = max(0.3, SWAPN_INTERVAL - (float(game_difficulty)/100 * difficulty))
 	match difficulty:
 		5: 
 			enemy_table.add_item("cyclop_enemy", cyclop_enemy_scene, 1)

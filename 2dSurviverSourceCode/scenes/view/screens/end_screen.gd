@@ -34,8 +34,9 @@ func set_defeat():
 	
 func on_restart_button_pressed():
 	get_tree().paused = false
-	PlayerCounters.reset_counters()
 	GameEvents.emit_game_started()
+	GameEvents.emit_save_game()
+	PlayerCounters.reset_counters()
 	get_tree().change_scene_to_packed(GameEvents.main_scene)
 
 

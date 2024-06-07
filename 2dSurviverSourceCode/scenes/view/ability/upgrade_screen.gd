@@ -14,6 +14,7 @@ var disable_inputs: bool = false
 var skill_inputs: Array = [1, 2, 3]
 
 func _ready():
+	disable_inputs = true
 	if PlayerCounters.current_level  > 0:
 		label.text = "! NEW LEVEL - %d !" % PlayerCounters.current_level 
 	get_tree().paused = true
@@ -75,4 +76,5 @@ func on_selected_do(upgrade: AbilityUpgrade):
 	queue_free()
 
 func on_timer_timeout():
+	disable_inputs = false
 	card_container.set_mouse_filter(Control.MOUSE_FILTER_PASS)
